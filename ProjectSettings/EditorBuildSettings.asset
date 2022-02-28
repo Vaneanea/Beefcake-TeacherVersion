@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/StuffForSchylar/Scenes sky v/MainFixScene.unity
+    guid: d73d872f068441740ae9395f50a14e98
   m_configObjects: {}
