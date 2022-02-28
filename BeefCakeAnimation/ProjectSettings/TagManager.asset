@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Model
+  - Beefcake
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - WashingBeefCake
   - Water
   - UI
   - 

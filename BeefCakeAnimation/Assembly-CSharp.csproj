@@ -54,6 +54,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\StuffForSchylar\Scripts\AttackButtonScript.cs" />
+    <Compile Include="Assets\StuffForSchylar\Scripts\BrushScript.cs" />
+    <Compile Include="Assets\StuffForSchylar\Scripts\MoveBeefCake.cs" />
+    <Compile Include="Assets\StuffForSchylar\Scripts\MoveCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StuffForSchylar\BeefcakeAssets\Suriyun\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
