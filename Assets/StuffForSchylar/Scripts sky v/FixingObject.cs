@@ -6,11 +6,11 @@ using UnityEngine.Animations;
 public class FixingObject : MonoBehaviour
 {
     //Tapping value to fix
-    public float fixing;
+    public float hits;
     //Max tap values
-    public float firstMax, secondMax;
+    public float firstStageHitsNeeded, secondStageHitsNeeded;
     //current mesh of object
-    public Mesh[] meshes;
+    //public Mesh[] meshes;
 
     public GameObject[] items;
     public Animator animator;
@@ -39,27 +39,29 @@ public class FixingObject : MonoBehaviour
         #endregion
 
         //fixing float reaches a number
-        if (fixing >= firstMax && stagesDone == 0)
+        if (hits >= firstStageHitsNeeded && stagesDone == 0)
         {
             //change the mesh of the object
             //GetComponent<MeshFilter>().mesh = meshes[1];
             items[0].SetActive(false);
             items[1].SetActive(true);
 
-
+            hits = 0;
             animationPlayer();
             stagesDone = 1;
             
 
         }
         //fixing float reaches a number
-        if (fixing >= secondMax && stagesDone == 1)
+        if (hits >= secondStageHitsNeeded && stagesDone == 1)
         {
             //change the mesh of the object
             //GetComponent<MeshFilter>().mesh = meshes[2];
             items[1].SetActive(false);
             items[2].SetActive(true);
 
+
+            hits = 0;
             playAnimation = true;
             animationPlayer();
             stagesDone = 2;
@@ -70,7 +72,7 @@ public class FixingObject : MonoBehaviour
 
     public void fixItem()
     {
-        fixing++;
+        hits++;
     }
 
     public void animationPlayer()

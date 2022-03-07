@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/StuffForSchylar/Scenes sky v/MainFixScene.unity
     guid: d73d872f068441740ae9395f50a14e98
+  - enabled: 1
+    path: Assets/DemoResources/Scenes/CurrentScenes/StartScreen.unity
+    guid: 4755ea6d6dd015041bf9f99bd76a8d7c
+  - enabled: 1
+    path: Assets/DemoResources/Scenes/CurrentScenes/FixCarScene.unity
+    guid: 601b0b278c0bf8a48ad9a65ef72d99b8
   m_configObjects: {}

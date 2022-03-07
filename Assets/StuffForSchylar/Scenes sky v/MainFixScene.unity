@@ -1995,8 +1995,7 @@ PrefabInstance:
         type: 3}
       propertyPath: smokeParticle
       value: 
-      objectReference: {fileID: 19800000, guid: ab1112643ee572748b01dede71158272,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5738297461460105584, guid: 52040e28ffb745249b930ade8a011eda,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2116,8 +2115,7 @@ PrefabInstance:
         type: 3}
       propertyPath: smokeParticle
       value: 
-      objectReference: {fileID: 19800000, guid: ab1112643ee572748b01dede71158272,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2604626621953151571, guid: 52040e28ffb745249b930ade8a011eda, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 52040e28ffb745249b930ade8a011eda, type: 3}
