@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 76607355038001761}
   - component: {fileID: 5721670813946884330}
   - component: {fileID: 7194942962126358392}
+  - component: {fileID: -7611914413686794650}
   m_Layer: 0
   m_Name: TestCar3 Fixed
   m_TagString: Untagged
@@ -409,3 +410,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7611914413686794650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9020515383005903325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47961d8089815c643b28210520933152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasLanded: 0

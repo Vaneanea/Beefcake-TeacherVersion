@@ -33,6 +33,8 @@ public class CarHolder : MonoBehaviour
     private GameObject thirdCarStage;
 
     public bool isDone;
+    public bool isWashed;
+
 
 
 
@@ -87,19 +89,28 @@ public class CarHolder : MonoBehaviour
             GameObject attackPoint = attackPointPrefab;
 
 
+            //if (firstCarStage.GetComponent<CarState>().hasLanded == true)
+            //{
+            //    GameObject x = Instantiate(attackPoint, transform);
 
-            var x = Instantiate(attackPoint, transform);
+            //    x.transform.position = attackPointLocation.transform.position;
+            //    x.transform.rotation = attackPointLocation.transform.rotation;
+            //    x.transform.localScale = new Vector3(1, 1, 1);
+            //}
 
+            GameObject x = Instantiate(attackPoint, transform);
 
             x.transform.position = attackPointLocation.transform.position;
             x.transform.rotation = attackPointLocation.transform.rotation;
             x.transform.localScale = new Vector3(1, 1, 1);
+
         }
     }
 
 
     void Update()
     {
+        //Debug.Log(firstCarStage.GetComponent<CarState>().hasLanded + "hi");
 
         //fixing float reaches a number
         if (hits >= firstStageHitsNeeded && stagesDone == 0)
@@ -113,6 +124,15 @@ public class CarHolder : MonoBehaviour
 
                 GameObject attackPoint = attackPointPrefab;
 
+                //if (secondCarStage.GetComponent<CarState>().hasLanded == true)
+                //{
+                //    var x = Instantiate(attackPoint, transform);
+
+
+                //    x.transform.position = attackPointLocation.transform.position;
+                //    x.transform.rotation = attackPointLocation.transform.rotation;
+                //    x.transform.localScale = new Vector3(1, 1, 1);
+                //}
 
                 var x = Instantiate(attackPoint, transform);
 
@@ -140,7 +160,7 @@ public class CarHolder : MonoBehaviour
             hits = 0;
             stagesDone = 2;
 
-            StartCoroutine(WaitASec());
+            StartCoroutine(WaitASec(1));
         }
 
     }
@@ -150,15 +170,11 @@ public class CarHolder : MonoBehaviour
         hits++;
     }
 
-    IEnumerator WaitASec()
+    public  IEnumerator WaitASec(int x)
     {
 
-        new WaitForSeconds(2);
-
-
-        yield return isDone = true;
-
-
+        yield return new WaitForSeconds(x);
+        isDone = true;
     }
 }
 

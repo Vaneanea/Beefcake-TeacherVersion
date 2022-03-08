@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Model
   - Beefcake
+  - FixPoint
+  - Floor
   layers:
   - Default
   - TransparentFX

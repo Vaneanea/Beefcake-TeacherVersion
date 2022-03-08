@@ -48,8 +48,8 @@ public class FixingPoint : MonoBehaviour
     public void attackTarget()
     {
         //Put player in correct position to attack 
-        gm.PlayerBeefcake.transform.position = new Vector3(PlayerPosition.position.x, 0,PlayerPosition.position.z);
-        gm.PlayerBeefcake.transform.rotation = PlayerPosition.rotation;
+        gm.playerBeefcake.transform.position = new Vector3(PlayerPosition.position.x, 0,PlayerPosition.position.z);
+        gm.playerBeefcake.transform.rotation = PlayerPosition.rotation;
 
        
     
@@ -61,10 +61,10 @@ public class FixingPoint : MonoBehaviour
         //play breaking sounds
 
         //increase the current fix
-        currentHits += gm.PlayerBeefcake.GetComponent<BeefBro>().GetStrenghtLevel();
+        currentHits += gm.playerBeefcake.GetComponent<BeefBro>().GetStrenghtLevel();
 
         //reduce stamina
-        gm.PlayerBeefcake.GetComponent<BeefBro>().ReduceStamina(1);
+        gm.playerBeefcake.GetComponent<BeefBro>().ReduceStamina(1);
 
         //set current fix values on the health bar
         healthBar.SetHealth(currentHits);

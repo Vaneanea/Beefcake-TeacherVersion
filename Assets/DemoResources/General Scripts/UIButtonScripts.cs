@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButtonScript : MonoBehaviour
+public class UIButtonScripts : MonoBehaviour
 {
     public void StartButton() {
 
         SceneManager.LoadScene("FixCarScene");
+
+    }
+
+    public void RestartButton()
+    {
+       
+        SceneManager.LoadScene("StartScreen");
 
     }
 }

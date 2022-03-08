@@ -16,7 +16,7 @@ public class BeefBro : MonoBehaviour
 
     public int CurrentStamina;
 
-    bool isFatigued;
+    private bool isFatigued;
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +44,6 @@ public class BeefBro : MonoBehaviour
 
         }
 
-        if (isFatigued == true) {
-
-            
-            SceneManager.LoadScene("StartScreen");
-
-        }
     }
 
 
@@ -81,4 +75,10 @@ public class BeefBro : MonoBehaviour
 
         return strenghtLevel;
     }
+
+    public bool GetFatigue() {
+
+        return isFatigued;
+    }
+
 }
