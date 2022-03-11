@@ -1059,10 +1059,14 @@ MonoBehaviour:
   shopItemsSource:
   - {fileID: 11400000, guid: 144cd03a284aca841b94807eeb9e5066, type: 2}
   - {fileID: 11400000, guid: abbed62e3e47c5b4290ac8f33bf49ca9, type: 2}
+  - {fileID: 11400000, guid: ecf990045ff959142abb0e418a1b277c, type: 2}
   nameText: {fileID: 1842873073}
   staminaText: {fileID: 43367316}
   strengthText: {fileID: 1472373959}
   speedText: {fileID: 1435058585}
+  hireButton: {fileID: 177727198}
+  nextArrow: {fileID: 582519199}
+  previousArrow: {fileID: 1031626377}
 --- !u!1 &1435058583
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 // Holds an instance of a BeefCakeData ScriptableObject
 // with extra data and methods related to crew management
-public class CrewBeefCake : MonoBehaviour {
+[Serializable]
+public class CrewBeefCake {
     [SerializeField] private string broName;
 
     private int stamina;
