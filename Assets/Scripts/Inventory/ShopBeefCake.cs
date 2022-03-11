@@ -13,17 +13,14 @@ public class ShopBeefCake {
 
     public ShopBeefCake(BeefCakeData source) {
         this.source = source;
-        isAvailable = true;
+        
+        isAvailable = true; // TODO: set isAvailable based on current stage
     }
 
     #region Item Buy Methods
-    // TODO: Figure out when to call this
-    private void OnItemBuy() {
+    public void OnItemBuy() {
         CrewInventory.instance.Add(source);
         isAvailable = false;
-
-        // TODO: Notify CrewShopInventory or something to not display item?
-        //       ? maybe Destroy(this) ?
     }
     #endregion
 
