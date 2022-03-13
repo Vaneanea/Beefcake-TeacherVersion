@@ -4,35 +4,67 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// Handle shop management and display
+// Handle shop management and notify UIManager of changes
 public class CrewShopInventory : MonoBehaviour {
     [SerializeField] private List<BeefCakeData> shopItemsSource;
     private List<ShopBeefCake> shopItems;
 
-    [Header("UI Variables")]
-    [SerializeField] TMP_Text nameText;
-    [SerializeField] TMP_Text staminaText;
-    [SerializeField] TMP_Text strengthText;
-    [SerializeField] TMP_Text speedText;
-
-    [SerializeField] GameObject hireButton;
-    [SerializeField] GameObject nextArrow;
-    [SerializeField] GameObject previousArrow;
-
+    private HireUIManager uiManager;
     private int curItem;
-    [SerializeField] private int availableCount; // TODO: This var needs to be updated properly
+    private int availableCount; // TODO: This var needs to be updated properly
 
     private void Awake() {
         shopItems = new List<ShopBeefCake>();
     }
 
     private void Start() {
+        uiManager = GetComponent<HireUIManager>();
+        
         MakeShop();
 
-        DisplayCurrentItem();
+        NotifyCurItemChange();
     }
 
-    // Construct shop items
+    #region Display methods
+    // Attached to right arrow
+    public void OnClickRight() {
+        // Find the first available item going forwards
+        do {
+            curItem = (curItem + 1) % shopItems.Count;
+        } while (!shopItems[curItem].isAvailable);
+
+        NotifyCurItemChange();
+    }
+
+    // Attached to left arrow
+    public void OnClickLeft() {
+        // Find the first available going backwards
+        do {
+            curItem--;
+            if (curItem < 0)
+                curItem = shopItems.Count - 1;
+        } while (!shopItems[curItem].isAvailable);
+
+        NotifyCurItemChange();
+    }
+
+    // Attached to hire button
+    public void OnClickHire() {
+        shopItems[curItem].OnItemBuy();
+        availableCount--;
+
+        uiManager.OnClickHire();
+    }
+
+    private void NotifyCurItemChange() {
+        if (availableCount == 1)
+            uiManager.DisableArrows();
+
+        uiManager.DisplayCurrentItem(shopItems[curItem]);
+    }
+    #endregion
+
+    // Construct shop items from the source data: {shopItemsSource}
     // TODO: only called ONCE at the first start of the game, persistent throughout
     private void MakeShop() {
         availableCount = 0;
@@ -53,65 +85,4 @@ public class CrewShopInventory : MonoBehaviour {
                 break;
             }   
     }
-
-    private void OnHireItem() {
-        shopItems[curItem].OnItemBuy();
-        availableCount--;
-    }
-
-    #region UI Methods
-
-    public void OnClickNext() {
-        // Find the first available item going forwards
-        do {
-            curItem = (curItem + 1) % shopItems.Count;
-        } while (!shopItems[curItem].isAvailable);
-        
-
-        DisplayCurrentItem();
-    }
-
-    public void OnClickPrevious() {
-        // Find the first available going backwards
-        do {
-            curItem--;
-            if (curItem < 0)
-                curItem = shopItems.Count - 1;
-        } while (!shopItems[curItem].isAvailable);
-        
-
-        DisplayCurrentItem();
-    }
-
-    public void OnClickHire() {
-        OnHireItem();
-
-        hireButton.GetComponent<Button>().interactable = false;
-        hireButton.GetComponentInChildren<TMP_Text>().text = "HIRED!";
-    }
-
-    private void DisplayCurrentItem() {
-        if (availableCount == 1)
-            DisableArrows();
-
-        hireButton.GetComponent<Button>().interactable = true;
-        hireButton.GetComponentInChildren<TMP_Text>().text = "HIRE";
-
-        SetTextUI(shopItems[curItem]);
-    }
-
-    private void SetTextUI(ShopBeefCake item) {
-        BeefCakeData source = item.source;
-
-        nameText.text = source.displayName;
-        staminaText.text = "Stamina: " + source.stamina.ToString();
-        strengthText.text = "Strength: " + source.strength.ToString();
-        speedText.text = "Speed: " + source.speed.ToString();
-    }
-
-    private void DisableArrows() {
-        nextArrow.SetActive(false);
-        previousArrow.SetActive(false);
-    }
-    #endregion
 }
