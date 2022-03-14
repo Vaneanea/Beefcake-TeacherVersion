@@ -17,23 +17,25 @@ public class HireUIManager : MonoBehaviour
     [SerializeField] TMP_Text speedText;
 
     [SerializeField] TMP_Text hireText;
-    [SerializeField] GameObject hireButton;
+    [SerializeField] GameObject hireButtonEnabled;
+    [SerializeField] GameObject hireButtonDisabled;
     [SerializeField] GameObject rightArrow;
     [SerializeField] GameObject leftArrow;
 
     [SerializeField] GameObject charModel;
 
     public void DisplayCurrentItem(ShopBeefCake curItem) {
-        hireButton.GetComponent<Button>().interactable = true;
-        hireButton.GetComponentInChildren<TMP_Text>().text = "HIRE";
+        hireButtonEnabled.SetActive(true);
+        hireButtonDisabled.SetActive(false);
+        hireButtonEnabled.GetComponent<Button>().interactable = true;
 
         SetTextUI(curItem);
         SetCharacterModel(curItem);
     }
 
     public void OnClickHire() {
-        hireButton.GetComponent<Button>().interactable = false;
-        hireButton.GetComponentInChildren<TMP_Text>().text = "HIRED!";
+        hireButtonDisabled.SetActive(true);
+        hireButtonEnabled.SetActive(false);
     }
 
     public void DisableArrows() {

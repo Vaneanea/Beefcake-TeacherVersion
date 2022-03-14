@@ -13,7 +13,7 @@ public class CrewShopInventory : MonoBehaviour {
     private int curItem;
     private int availableCount; // TODO: This var needs to be updated properly
 
-    private void Awake() {
+    private void Awake() { 
         shopItems = new List<ShopBeefCake>();
     }
 
@@ -25,7 +25,7 @@ public class CrewShopInventory : MonoBehaviour {
         NotifyCurItemChange();
     }
 
-    #region Display methods
+    #region Display methods (attached to UI elements)
     // Attached to right arrow
     public void OnClickRight() {
         // Find the first available item going forwards
@@ -56,13 +56,15 @@ public class CrewShopInventory : MonoBehaviour {
         uiManager.OnClickHire();
     }
 
+
+    #endregion
+
     private void NotifyCurItemChange() {
         if (availableCount == 1)
             uiManager.DisableArrows();
 
         uiManager.DisplayCurrentItem(shopItems[curItem]);
     }
-    #endregion
 
     // Construct shop items from the source data: {shopItemsSource}
     // TODO: only called ONCE at the first start of the game, persistent throughout
