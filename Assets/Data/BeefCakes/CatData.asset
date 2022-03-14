@@ -19,4 +19,4 @@ MonoBehaviour:
   level: 3
   cost: 460
   stageAvailable: 2
-  prefab: {fileID: 537155608015787271, guid: 4e12175ea5567ea478e000bc2869a1ca, type: 3}
+  prefab: {fileID: 1111685776845466968, guid: a069bf80554068242b83fff53fed8ff9, type: 3}
