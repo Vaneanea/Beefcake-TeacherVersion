@@ -7,18 +7,22 @@ using System;
 // with extra data and methods related to crew management
 [Serializable]
 public class CrewBeefCake {
-    [SerializeField] private string broName;
+    public BeefCakeData source;
+
+    [SerializeField] private string displayName;
 
     private int stamina;
     private int strength;
     private int speed;
 
     public CrewBeefCake(BeefCakeData source) {
+        this.source = source;
+
         stamina = source.stamina;
         strength = source.strength;
         speed = source.speed;
 
-        broName = source.displayName;
+        displayName = source.displayName;
     }
 
     // TODO: add other methods to modify CrewBeefCake 

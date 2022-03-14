@@ -50,13 +50,13 @@ public class CrewShopInventory : MonoBehaviour {
 
     // Attached to hire button
     public void OnClickHire() {
+        // TODO: Check if item can be bought: cost, inventory space etc. 
+
         shopItems[curItem].OnItemBuy();
         availableCount--;
 
         uiManager.OnClickHire();
     }
-
-
     #endregion
 
     private void NotifyCurItemChange() {

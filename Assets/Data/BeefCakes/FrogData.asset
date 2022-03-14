@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f11f5a74fcefb8e4d8d3489de580898b, type: 3}
-  m_Name: RabbitData
+  m_Name: FrogData
   m_EditorClassIdentifier: 
-  displayName: Rabbit
+  displayName: Frog
   strength: 50
-  stamina: 200
-  speed: 230
-  level: 2
-  cost: 300
-  stageAvailable: 1
-  prefab: {fileID: 6122763131879778554, guid: 063aea593919a9c4eab9519db004d76a, type: 3}
+  stamina: 50
+  speed: 50
+  level: 5
+  cost: 140
+  stageAvailable: 5
+  headshot: {fileID: 21300000, guid: 06f02212160f6f644a40abcdefdb120b, type: 3}
+  prefab: {fileID: 1824730143784917383, guid: 8e732f5a0e0f678439844b80b5d3ecfc, type: 3}
+  bgColor: {r: 0.9882353, g: 0.860523, b: 0.41176468, a: 0.5882353}

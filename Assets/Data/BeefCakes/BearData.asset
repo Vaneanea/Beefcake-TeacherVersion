@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f11f5a74fcefb8e4d8d3489de580898b, type: 3}
-  m_Name: ChickData
+  m_Name: BearData
   m_EditorClassIdentifier: 
-  displayName: Chick
+  displayName: Bear
   strength: 50
-  stamina: 50
-  speed: 50
-  level: 1
-  cost: 0
-  stageAvailable: 0
-  headshot: {fileID: 21300000, guid: 65c531221c2e3d441bb87aaf115ad011, type: 3}
-  prefab: {fileID: 798331707266058197, guid: d461186c90f2a324688e9a39c71ac4c5, type: 3}
-  bgColor: {r: 0.75871766, g: 0.41176468, b: 0.9882353, a: 0.5882353}
+  stamina: 200
+  speed: 230
+  level: 2
+  cost: 300
+  stageAvailable: 1
+  headshot: {fileID: 21300000, guid: d69cdaf13b3b52b4f9c83a3f45975293, type: 3}
+  prefab: {fileID: 2039717212366485209, guid: e8ccdf07be684f04f969079dc01215ca, type: 3}
+  bgColor: {r: 0.9882353, g: 0.42199498, b: 0.41176468, a: 0.5882353}

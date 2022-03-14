@@ -16,5 +16,8 @@ public class BeefCakeData : ScriptableObject {
 
     public int stageAvailable;
 
+    [Header("Display fields")]
+    public Sprite headshot;
     public GameObject prefab;
+    public Color bgColor;
 }
