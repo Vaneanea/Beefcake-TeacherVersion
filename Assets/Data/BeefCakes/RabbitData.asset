@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: RabbitData
   m_EditorClassIdentifier: 
   displayName: Rabbit
-  strength: 3
-  stamina: 3
-  speed: 3
+  strength: 50
+  stamina: 200
+  speed: 230
   level: 2
-  cost: 400
+  cost: 300
   stageAvailable: 1
   prefab: {fileID: 537155608015787271, guid: 4e12175ea5567ea478e000bc2869a1ca, type: 3}

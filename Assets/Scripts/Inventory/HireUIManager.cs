@@ -9,10 +9,14 @@ public class HireUIManager : MonoBehaviour
 {
     [Header("UI Variables")]
     [SerializeField] TMP_Text nameText;
+    [SerializeField] TMP_Text levelText;
+    [SerializeField] TMP_Text costText;
+
     [SerializeField] TMP_Text staminaText;
     [SerializeField] TMP_Text strengthText;
     [SerializeField] TMP_Text speedText;
 
+    [SerializeField] TMP_Text hireText;
     [SerializeField] GameObject hireButton;
     [SerializeField] GameObject rightArrow;
     [SerializeField] GameObject leftArrow;
@@ -38,6 +42,10 @@ public class HireUIManager : MonoBehaviour
         BeefCakeData source = item.source;
 
         nameText.text = source.displayName;
+        levelText.text = source.level.ToString();
+        costText.text = source.cost.ToString();
+        hireText.text = "Hire " + source.displayName.ToString();
+
         staminaText.text = source.stamina.ToString();
         strengthText.text = source.strength.ToString();
         speedText.text = source.speed.ToString();

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ChickData
   m_EditorClassIdentifier: 
   displayName: Chick
-  strength: 1
-  stamina: 1
-  speed: 1
+  strength: 50
+  stamina: 50
+  speed: 50
   level: 1
   cost: 0
-  stageAvailable: 1
+  stageAvailable: 0
   prefab: {fileID: 1480572254356783455, guid: f3f6173ee0d26244ca5e54624900ca9a, type: 3}

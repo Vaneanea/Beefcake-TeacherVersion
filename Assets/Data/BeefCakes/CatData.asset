@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CatData
   m_EditorClassIdentifier: 
   displayName: Cat
-  strength: 2
-  stamina: 2
-  speed: 2
-  level: 2
-  cost: 400
-  stageAvailable: 1
+  strength: 200
+  stamina: 250
+  speed: 200
+  level: 3
+  cost: 460
+  stageAvailable: 2
   prefab: {fileID: 537155608015787271, guid: 4e12175ea5567ea478e000bc2869a1ca, type: 3}
