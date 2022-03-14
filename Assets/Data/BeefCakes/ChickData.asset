@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11f5a74fcefb8e4d8d3489de580898b, type: 3}
+  m_Name: ChickData
+  m_EditorClassIdentifier: 
+  displayName: Chick
+  strength: 1
+  stamina: 1
+  speed: 1
+  level: 1
+  cost: 0
+  stageAvailable: 1
+  prefab: {fileID: 1480572254356783455, guid: f3f6173ee0d26244ca5e54624900ca9a, type: 3}
