@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     private GameObject carHolder;
     public Canvas canvas;
     public Camera cam;
-    public Transform washCamPosition;
-    public Transform fixCamPosition;
+   
 
 
     // Start is called before the first frame update
@@ -26,8 +25,11 @@ public class GameManager : MonoBehaviour
     {
         if (carHolder.GetComponent<CarHolder>().isDone == true) {
 
-            //for carwash//
-            cam.transform.SlerpTransform(washCamPosition, Time.deltaTime);
+            //for carwash, move camera to correct position//
+            cam.GetComponent<MoveCamera>().isWashing = true;
+
+
+
 
             if (carHolder.GetComponent<CarHolder>().isWashed == true)
             {
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         if (playerBeefcake.GetComponent<BeefBro>().GetFatigue() == true) {
 
-            canvas.gameObject.SetActive(true);
+            canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 

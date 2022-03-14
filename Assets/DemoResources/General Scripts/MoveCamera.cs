@@ -5,20 +5,35 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour
 {
 
-    public Transform cameraPosition;
-   
+    public Transform fixCameraPosition;
+    public Transform washCameraPosition;
+
+    public bool isWashing;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-       
+        transform.position = fixCameraPosition.position;
+        transform.rotation = fixCameraPosition.rotation;
+
     }
     //Vector3(-10.5899992,1.50000012,-19.2199993)
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+
+        if (isWashing == true)
+        {
+            transform.SlerpTransform(washCameraPosition, Time.deltaTime);
+
+        }
+        else if (isWashing == false) {
+
+            transform.SlerpTransform(fixCameraPosition, Time.deltaTime);
+
+        }
+
         
      
         //transform.SlerpTransform(cameraPosition, Time.deltaTime);

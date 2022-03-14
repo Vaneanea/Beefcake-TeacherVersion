@@ -251,8 +251,6 @@ MonoBehaviour:
     type: 3}
   canvas: {fileID: 1671022204}
   cam: {fileID: 1406379841}
-  washCamPosition: {fileID: 198207823}
-  fixCamPosition: {fileID: 880696958}
 --- !u!1 &71362878
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198207822}
   m_LocalRotation: {x: 0.023605198, y: 0.55995524, z: -0.015962902, w: 0.82803273}
-  m_LocalPosition: {x: -412.9107, y: -707.8032, z: -0.35668892}
+  m_LocalPosition: {x: -435, y: -700.1, z: 2.8}
   m_LocalScale: {x: 1.1111112, y: 1.1111113, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1671022205}
@@ -1688,7 +1686,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 836de4086ab26ee4aa275948650e833b, type: 2}
+      objectReference: {fileID: 2100000, guid: 2481d5b8bdac7a749a3936066f1b046b, type: 2}
     - target: {fileID: 2739179091523257752, guid: 16d1c1decb187824a931b2d64e772472,
         type: 3}
       propertyPath: m_RootOrder
@@ -1748,6 +1746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CarStatePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739179091523295672, guid: 16d1c1decb187824a931b2d64e772472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d1c1decb187824a931b2d64e772472, type: 3}
@@ -1977,7 +1980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880696957}
   m_LocalRotation: {x: 0.12629972, y: 0.23423265, z: -0.030705737, w: 0.96345246}
-  m_LocalPosition: {x: -406.7667, y: -704.2445, z: -7.766667}
+  m_LocalPosition: {x: -427.1, y: -688, z: -26}
   m_LocalScale: {x: 1.1111112, y: 1.1111113, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1671022205}
@@ -2803,7 +2806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406379839}
   m_LocalRotation: {x: 0.12629972, y: 0.23423265, z: -0.030705737, w: 0.96345246}
-  m_LocalPosition: {x: -406.7667, y: -704.2445, z: -7.766667}
+  m_LocalPosition: {x: -423.7, y: -697.34, z: -18}
   m_LocalScale: {x: 1.1111112, y: 1.1111113, z: 1.1111112}
   m_Children: []
   m_Father: {fileID: 1671022205}
@@ -2821,7 +2824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc219bf3f7323c4e90dea45d40569ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 0}
+  fixCameraPosition: {fileID: 880696958}
+  washCameraPosition: {fileID: 198207823}
+  isWashing: 0
 --- !u!1001 &1478682728
 PrefabInstance:
   m_ObjectHideFlags: 0

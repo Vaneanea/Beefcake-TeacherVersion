@@ -19,6 +19,12 @@ public class Car : ScriptableObject
 
 }
 
+
+
+
+
+
+
 //[CreateAssetMenu(menuName = "Cars/Pizza")]
 //public class PizzaCar : Car
 //{
