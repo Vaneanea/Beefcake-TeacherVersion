@@ -16,14 +16,14 @@ public class CrewInventory : MonoBehaviour {
     private void Awake() {
         crew = new List<CrewBeefCake>();
 
-        // Handle Singleton instance creation
+        // Singleton instance creation
         if (instance != null && instance != this) Destroy(this);
         else instance = this;
 
         // TODO: Display BeefCakes that are already in inventory
     }
 
-    public void Add(BeefCakeData data) {
+    public void Add(ShopBeefCake data) {
         CrewBeefCake beefCake = new CrewBeefCake(data);
         crew.Add(beefCake);
 

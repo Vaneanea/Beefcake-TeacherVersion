@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BearData
   m_EditorClassIdentifier: 
   displayName: Bear
-  strength: 50
-  stamina: 200
-  speed: 230
+  strengthRange: {x: 500, y: 600}
+  staminaRange: {x: 500, y: 600}
+  speedRange: {x: 500, y: 600}
   level: 2
   cost: 300
   stageAvailable: 1

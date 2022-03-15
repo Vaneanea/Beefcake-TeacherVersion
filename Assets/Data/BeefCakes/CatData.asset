@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CatData
   m_EditorClassIdentifier: 
   displayName: Cat
-  strength: 200
-  stamina: 250
-  speed: 200
+  strengthRange: {x: 100, y: 200}
+  staminaRange: {x: 100, y: 200}
+  speedRange: {x: 100, y: 200}
   level: 3
   cost: 460
   stageAvailable: 2

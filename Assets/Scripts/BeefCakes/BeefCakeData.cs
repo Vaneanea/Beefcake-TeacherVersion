@@ -7,9 +7,9 @@ public class BeefCakeData : ScriptableObject {
     public string displayName;
 
     [Header("Stats")]
-    public int strength;
-    public int stamina;
-    public int speed;
+    public Vector2Int strengthRange;
+    public Vector2Int staminaRange;
+    public Vector2Int speedRange;
 
     public int level;
     public int cost;

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FrogData
   m_EditorClassIdentifier: 
   displayName: Frog
-  strength: 50
-  stamina: 50
-  speed: 50
+  strengthRange: {x: 300, y: 400}
+  staminaRange: {x: 300, y: 400}
+  speedRange: {x: 300, y: 400}
   level: 5
   cost: 140
   stageAvailable: 5

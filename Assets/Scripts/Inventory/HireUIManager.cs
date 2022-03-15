@@ -24,6 +24,7 @@ public class HireUIManager : MonoBehaviour
 
     [SerializeField] GameObject charModel;
 
+    #region Display methods (called by CrewShopInventory by UI elements)
     public void DisplayCurrentItem(ShopBeefCake curItem) {
         hireButtonEnabled.SetActive(true);
         hireButtonDisabled.SetActive(false);
@@ -42,6 +43,7 @@ public class HireUIManager : MonoBehaviour
         rightArrow.SetActive(false);
         leftArrow.SetActive(false);
     }
+    #endregion
 
     private void SetTextUI(ShopBeefCake item) {
         BeefCakeData source = item.source;
@@ -51,9 +53,9 @@ public class HireUIManager : MonoBehaviour
         costText.text = source.cost.ToString();
         hireText.text = "Hire " + source.displayName.ToString();
 
-        staminaText.text = source.stamina.ToString();
-        strengthText.text = source.strength.ToString();
-        speedText.text = source.speed.ToString();
+        staminaText.text = item.stamina.ToString();
+        strengthText.text = item.strength.ToString();
+        speedText.text = item.speed.ToString();
     }
 
     #region Character Model methods

@@ -15,12 +15,12 @@ public class CrewBeefCake {
     private int strength;
     private int speed;
 
-    public CrewBeefCake(BeefCakeData source) {
-        this.source = source;
+    public CrewBeefCake(ShopBeefCake data) {
+        source = data.source;
 
-        stamina = source.stamina;
-        strength = source.strength;
-        speed = source.speed;
+        stamina = data.stamina;
+        strength = data.strength;
+        speed = data.speed;
 
         displayName = source.displayName;
     }
