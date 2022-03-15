@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e85a9e992420a4280bd33b9efccb55, type: 3}
+  m_Name: TestCar1
+  m_EditorClassIdentifier: 
+  carStates:
+  - {fileID: 963240654992400827, guid: 98467806cb97eba46a92aa3f943eab17, type: 3}
+  - {fileID: 375916458211294550, guid: 209f6666423eafa488da35cbbb9ecf99, type: 3}
+  - {fileID: 3555393308807154139, guid: 422763bed1d05c74dadda74b474ec4f9, type: 3}
+  firstStageHitsNeeded: 2
+  secondStageHitsNeeded: 3
+  attackPointPrefab: {fileID: 6130737824346981420, guid: 30f92307ec4db1e49931be1de4cce697,
+    type: 3}
+  possibleAttackPointStage1:
+  - {fileID: 6006223232903940729, guid: 976a940047713d14a98b54b76b1084c4, type: 3}
+  - {fileID: 8193198319952907276, guid: 449f7eaf8cf14754b9aad69d821bc846, type: 3}
+  - {fileID: 8399241665787445205, guid: 17101379d86d0634eb9209efab866f37, type: 3}
+  possibleAttackPointStage2:
+  - {fileID: 6674464344415262337, guid: ad90efbfc1c52dc409cbe2b32c84dd74, type: 3}
+  - {fileID: 6658447519350596772, guid: 3a01bdd4b3b032040a9fd06a75ddeb30, type: 3}
+  - {fileID: 1144521602778306232, guid: 6817621a02182bb4194ca3a42845204b, type: 3}
