@@ -9,7 +9,7 @@ using System;
 public class CrewBeefCake {
     public BeefCakeData source;
 
-    [SerializeField] private string displayName;
+    private string displayName;
 
     private int stamina;
     private int strength;

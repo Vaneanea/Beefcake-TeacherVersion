@@ -47,15 +47,15 @@ public class HireUIManager : MonoBehaviour
 
     private void SetTextUI(ShopBeefCake item) {
         BeefCakeData source = item.source;
-
+        
+        hireText.text = "Hire " + source.displayName.ToString();
         nameText.text = source.displayName;
         levelText.text = source.level.ToString();
-        costText.text = source.cost.ToString();
-        hireText.text = "Hire " + source.displayName.ToString();
-
-        staminaText.text = item.stamina.ToString();
-        strengthText.text = item.strength.ToString();
-        speedText.text = item.speed.ToString();
+        
+        costText.text = item.cost.ToString("n0");
+        staminaText.text = item.stamina.ToString("n0");
+        strengthText.text = item.strength.ToString("n0");
+        speedText.text = item.speed.ToString("n0");
     }
 
     #region Character Model methods

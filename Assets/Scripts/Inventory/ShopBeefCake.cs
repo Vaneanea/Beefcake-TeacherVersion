@@ -8,11 +8,16 @@ using TMPro;
 public class ShopBeefCake {
     public BeefCakeData source;
 
+    public bool isAvailable;
+
+    [Header("Concrete stats")]
     public int strength;
     public int stamina;
     public int speed;
 
-    public bool isAvailable;
+    public int cost;
+    private int costMod = 15;
+    
 
     public ShopBeefCake(BeefCakeData source) {
         this.source = source;
@@ -26,6 +31,8 @@ public class ShopBeefCake {
         strength = Random.Range(source.strengthRange.x, source.strengthRange.y);
         stamina = Random.Range(source.staminaRange.x, source.staminaRange.y);
         speed = Random.Range(source.speedRange.x, source.speedRange.y);
+
+        cost = (strength + speed + stamina) * costMod;
     }
 
     #region Item Buy Methods

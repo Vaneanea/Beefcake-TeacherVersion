@@ -12,7 +12,6 @@ public class BeefCakeData : ScriptableObject {
     public Vector2Int speedRange;
 
     public int level;
-    public int cost;
 
     public int stageAvailable;
 
