@@ -13,7 +13,6 @@ public class Car : ScriptableObject
 
     public int firstStageHitsNeeded, secondStageHitsNeeded;
 
-    public GameObject attackPointPrefab;
     public GameObject[] possibleAttackPointStage1;
     public GameObject[] possibleAttackPointStage2;
 

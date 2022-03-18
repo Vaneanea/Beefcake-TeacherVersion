@@ -36,7 +36,10 @@ public class CarHolder : MonoBehaviour
     public bool isDone;
     public bool isWashed;
 
-
+    private void Awake()
+    {
+        isDone = false;
+    }
 
 
     void Start()
@@ -48,10 +51,10 @@ public class CarHolder : MonoBehaviour
 
         //Assign how many hits are needed to progress
         firstStageHitsNeeded = car.firstStageHitsNeeded;
-        secondStageHitsNeeded = car.firstStageHitsNeeded;
+        secondStageHitsNeeded = car.secondStageHitsNeeded;
 
         //Assign a Prefab for what the attackpoint looks/functions like;
-        attackPointPrefab = car.attackPointPrefab;
+        attackPointPrefab = FindObjectOfType<GameManager>().transform.GetChild(1).GetComponent<CombatStatManager>().attackTargetPrefab;
 
 
         //Create an array of attackpoints that will e used during the existance of the car, give them the size required 
@@ -59,13 +62,16 @@ public class CarHolder : MonoBehaviour
         attackPointsStage2 = new GameObject[secondStageHitsNeeded];
 
 
-       
+
+
+        //ask arjen aout duplicates
 
         //Fill the array of attackpoints that will be used in stage 1 with a rondom assortment of possible attackponts
         for (int i = 0; i < attackPointsStage1.Length; i++)
         {
             int rn = Random.Range(0, car.possibleAttackPointStage1.Length);
 
+            
             attackPointsStage1[i] = car.possibleAttackPointStage1[rn];
 
         }
@@ -79,7 +85,7 @@ public class CarHolder : MonoBehaviour
         }
 
 
-        isDone = false;
+        
 
         //Instantiate  the car model in it's proper location        
         firstCarStage = Instantiate(carStates[0], transform);
@@ -93,8 +99,7 @@ public class CarHolder : MonoBehaviour
             //Move Attackpoint to correct position on screen+
             attackPoint.GetComponent<RectTransform>().anchoredPosition = attackPointLocation.GetComponent<RectTransform>().anchoredPosition;
 
-
-            GameObject x =Instantiate(attackPoint, canvas.transform);
+           GameObject x = Instantiate(attackPoint, canvas.transform);
 
             //put player on the right position
             x.transform.GetChild(0).transform.localPosition = attackPointLocation.transform.GetChild(0).transform.localPosition;
@@ -108,8 +113,7 @@ public class CarHolder : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(firstCarStage.GetComponent<CarState>().hasLanded + "hi");
-
+       
         //fixing float reaches a number
         if (hits >= firstStageHitsNeeded && stagesDone == 0)
         {
@@ -154,7 +158,7 @@ public class CarHolder : MonoBehaviour
             hits = 0;
             stagesDone = 2;
 
-            StartCoroutine(WaitASec(1));
+            StartCoroutine(WaitASec(0.5f));
         }
 
     }
@@ -164,10 +168,9 @@ public class CarHolder : MonoBehaviour
         hits++;
     }
 
-    public  IEnumerator WaitASec(int x)
+    public  IEnumerator WaitASec(float x)
     {
-
-        yield return new WaitForSeconds(x);
+       yield return new WaitForSeconds(x);
         isDone = true;
     }
 }

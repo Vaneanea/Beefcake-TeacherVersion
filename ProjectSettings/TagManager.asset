@@ -8,6 +8,7 @@ TagManager:
   - Beefcake
   - FixPoint
   - Floor
+  - CarHolder
   layers:
   - Default
   - TransparentFX
