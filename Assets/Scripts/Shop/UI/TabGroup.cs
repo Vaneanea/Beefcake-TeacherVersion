@@ -25,6 +25,7 @@ public class TabGroup : MonoBehaviour {
         // Set the color of the selected tab only to {selectColor}
         ResetTabs();
         button.text.color = selectColor;
+        button.Select();
 
         // Set the content of the tab to match the selected TabButton
         ResetContent();
@@ -35,6 +36,7 @@ public class TabGroup : MonoBehaviour {
     private void ResetTabs() {
         foreach (TabButton button in tabButtons) {
             button.text.color = idleColor;
+            button.Deselect();
         }
     }
 
