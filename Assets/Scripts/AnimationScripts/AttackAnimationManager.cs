@@ -9,22 +9,17 @@ public class AttackAnimationManager : MonoBehaviour
     [Header(" Attack Variables ")]
     //Attack variables
     
-    
     public float attackRate = 2f;
     public float nextAttackTime = 0f;
 
     private int attack = 1;
     private Animator animator;
 
-    private void Start()
-    {
-        
-    }
-
+   
 
     private void Update()
     {
-        animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<BeefcakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
+        animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<BeefCakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
         if (Input.GetKeyDown(KeyCode.Space)) {
 
             Attack();
@@ -34,116 +29,66 @@ public class AttackAnimationManager : MonoBehaviour
 
     public void  Attack() {
 
-        if (Time.time >= nextAttackTime && attack == 1)
-        {
-            //play animation 
-            animator.SetTrigger("Attack " + attack);
-         
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
+        if (Time.time >= nextAttackTime) {
 
-            attack++;
+            switch (attack)
+            {
 
-        }
-        
-        if (Time.time >= nextAttackTime && attack == 2)
-        {
-            //play animation 
-            animator.SetTrigger("Attack " + attack);
-            
-          
+                case 1:
+                    DoAnimation_Temporary();
+                    break;
 
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
+                case 2:
+                    DoAnimation_Temporary();
+                    break;
 
-            attack++;
+                case 3:
+                    DoAnimation_Temporary();
+                    break;
 
-            
+                case 4:
+                    DoAnimation_Temporary();
+                    break;
 
-        }
+                case 5:
+                    DoAnimation_Temporary();
+                    break;
 
+                case 6:
+                    DoAnimation_Temporary();
+                    break;
 
-        if (Time.time >= nextAttackTime && attack == 3)
-        {
-            //play animation 
-            animator.SetTrigger("Attack " + attack);
+                case 7:
+                    DoAnimation_Temporary();
+                     break;
 
-
-
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
-
-            attack++;
-
-
-
+                default:
+                    DoAnimation_Temporary();
+                    break;
+            }
         }
 
-        if (Time.time >= nextAttackTime && attack == 4)
-        {
-            //play animation 
-            animator.SetTrigger("Attack " + attack);
-
-
-
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
-
-            attack++;
-
-
-
-        }
-
-        if (Time.time >= nextAttackTime && attack == 5)
-        {
-            //play animation 
-            animator.SetTrigger("Attack " + attack);
-
-
-
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
-
-            attack++;
-
-
-
-        }
-
-        if (Time.time >= nextAttackTime && attack == 6)
-        {
-            //play animation 
-            animator.SetTrigger("Attack " + attack);
-
-
-
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
-
-            attack++;
-
-
-
-        }
-
-        if (Time.time >= nextAttackTime && attack == 7)
-        {
-            //play animation
-            animator.SetTrigger("Attack " + attack);
-            
-
-
-            //Ressetting attack speed 
-            nextAttackTime = Time.time + 1f / attackRate;
-
-            attack = 1;
-            
-
-
-        }
     }
 
+
+    private void DoAnimation_Temporary() {
+
+        //play animation 
+        animator.SetTrigger("Attack " + attack);
+
+        //Ressetting attack speed 
+        nextAttackTime = Time.time + 1f / attackRate;
+
+        if (attack != 7)
+        {
+            attack++;
+        }
+        else
+        {
+            attack = 1;
+        }
+
+    }
 
  
 }

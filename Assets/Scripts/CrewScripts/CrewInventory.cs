@@ -24,7 +24,7 @@ public class CrewInventory : MonoBehaviour {
         // TODO: Display BeefCakes that are already in inventory
 
 
-        string[] lookFor = new string[] { "Assets/Vanessa/Data/CrewBeefCakes" };
+        string[] lookFor = new string[] { "Assets/Data/CrewBeefCakes" };
         string[] yourBeefcakes = AssetDatabase.FindAssets("t:"  + typeof(CrewBeefCake).Name, lookFor);
 
         foreach (string beefCakeName in yourBeefcakes)
@@ -62,7 +62,7 @@ public class CrewInventory : MonoBehaviour {
         beefCake.displayName = data.source.displayName;
         crew.Add(beefCake);
 
-        string path = "Assets/Vanessa/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
+        string path = "Assets/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
         AssetDatabase.CreateAsset(beefCake, path);
         AddInventorySlot(beefCake, inventoryObject, slotPrefab);
     }

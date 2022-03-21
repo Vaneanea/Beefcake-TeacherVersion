@@ -3,7 +3,55 @@ guid: a836d82ff4ba97a47ab968c055d3b344
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 8556262120643298411, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red
+    second: {fileID: -382652638819485698, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: backLight
+    second: {fileID: -2496255268199667105, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: black
+    second: {fileID: 4362962105363994262, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: darkGray
+    second: {fileID: 3414776272560363450, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grey
+    second: {fileID: 4218046369211427024, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hLights
+    second: {fileID: -4091703291988075914, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: indicator
+    second: {fileID: 4327818543122232318, guid: 8899a1b127b5cf84f876c6fc379cef9e,
+      type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -73,7 +121,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []

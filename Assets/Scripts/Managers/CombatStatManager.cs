@@ -9,6 +9,7 @@ public class CombatStatManager : MonoBehaviour
 
     [Header("Attack Point Settings")]
     public int attackPointHitMax;
+    public int staminaDecreaseValue = 1;
     public GameObject attackTargetPrefab;
 
 

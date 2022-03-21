@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarManager : MonoBehaviour
 {
 
-    public Car[] cars;
+    public CarData[] cars;
     public GameObject aCarHolder;
     private GameObject carHolder;
 
@@ -19,7 +19,7 @@ public class CarManager : MonoBehaviour
     void Update()
     {
 
-        if (carHolder.GetComponent<CarHolder>().isDone == true)
+        if (carHolder.GetComponent<Car>().isDone == true)
         {
             ///activate when washing is implemented
             ////for carwash, move camera to correct position//
@@ -41,8 +41,8 @@ public class CarManager : MonoBehaviour
     {
         GameObject x = Instantiate(aCarHolder);
 
-        x.GetComponent<CarHolder>().car = cars[Random.Range(0, cars.Length)];
-        x.GetComponent<CarHolder>().canvas = GetComponentInParent<GameManager>().canvas;
+        x.GetComponent<Car>().car = cars[Random.Range(0, cars.Length)];
+        x.GetComponent<Car>().canvas = GetComponentInParent<GameManager>().canvas;
 
         carHolder = x;
 
