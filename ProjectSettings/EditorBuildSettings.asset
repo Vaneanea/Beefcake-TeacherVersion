@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/StuffForSchylar/Scenes sky v/MainFixScene.unity
+    path: Assets/OldAssets/Old_Scenes/MainFixScene.unity
     guid: d73d872f068441740ae9395f50a14e98
   - enabled: 0
-    path: Assets/OLD_DemoResources/Scenes/CurrentScenes/OLD_StartScreen.unity
+    path: Assets/OldAssets/Old_Scenes/OLD_StartScreen.unity
     guid: 4755ea6d6dd015041bf9f99bd76a8d7c
   - enabled: 0
-    path: Assets/OLD_DemoResources/Scenes/CurrentScenes/OLD_FixCarScene.unity
+    path: Assets/OldAssets/Old_Scenes/OLD_FixCarScene.unity
     guid: 601b0b278c0bf8a48ad9a65ef72d99b8
   - enabled: 1
-    path: Assets/Vanessa/Scenes/FixLoop.unity
+    path: Assets/Scenes/FixLoop.unity
     guid: a6d71b5286928d84aad156a2b6f90196
   - enabled: 1
-    path: Assets/Vanessa/Scenes/MainScene.unity
+    path: Assets/Scenes/MainScene.unity
     guid: a45c8d34ac252f24d8cfae12518a3126
   - enabled: 1
-    path: Assets/Vanessa/Scenes/CrewHire (Ziana).unity
+    path: Assets/Scenes/CrewHire (Ziana).unity
     guid: 98348fc6a45a1e7498a0ce1e04a29892
   m_configObjects: {}
