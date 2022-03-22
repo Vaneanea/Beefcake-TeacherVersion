@@ -27,6 +27,6 @@ public class Item : ScriptableObject {
     public void RemoveFromStack() {
         stackSize--;
 
-        // TODO: Handle stackSize becoming 0 (remove from Inventory)
+        // TODO: Handle stackSize becoming 0 (remove from Inventory ?)
     }
 }
