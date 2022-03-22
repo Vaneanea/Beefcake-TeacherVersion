@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Frog
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: e824323d818f4594082212680ad11bad, type: 2}
+  stackSize: 1

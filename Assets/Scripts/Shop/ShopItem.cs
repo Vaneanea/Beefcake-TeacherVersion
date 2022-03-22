@@ -36,6 +36,8 @@ public class ShopItem : MonoBehaviour {
 
     // Attached to Buy Button on Item Slot object
     public void OnItemBuy() {
+        // TODO: Check if Item can be bought
+
         ItemInventory.instance.Add(this);
         isAvailable = false;
     }

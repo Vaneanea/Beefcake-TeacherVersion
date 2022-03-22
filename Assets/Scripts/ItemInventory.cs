@@ -24,8 +24,14 @@ public class ItemInventory : MonoBehaviour {
     }
 
     public void Add(ShopItem data) {
-        // TODO: if Item already exist add to its stack size
+        // If item already exist add to its stack size
+        Item foundItem = inventory.Find(it => it.source == data.source);
+        if (foundItem != null) {
+            foundItem.AddToStack();
+            return;
+        }
 
+        // Otherwise, create a new asset
         Item item = ScriptableObject.CreateInstance<Item>();
         item.OnCreated(data.source);
 

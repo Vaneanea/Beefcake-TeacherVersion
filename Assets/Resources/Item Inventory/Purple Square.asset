@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Purple Square
   m_EditorClassIdentifier: 
   source: {fileID: 11400000, guid: 250b5b49cd4ce8844893c5505cee8d1c, type: 2}
+  stackSize: 1
