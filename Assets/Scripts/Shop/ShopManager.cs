@@ -12,7 +12,7 @@ public class ShopManager : MonoBehaviour {
 
 
     private List<ItemData> shopItemSources;
-    private List<ShopItem> shopItems;
+    private List<ShopItem> shopItems; // TODO: Take into account item Type
 
     // Start is called before the first frame update
     void Start() {

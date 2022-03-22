@@ -24,6 +24,8 @@ public class ShopItem : MonoBehaviour {
     public void Set(ItemData item) {
         source = item;
 
+        isAvailable = true;
+
         // Set UI variables
         iconSprite.sprite = item.icon;
         nameText.text = item.displayName;
@@ -31,10 +33,10 @@ public class ShopItem : MonoBehaviour {
     }
 
     #region Item Buy Methods
-    public void OnItemBuy() {
-        // TODO: add to ItemInventory & notify ShopInventory if needed
 
-        Debug.Log("Item Bought");
+    // Attached to Buy Button on Item Slot object
+    public void OnItemBuy() {
+        ItemInventory.instance.Add(this);
         isAvailable = false;
     }
     #endregion  

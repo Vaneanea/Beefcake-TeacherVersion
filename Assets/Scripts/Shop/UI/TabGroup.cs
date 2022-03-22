@@ -37,7 +37,7 @@ public class TabGroup : MonoBehaviour {
         foreach (TabButton button in tabButtons) {
             button.text.color = idleColor;
             button.Deselect();
-        }
+        } 
     }
 
     private void ResetContent() {
