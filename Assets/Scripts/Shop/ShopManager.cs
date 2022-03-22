@@ -8,14 +8,14 @@ using System.Linq;
 public class ShopManager : MonoBehaviour {
     [Header("Display Variables")]
     [SerializeField] private GameObject itemSlotPrefab;
-    [SerializeField] private GameObject itemGroup;
-
+    [SerializeField] private GameObject itemGroup; 
 
     private List<ItemData> shopItemSources;
     private List<ShopItem> shopItems; // TODO: Take into account item Type
 
-    // Start is called before the first frame update
     void Start() {
+        shopItems = new List<ShopItem>();
+
         MakeShop();
     }
     
@@ -30,7 +30,8 @@ public class ShopManager : MonoBehaviour {
 
             ShopItem shopItem = obj.GetComponent<ShopItem>();
             shopItem.Set(source);
+
+            shopItems.Add(shopItem);
         }
     }
-
 }

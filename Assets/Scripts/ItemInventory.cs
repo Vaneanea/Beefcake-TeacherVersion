@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 // Holds item inventory for all types of items: Gym, Items, Equipment
 // Singleton
@@ -19,8 +20,8 @@ public class ItemInventory : MonoBehaviour {
 
         instance = this;
 
-        // TODO: Load up already existing items 
-        inventory = new List<Item>();
+        // Load up already existing items 
+        inventory = Resources.LoadAll<Item>("Item Inventory").ToList();
     }
 
     public void Add(ShopItem data) {
