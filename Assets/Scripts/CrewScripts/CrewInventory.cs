@@ -16,54 +16,20 @@ public class CrewInventory : MonoBehaviour {
 
     private void Awake() {
         crew = new List<CrewBeefCake>();
-
-        // Singleton instance creation
-        if (instance != null && instance != this) Destroy(this);
-        else instance = this;
-
-        // TODO: Display BeefCakes that are already in inventory
-
-
-        string[] lookFor = new string[] { "Assets/Data/CrewBeefCakes" };
-        string[] yourBeefcakes = AssetDatabase.FindAssets("t:"  + typeof(CrewBeefCake).Name, lookFor);
-
-        foreach (string beefCakeName in yourBeefcakes)
-        {
-
-            var SOpath = AssetDatabase.GUIDToAssetPath(beefCakeName);
-            var beefCake = AssetDatabase.LoadAssetAtPath<CrewBeefCake>(SOpath);
-            crew.Add(beefCake);
-
-            //Debug.Log(beefCake.displayName);
-        }
-
-
+        CreateSingletonInstance();
+        GetCrew();
     }
 
     private void Start()
     {
+        //Create slots 
         inventoryObject.GetComponent<CharacterInfoScript>().CreateSlots();
     }
 
-
     public void Add(ShopBeefCake data) {
-        CrewBeefCake beefCake = ScriptableObject.CreateInstance<CrewBeefCake>();
-        
-        beefCake.source = data.source;
-
-        beefCake.stamina = data.stamina;
-        beefCake.strength = data.strength;
-        beefCake.speed = data.speed;
-        beefCake.characterPrefab = data.source.characterPrefab;
-        beefCake.headshot = data.source.headshot;
-        beefCake.bgColor = data.source.bgColor;
-        beefCake.isFatigued = false;
-
-        beefCake.displayName = data.source.displayName;
+        CrewBeefCake beefCake = CreateNewCrewBeefCake(data);
         crew.Add(beefCake);
-
-        string path = "Assets/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
-        AssetDatabase.CreateAsset(beefCake, path);
+        SaveCrewBeefCake(beefCake);
         AddInventorySlot(beefCake, inventoryObject, slotPrefab);
     }
 
@@ -77,12 +43,57 @@ public class CrewInventory : MonoBehaviour {
         slot.Set(crewItem);
     }
 
- 
-
     public List<CrewBeefCake> GetCrewList()
     {
         return crew;
     }
+
+    private void CreateSingletonInstance() 
+    {
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
+    }
+
+    private void GetCrew() 
+    {
+        string[] lookFor = new string[] { "Assets/Data/CrewBeefCakes" };
+        string[] yourBeefcakes = AssetDatabase.FindAssets("t:" + typeof(CrewBeefCake).Name, lookFor);
+
+        foreach (string beefCakeName in yourBeefcakes)
+        {
+            var SOpath = AssetDatabase.GUIDToAssetPath(beefCakeName);
+            var beefCake = AssetDatabase.LoadAssetAtPath<CrewBeefCake>(SOpath);
+            crew.Add(beefCake);
+        }
+    }
+
+    private CrewBeefCake CreateNewCrewBeefCake(ShopBeefCake data) {
+
+        CrewBeefCake beefCake = ScriptableObject.CreateInstance<CrewBeefCake>();
+
+        beefCake.source = data.source;
+
+        beefCake.stamina = data.stamina;
+        beefCake.strength = data.strength;
+        beefCake.speed = data.speed;
+        beefCake.characterPrefab = data.source.characterPrefab;
+        beefCake.headshot = data.source.headshot;
+        beefCake.bgColor = data.source.bgColor;
+        beefCake.isFatigued = false;
+
+        beefCake.displayName = data.source.displayName;
+
+        return beefCake;
+    }
+
+    private void SaveCrewBeefCake(CrewBeefCake beefCake) 
+    {
+        string path = "Assets/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
+        AssetDatabase.CreateAsset(beefCake, path);
+    }
+
+    
+
 
     // TODO: add Remove and Get methods
 }

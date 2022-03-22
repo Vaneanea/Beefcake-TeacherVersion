@@ -18,13 +18,11 @@ MonoBehaviour:
   - {fileID: 9020515383005903325, guid: d9b44111aa2db9a4db93a0fc5add9e26, type: 3}
   firstStageHitsNeeded: 3
   secondStageHitsNeeded: 2
-  attackPointPrefab: {fileID: 6130737824346981420, guid: 30f92307ec4db1e49931be1de4cce697,
-    type: 3}
   possibleAttackPointStage1:
   - {fileID: 6006223232903940729, guid: 976a940047713d14a98b54b76b1084c4, type: 3}
   - {fileID: 8193198319952907276, guid: 449f7eaf8cf14754b9aad69d821bc846, type: 3}
   - {fileID: 8399241665787445205, guid: 17101379d86d0634eb9209efab866f37, type: 3}
   possibleAttackPointStage2:
-  - {fileID: 6674464344415262337, guid: ad90efbfc1c52dc409cbe2b32c84dd74, type: 3}
-  - {fileID: 6658447519350596772, guid: 3a01bdd4b3b032040a9fd06a75ddeb30, type: 3}
-  - {fileID: 1144521602778306232, guid: 6817621a02182bb4194ca3a42845204b, type: 3}
+  - {fileID: 6936327821883264687, guid: ccc24ec78018e794e968a7a0764916df, type: 3}
+  - {fileID: 482399115323549019, guid: 35c1452905dcb114ba83375d2865fa2d, type: 3}
+  - {fileID: 5907451687184632616, guid: 7c05f1c220dc80045b4d22b79dc24cfd, type: 3}

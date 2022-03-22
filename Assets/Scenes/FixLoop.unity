@@ -13095,7 +13095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 124.880005, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749689712
@@ -13514,7 +13514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 478.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &767819584
@@ -37960,7 +37960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 840.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214029045
@@ -38051,8 +38051,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1218872095}
   - component: {fileID: 1218872096}
+  - component: {fileID: 1218872097}
   m_Layer: 5
-  m_Name: Slider03_IconType
+  m_Name: ProgressSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38129,10 +38130,23 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.291
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1218872097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218872094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70d00dd84f927e42b96bd9ec568ad24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1218872096}
 --- !u!1 &1221045094
 GameObject:
   m_ObjectHideFlags: 0
@@ -59943,6 +59957,11 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1715436476}
+    - target: {fileID: 4470214552067159359, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 1218872094}
     - target: {fileID: 4470214552335494548, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: inventoryObject

@@ -6,16 +6,16 @@ public class CarState : MonoBehaviour
 {
     public bool hasLanded = false;
 
-
-
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor") 
-        {
-            hasLanded = true;
-           
-        }
-
+        CheckIfHasLanded(collision);
     }
 
-}
+    private void CheckIfHasLanded(Collision collision) 
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            hasLanded = true;
+        }
+    }
+ }

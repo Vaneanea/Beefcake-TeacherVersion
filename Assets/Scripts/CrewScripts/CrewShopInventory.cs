@@ -21,9 +21,7 @@ public class CrewShopInventory : MonoBehaviour {
 
     private void Start() {
         uiManager = GetComponent<HireUIManager>();
-        
         MakeShop();
-
         NotifyCurItemChange();
     }
 
@@ -73,23 +71,31 @@ public class CrewShopInventory : MonoBehaviour {
     private void MakeShop() {
         availableCount = 0;
 
-        // Create ShopBeefCake objects
-        foreach (BeefCakeData source in shopItemsSource) {
+        CreateShopBeefcakesFromShopList();
+        DetermineItemDisplay();
+    }
+
+    private void CreateShopBeefcakesFromShopList() 
+    {
+        foreach (BeefCakeData source in shopItemsSource)
+        {
             ShopBeefCake shopItem = new ShopBeefCake(source);
 
             shopItems.Add(shopItem);
 
-           if (shopItem.isAvailable)
-                 availableCount++;
-            
+            if (shopItem.isAvailable)
+                availableCount++;
         }
+    }
 
-        // Determine which item to display based on available items
-        for (int index = 0; index < shopItems.Count; index++) 
-            if (shopItems[index].isAvailable) {
+    private void DetermineItemDisplay()
+    {
+        for (int index = 0; index < shopItems.Count; index++)
+            if (shopItems[index].isAvailable)
+            {
                 curItem = index;
                 break;
-            }   
+            }
     }
 }
 

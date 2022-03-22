@@ -16,18 +16,23 @@ public class GameManager : MonoBehaviour
     private CarManager cm;
     private CrewInventory ci;
 
-    void Start()
+    private void Awake()
     {
         SetManagers();
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()
     {
         if (gameObject.name == "FixLoop_GameManager") {
 
-            if (GetComponentInChildren<BeefCakeManager>().playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true)
+            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true)
             {
-                GetComponentInParent<GameManager>().canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
                 GameObject[] attackPoints = GameObject.FindGameObjectsWithTag("FixPoint");
 
@@ -78,7 +83,6 @@ public class GameManager : MonoBehaviour
         SetCarManager();
         SetCrewInventory();
     }
-
 
     private void SetBeefcakeManager()
     {

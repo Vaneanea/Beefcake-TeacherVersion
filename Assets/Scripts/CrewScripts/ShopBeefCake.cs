@@ -23,7 +23,6 @@ public class ShopBeefCake {
 
     public ShopBeefCake(BeefCakeData source) {
         this.source = source;
-
         SetStats();
         isAvailable = true; // TODO: set isAvailable based on current stage
     }
@@ -36,8 +35,6 @@ public class ShopBeefCake {
 
         cost = (strength + speed + stamina) * costMod;
     }
-
-
 
     #region Item Buy Methods
     public void OnItemBuy() {

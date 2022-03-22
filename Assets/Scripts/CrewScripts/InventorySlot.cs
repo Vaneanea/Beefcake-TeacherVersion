@@ -16,8 +16,6 @@ public class InventorySlot : MonoBehaviour {
     [SerializeField] private Image backGlow;
     [SerializeField] private Image background;
 
-  
-
     public void Set(CrewBeefCake crewItem) {
         BeefCakeData source = crewItem.source;
 
@@ -31,7 +29,5 @@ public class InventorySlot : MonoBehaviour {
         speedText.text = crewItem.speed.ToString();
 
         gameObject.name = source.displayName + " Slot";
-        
-
     }
 }

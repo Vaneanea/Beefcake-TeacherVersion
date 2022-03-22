@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 7925916677991858727, guid: d82f8f592e4561c4a86f8b98662fae42,
         type: 3}
       propertyPath: m_Name
-      value: AttackPointLocation1_2.Pizzacar
+      value: AttackPointLocation1_1.Pizzacar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d82f8f592e4561c4a86f8b98662fae42, type: 3}

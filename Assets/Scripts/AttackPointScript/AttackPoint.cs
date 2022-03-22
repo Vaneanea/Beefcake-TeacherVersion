@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class AttackPoint : MonoBehaviour
 {
-    //where the player stands when attacking this attackpoint
-    public Transform PlayerPosition;
-
     private int maxHits;
     private int currentHits;
 
+    //Managers
     [SerializeField]
     private GameManager gm;
 
@@ -21,25 +19,37 @@ public class AttackPoint : MonoBehaviour
     private BeefCakeManager bcm;
 
     [SerializeField]
+    private AttackAnimationManager aam;
+
+
+    //Player
+    [SerializeField]
     private BeefCake player;
+
+    //where the player stands when attacking this attackpoint
+    public Transform playerPosition;
 
     //reference to the healthbar script
     public SliderScript healthBar;
 
+
+
     //public ParticleSystem smokeParticle;
+
+    private void Awake()
+    {
+        SetGameManager();
+        SetOtherManagers();
+    }
 
     private void Start()
     {
         SetInitialParameters();
     }
 
-   
-
     private void Update()
     {
-
         CheckIfDestroyed();
-
     }
 
     public void attackTarget()
@@ -54,44 +64,43 @@ public class AttackPoint : MonoBehaviour
         UpdateAttackPointHealthBarVisual();
     }
 
-
-    private void SetInitialParameters() {
-        SetGameManager();
-        SetOtherManagers();
+    private void SetInitialParameters()
+    {
         SetPlayer();
         SetAttackPointInitialHealth();
         SetPlayerPosition();
     }
 
-
-    #region Inital Set Methods
-    private void SetGameManager() {
-
+    #region Set Managers & Player
+    private void SetGameManager()
+    {
         gm = FindObjectOfType<GameManager>();
-
     }
 
     private void SetOtherManagers()
     {
         csm = gm.GetCombatStatManager();
         bcm = gm.GetBeefcakeManager();
-    }
+        aam = gm.GetAttackAnimationManager();
 
-    private void SetPlayer() 
+    }
+    private void SetPlayer()
     {
-        player = bcm.GetPlayerBeefcake().GetComponent<BeefCake>();   
+        player = bcm.GetPlayerBeefcake().GetComponent<BeefCake>();
     }
 
-   
+    #endregion
+
+    #region Inital Set Methods
+
     private void SetAttackPointInitialHealth()
     {
         //get maxhit amount from combat manager
-        maxHits = gm.transform.GetChild(1).GetComponent<CombatStatManager>().attackPointHitMax;
+        maxHits = csm.attackPointHitMax;
         currentHits = maxHits;
 
         SetAttackPointValuesToVisual();
     }
-
 
     private void SetAttackPointValuesToVisual()
     {
@@ -99,33 +108,28 @@ public class AttackPoint : MonoBehaviour
         healthBar.SetMaxHealth(maxHits);
         //adjust the current health
         UpdateAttackPointHealthBarVisual();
-
-
     }
 
     private void SetPlayerPosition()
     {
-        PlayerPosition = transform.GetChild(0).transform;
+        playerPosition = transform.GetChild(0).transform;
     }
-
     #endregion
 
-
-    private void UpdateAttackPointHealthBarVisual() {
-
-        healthBar.SetHealth(currentHits);
+    private void UpdateAttackPointHealthBarVisual()
+    {
+       healthBar.SetHealth(currentHits);
     }
 
     private void MovePlayerToAttackPosition()
     {
         //Put player in correct position to attack 
-        gm.GetComponentInChildren<BeefCakeManager>().GetPlayerBeefcake().transform.localPosition = PlayerPosition.localPosition;
-        gm.GetComponentInChildren<BeefCakeManager>().transform.rotation = PlayerPosition.rotation;
+        player.transform.localPosition = playerPosition.localPosition;
+        player.transform.transform.localRotation = playerPosition.localRotation;
     }
 
-
-    private void CheckIfDestroyed() {
-
+    private void CheckIfDestroyed()
+    {
         if (currentHits <= 0)
         {
             //Register attackpoint as fixed
@@ -136,20 +140,22 @@ public class AttackPoint : MonoBehaviour
         }
     }
 
-    private void PlayAttackAnimation() {
+    private void PlayAttackAnimation()
+    {
         //play attack animation
-        gm.GetComponentInChildren<AttackAnimationManager>().Attack();
+        aam.Attack();
     }
 
-    private void ExecuteAttack() {
-
+    private void ExecuteAttack()
+    {
         //reduce current hits
         currentHits -= player.GetAttackDamage();
+
+        //show progress in progressbar
+        csm.IncreaseProgress(player.GetAttackDamage());
 
         //reduce stamina of player
         player.ReduceStamina(csm.staminaDecreaseValue);
 
     }
-
-
-}
+}  
