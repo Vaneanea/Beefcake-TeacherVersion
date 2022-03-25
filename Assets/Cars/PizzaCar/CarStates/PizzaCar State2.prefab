@@ -1,86 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3052561261765531208
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3762219088774394746}
-  - component: {fileID: 5778300152122395583}
-  - component: {fileID: 4351424070215094926}
-  m_Layer: 0
-  m_Name: Pizza_hood_mesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3762219088774394746
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3052561261765531208}
-  m_LocalRotation: {x: 1.4210855e-14, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0017933064, z: -2.9216665e-10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8190662906044761870}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5778300152122395583
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3052561261765531208}
-  m_Mesh: {fileID: -4486280636912961411, guid: 80e6cfb6ed9991b4aa866bd41e94f895, type: 3}
---- !u!23 &4351424070215094926
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3052561261765531208}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 1796c8003b9a4444180197d18eabd829, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4121000845123245685
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4121000845123245685}
   m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -10, z: 0}
+  m_LocalPosition: {x: -2, y: -10.5, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4832253935996112286}
@@ -113,7 +32,6 @@ Transform:
   - {fileID: 6741817173887967871}
   - {fileID: 7867678291321011409}
   - {fileID: 4867854493333058387}
-  - {fileID: 3762219088774394746}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -128,6 +46,7 @@ GameObject:
   - component: {fileID: 7867678291321011409}
   - component: {fileID: 6187102479080616486}
   - component: {fileID: 278795399729062550}
+  - component: {fileID: 5189274746401210890}
   m_Layer: 0
   m_Name: car_rl_wheel_mesh
   m_TagString: Untagged
@@ -198,6 +117,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5189274746401210890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547215993356365407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002248108, y: 0.0072330856, z: 0.0072330805}
+  m_Center: {x: 0.011117141, y: 0.0036349616, z: 0.017341752}
 --- !u!1 &6310126491222308558
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +141,7 @@ GameObject:
   - component: {fileID: 8992004492147929142}
   - component: {fileID: 9134531611721629426}
   - component: {fileID: 1355372023660096059}
+  - component: {fileID: 6640686246162029844}
   m_Layer: 0
   m_Name: car_fl_wheel_mesh
   m_TagString: Untagged
@@ -279,6 +212,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6640686246162029844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310126491222308558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002248108, y: 0.0072330837, z: 0.0072330786}
+  m_Center: {x: 0.011117133, y: 0.0036349564, z: -0.016222946}
 --- !u!1 &7597145332360869540
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +236,7 @@ GameObject:
   - component: {fileID: 6741817173887967871}
   - component: {fileID: 8657021443619246764}
   - component: {fileID: 7760060644991393121}
+  - component: {fileID: 985403228035498033}
   m_Layer: 0
   m_Name: car_fr_wheel_mesh
   m_TagString: Untagged
@@ -360,6 +307,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &985403228035498033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597145332360869540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002248108, y: 0.007233087, z: 0.0072330767}
+  m_Center: {x: -0.011117126, y: 0.0036349576, z: -0.016222944}
 --- !u!1 &7960593220519055040
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +332,7 @@ GameObject:
   - component: {fileID: 8027905606415007335}
   - component: {fileID: 3145556854305640428}
   - component: {fileID: 3851710095773633303}
+  - component: {fileID: 7192873638463635711}
   m_Layer: 0
   m_Name: MainBody
   m_TagString: Untagged
@@ -454,7 +415,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47961d8089815c643b28210520933152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLanded: 0
+  car: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  shakePos: {x: 0, y: 0, z: 0}
+  timer: 0
+--- !u!65 &7192873638463635711
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960593220519055040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.1594024, y: 3.5444345, z: 5.3236604}
+  m_Center: {x: 0, y: 2.0271714, z: -0.00000166893}
 --- !u!1 &8939261830065537496
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +443,7 @@ GameObject:
   - component: {fileID: 4867854493333058387}
   - component: {fileID: 8092476865398613501}
   - component: {fileID: 8940006195232663046}
+  - component: {fileID: 2754510197897143632}
   m_Layer: 0
   m_Name: car_rr_wheel_mesh
   m_TagString: Untagged
@@ -536,3 +514,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2754510197897143632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939261830065537496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0022481075, y: 0.0072330837, z: 0.0072330805}
+  m_Center: {x: -0.011117128, y: 0.0036349643, z: 0.017341752}

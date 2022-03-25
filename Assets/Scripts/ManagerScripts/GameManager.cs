@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private CrewInventory ci;
     private SoundEffectManager sem;
     private JuiceManager jm;
+
+    private bool hasDeactivated = false;
     
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
                 canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
                 DeActivateAttackPoints();
+                
             }
                        
         }
@@ -44,20 +47,21 @@ public class GameManager : MonoBehaviour
             if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true)
             {
                 DeActivateAttackPoints();
-
+                hasDeactivated = true;
             }
 
         }
 
-        ////ask Arjen TODO
-        //if (gameObject.name == "FixLoop_GameManager")
-        //{
-        //    if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false)
-        //    {
-        //        ActivateAttackPoints();
+       
+        if (gameObject.name == "FixLoop_GameManager")
+        {
+            if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false && hasDeactivated == true)
+            {
+                ActivateAttackPoints();
+                hasDeactivated = false;
 
-        //    }
-        //}
+            }
+        }
 
 
     }
@@ -162,8 +166,6 @@ public class GameManager : MonoBehaviour
 
     private void DeActivateAttackPoints()
     {
-        csm.currentAttackPoints = new List<GameObject>();
-
         foreach (GameObject attackPoint in GameObject.FindGameObjectsWithTag("FixPoint"))
         {
             csm.currentAttackPoints.Add(attackPoint);
@@ -179,10 +181,13 @@ public class GameManager : MonoBehaviour
 
     private void ActivateAttackPoints()
     {
+        
         foreach (GameObject attackPoint in csm.currentAttackPoints)
         {
             attackPoint.gameObject.SetActive(true);
         }
+
+        csm.currentAttackPoints.Clear();
     }
 
 

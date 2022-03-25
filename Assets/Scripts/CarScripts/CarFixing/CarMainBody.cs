@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CarMainBody : MonoBehaviour
 {
-    public bool hasLanded = false;
+    [SerializeField]
+    private Car car;
 
-    private Vector3 startPos;
-    private Vector3 shakePos;
-    private float timer;
+    public Vector3 startPos;
+    public Vector3 shakePos;
+    public float timer;
+
 
     //Managers
     private GameManager gm;
@@ -18,17 +20,20 @@ public class CarMainBody : MonoBehaviour
     {
         SetGameManager();
         SetOtherManagers();
+        SetCar();
+        AssignStartPosition();
+        StopAllCoroutines();
     }
+
+   
 
     private void Update()
     {
-        if (hasLanded == true) 
-        {
-            startPos = transform.position;
-
-        }
+        AssignStartPosition();
     }
 
+
+    #region Setting Inital Variables
     private void SetGameManager()
     {
         gm = FindObjectOfType<GameManager>();
@@ -39,20 +44,34 @@ public class CarMainBody : MonoBehaviour
         jm = gm.GetJuiceManager();
     }
 
+    private void SetCar()
+    {
+        car = gameObject.GetComponentInParent<Car>();
+    }
+
+    private void AssignStartPosition()
+    {
+        if (car.hasLanded == true)
+        {
+            startPos = transform.position;
+            
+        }
+    }
+
+    #endregion
+
     private void OnCollisionEnter(Collision collision)
     {
         PlaySoundEffectOnLanding(collision);
         IgnoreCollisonOnDebrie(collision);
-
-
     }
 
     private void PlaySoundEffectOnLanding(Collision collision) 
     {
-        if (collision.gameObject.tag == "Floor" && hasLanded == false)
+        if (collision.gameObject.tag == "Floor" && car.hasLanded == false)
         {
             SoundEffectManager.Play("quick_smash_003");
-            hasLanded = true;
+            car.hasLanded = true;
         }
     }
 
@@ -64,20 +83,15 @@ public class CarMainBody : MonoBehaviour
         }
     }
 
-    public void ShakeCar() 
-    {
-        StartCoroutine(Shake());
-    }
-
-
-    private IEnumerator Shake() 
+  
+    public IEnumerator Shake()
     {
         timer = 0f;
-        while (timer < jm.time) 
+        while (timer < jm.time)
         {
             timer += Time.deltaTime;
             shakePos = startPos + (Random.insideUnitSphere * jm.distance);
-
+           
             transform.position = shakePos;
 
             if (jm.delayBetweenShakes > 0f)
@@ -88,11 +102,12 @@ public class CarMainBody : MonoBehaviour
             {
                 yield return null;
             }
-                
+
         }
 
         transform.position = startPos;
-    
-    } 
+
+    }
+
 
 }

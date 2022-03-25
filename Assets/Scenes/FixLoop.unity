@@ -43224,6 +43224,12 @@ PrefabInstance:
       objectReference: {fileID: 1524364472}
     - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
+      propertyPath: aCar
+      value: 
+      objectReference: {fileID: 7226100005019500137, guid: 1f5118b3cd0ad0547990c2034c4a6b03,
+        type: 3}
+    - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
       propertyPath: cars.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -43231,11 +43237,17 @@ PrefabInstance:
         type: 3}
       propertyPath: cars.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: b110a9f157d78c046ba60fc5631ec05e,
+      objectReference: {fileID: 11400000, guid: 03baaeb920d153248bd049b8bc26eb63,
         type: 2}
     - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: cars.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31bdc98d999c29546ae8017c33b8a0c4,
+        type: 2}
+    - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: cars.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: b110a9f157d78c046ba60fc5631ec05e,
         type: 2}
@@ -43344,6 +43356,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 0.449
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871684957595433340, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: time
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871684957595433340, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: delayBetweenShakes
+      value: 0.0025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d0deeaa72495840aaa892b3b5e7779, type: 3}

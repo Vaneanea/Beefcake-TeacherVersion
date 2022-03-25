@@ -13,9 +13,10 @@ public class JuiceManager : MonoBehaviour
     [Range(0f, 0.1f)]
     public float delayBetweenShakes = 0f;
 
-    //Managers
+    [Header("Private Managers")]
     private GameManager gm;
     private CarManager cm;
+    private CarMainBody car;
 
 
     void Start()
@@ -27,7 +28,7 @@ public class JuiceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        car = cm.GetCar().gameObject.GetComponentInChildren<CarMainBody>();
     }
 
 
@@ -41,5 +42,13 @@ public class JuiceManager : MonoBehaviour
         cm = gm.GetCarManager();
     }
 
+
+    public void ShakeCar()
+    {
+        StartCoroutine(car.Shake());
+    }
+
+
+ 
 
 }

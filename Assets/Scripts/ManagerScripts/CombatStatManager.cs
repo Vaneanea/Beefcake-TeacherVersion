@@ -15,7 +15,7 @@ public class CombatStatManager : MonoBehaviour
     private int progressBarMaxValue;
     private int currentProgress = 0;
 
-    //Managers
+    [Header("Private Managers")]
     [SerializeField]
     private GameManager gm;
 
@@ -23,7 +23,7 @@ public class CombatStatManager : MonoBehaviour
     private CarManager cm;
 
     
-    public List<GameObject> currentAttackPoints;
+    public List<GameObject> currentAttackPoints = new List<GameObject>();
 
 
 
@@ -52,8 +52,8 @@ public class CombatStatManager : MonoBehaviour
 
     private void SetInitialProgressBar()
     {
-        int attackPointStage1 = cm.GetCarHolder().GetComponent<Car>().car.firstStageHitsNeeded;
-        int attackPointStage2 = cm.GetCarHolder().GetComponent<Car>().car.secondStageHitsNeeded;
+        int attackPointStage1 = cm.GetCar().GetComponent<Car>().car.firstStageHitsNeeded;
+        int attackPointStage2 = cm.GetCar().GetComponent<Car>().car.secondStageHitsNeeded;
 
         progressBarMaxValue = attackPointStage1 + attackPointStage2;
         progressBar.GetComponent<SliderScript>().SetMaxHealth(attackPointHitMax * (progressBarMaxValue));

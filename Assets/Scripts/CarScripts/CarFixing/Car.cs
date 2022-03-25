@@ -5,47 +5,41 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    //data source
+    [Header("Car Data Source")]
     public CarData car;
 
-    //Serialized Fields
+    [Header("Private AttackPoint Variables")]
     [SerializeField] private float attackPointsFixed;
 
     [SerializeField]
     private int firstStageAttackPointAmount, secondStageAttackPointAmount;
+    
+    private GameObject attackPointPrefab;
+    private GameObject[] attackPointsStage1;
+    private GameObject[] attackPointsStage2;
 
+    [Header("Fix Stage")]
     [SerializeField]
     private int stagesDone;
 
+    [Header("Car States")]
     [SerializeField]
     private GameObject[] carStates;
 
-
-    //Managers
+    [Header("Private Managers")]
     [SerializeField]
     private GameManager gm;
-
     [SerializeField]
     private CombatStatManager csm;
-
-    //private variables
-    private GameObject attackPointPrefab;
-
-    private GameObject[] attackPointsStage1;
-    private GameObject[] attackPointsStage2;
 
     private GameObject firstCarStage;
     private GameObject secondCarStage;
     private GameObject thirdCarStage;
 
-    //bools
+    [Header("Booleans")]
     public bool isDone;
     public bool isWashed;
-
-    private void Awake()
-    {
-
-    }
+    public bool hasLanded = false;
 
     void Start()
     {
@@ -63,6 +57,7 @@ public class Car : MonoBehaviour
 
     void Update()
     {
+
         //check if first stage has been fixed
         if (attackPointsFixed >= firstStageAttackPointAmount && stagesDone == 0)
         {
@@ -164,9 +159,7 @@ public class Car : MonoBehaviour
             GameObject x = Instantiate(attackPoint, gm.canvas.transform);
             x.name = attackPointLocation.name;
 
-            //Add to CurrentAttacPoint List
-            csm.currentAttackPoints.Add(x);
-
+            
             //put player on the right position
             x.transform.GetChild(0).transform.localPosition = attackPointLocation.transform.GetChild(0).transform.localPosition;
             x.transform.GetChild(0).transform.rotation = attackPointLocation.transform.GetChild(0).transform.rotation;
@@ -182,6 +175,7 @@ public class Car : MonoBehaviour
     {
         yield return new WaitForSeconds(x);
 
+        hasLanded = false;
         isDone = true;
     }
 

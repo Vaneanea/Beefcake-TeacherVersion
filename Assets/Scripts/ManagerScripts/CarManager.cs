@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CarManager : MonoBehaviour
 {
-
+    [Header("Car Data")]
     public CarData[] cars;
-    public GameObject aCarHolder;
-    private GameObject carHolder;
+    public GameObject aCar;
+    private GameObject car;
 
+    [Header("Private Managers")]
     [SerializeField]
     private GameManager gm;
     [SerializeField]
@@ -19,7 +20,7 @@ public class CarManager : MonoBehaviour
     {
         SetGameManager();
         SetOtherManagers();
-        CreateCarHolder();
+        CreateCar();
     }
 
     void Update()
@@ -27,18 +28,18 @@ public class CarManager : MonoBehaviour
         CheckIfCarIsDone();
     }
 
-    private void CreateCarHolder()
+    private void CreateCar()
     {
-        GameObject x = Instantiate(aCarHolder);
+        GameObject x = Instantiate(aCar);
 
         x.GetComponent<Car>().car = cars[Random.Range(0, cars.Length)];
-        carHolder = x;
+        car = x;
         
     }
 
     private void CheckIfCarIsDone()
     {
-        if (carHolder.GetComponent<Car>().isDone == true)
+        if (car.GetComponent<Car>().isDone == true)
         {
             ///activate when washing is implemented
             ////for carwash, move camera to correct position//
@@ -55,14 +56,18 @@ public class CarManager : MonoBehaviour
     }
 
     private void ReplaceCar() {
-        Destroy(carHolder);
-        CreateCarHolder();
+        Destroy(car);
+
+        CreateCar();
     }
 
-    public GameObject GetCarHolder()
+
+    public GameObject GetCar()
     {
-        return carHolder;
+        return car;
     }
+
+
 
     //Managers
     private void SetGameManager()

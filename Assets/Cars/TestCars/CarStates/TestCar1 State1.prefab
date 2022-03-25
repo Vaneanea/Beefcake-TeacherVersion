@@ -545,7 +545,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1796c8003b9a4444180197d18eabd829, type: 2}
+  - {fileID: 2100000, guid: a4d1caaeff624e64ea90b4832c335d29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -692,7 +692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47961d8089815c643b28210520933152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasLanded: 0
+  car: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  shakePos: {x: 0, y: 0, z: 0}
+  timer: 0
 --- !u!54 &371443914683553777
 Rigidbody:
   m_ObjectHideFlags: 0
