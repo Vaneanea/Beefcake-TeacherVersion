@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9bdfa9e0ce1b045b86a3af9779846d, type: 3}
+  m_Name: Chicken
+  m_EditorClassIdentifier: 
+  source: {fileID: 11400000, guid: 43b57514c7aafd042b23dc5565f086e4, type: 2}
+  displayName: Chicken
+  speed: 50
+  strength: 63
+  stamina: 199
+  characterPrefab: {fileID: 2006277626697706636, guid: a759294c3fbf18943a36b6da06ed518b,
+    type: 3}
+  headshot: {fileID: 21300000, guid: 43aee7e7c6b660d43a7e658fe8b3bf14, type: 3}
+  bgColor: {r: 0.9882353, g: 0.42352942, b: 0.4117647, a: 0.8862745}
+  currentStamina: 199
+  isFatigued: 0
+  isPlayer: 1

@@ -1381,6 +1381,12 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1014872109}
+    - target: {fileID: 797155403186333724, guid: d7348ae7592fb1f47beb9650157cf1a6,
+        type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 8578590261877904801, guid: 66a25d2afb9ed9c41a41276b9fc5f226,
+        type: 3}
     - target: {fileID: 797155403186333725, guid: d7348ae7592fb1f47beb9650157cf1a6,
         type: 3}
       propertyPath: m_RootOrder

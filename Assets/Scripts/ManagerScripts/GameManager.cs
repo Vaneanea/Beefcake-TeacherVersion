@@ -9,39 +9,56 @@ public class GameManager : MonoBehaviour
     public Canvas canvas;
     public Camera cam;
     public CrewInventory crewInventory;
+    public GameObject musicManager;
 
     private BeefCakeManager bcm;
     private CombatStatManager csm;
     private AttackAnimationManager aam;
     private CarManager cm;
     private CrewInventory ci;
-
+    private SoundEffectManager sem;
+    
     private void Awake()
     {
-        SetManagers();
-    }
-
-    void Start()
-    {
-        
+         SetManagers();
     }
 
     void Update()
     {
+       
+
         if (gameObject.name == "FixLoop_GameManager") {
 
             if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true)
             {
                 canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-                GameObject[] attackPoints = GameObject.FindGameObjectsWithTag("FixPoint");
-
-                foreach (GameObject attackPoint in attackPoints)
-                {
-                    Destroy(attackPoint);
-                }
+                DeActivateAttackPoints();
             }
+                       
         }
+
+        if (gameObject.name == "FixLoop_GameManager")
+        {
+            if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true)
+            {
+                DeActivateAttackPoints();
+
+            }
+
+        }
+
+        ////ask Arjen TODO
+        //if (gameObject.name == "FixLoop_GameManager")
+        //{
+        //    if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false)
+        //    {
+        //        ActivateAttackPoints();
+
+        //    }
+        //}
+
+
     }
 
     #region Get Managers
@@ -71,6 +88,12 @@ public class GameManager : MonoBehaviour
         return ci;
     }
 
+    public SoundEffectManager GetSoundEffectManager()
+    {
+        return sem;
+    }
+
+
     #endregion
 
 
@@ -82,6 +105,8 @@ public class GameManager : MonoBehaviour
         SetAttackAnimationManager();
         SetCarManager();
         SetCrewInventory();
+        SetSoundEffectManager();
+        CreateInstantsOfMusicManager();
     }
 
     private void SetBeefcakeManager()
@@ -108,7 +133,47 @@ public class GameManager : MonoBehaviour
     {
         ci = FindObjectOfType<CrewInventory>();
     }
+    private void SetSoundEffectManager()
+    {
+        sem = FindObjectOfType<SoundEffectManager>();
+    }
+
+
+    private void CreateInstantsOfMusicManager()
+    {
+        if (MusicManager.musicManagerInstance == null)
+        {
+            Instantiate(musicManager);
+        }
+        
+    }
     #endregion
+
+    private void DeActivateAttackPoints()
+    {
+        csm.currentAttackPoints = new List<GameObject>();
+
+        foreach (GameObject attackPoint in GameObject.FindGameObjectsWithTag("FixPoint"))
+        {
+            csm.currentAttackPoints.Add(attackPoint);
+
+            //Debug.Log(attackPoint);
+        }
+        
+        foreach (GameObject attackPoint in csm.currentAttackPoints)
+        {
+            attackPoint.gameObject.SetActive(false);
+        }
+    }
+
+    private void ActivateAttackPoints()
+    {
+        foreach (GameObject attackPoint in csm.currentAttackPoints)
+        {
+            attackPoint.gameObject.SetActive(true);
+        }
+    }
+
 
 }
 
@@ -120,4 +185,5 @@ public static class Helper
         t1.rotation = Quaternion.Slerp(t1.rotation, t2.rotation, t);
         t1.localScale = Vector3.Slerp(t1.localScale, t2.localScale, t);
     }
+
 }

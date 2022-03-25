@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 4079152362180908322}
   - component: {fileID: 4079152362188176032}
   - component: {fileID: 1509832344233591876}
+  - component: {fileID: 7493066252866039928}
   m_Layer: 0
   m_Name: Muscle Elephant
   m_TagString: Untagged
@@ -376,6 +377,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7493066252866039928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4079152362180741314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698f83a7267d4b24cacf7b33f4ac7ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4079152362180741316
 GameObject:
   m_ObjectHideFlags: 0
