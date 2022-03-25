@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private CarManager cm;
     private CrewInventory ci;
     private SoundEffectManager sem;
+    private JuiceManager jm;
     
     private void Awake()
     {
@@ -93,6 +94,10 @@ public class GameManager : MonoBehaviour
         return sem;
     }
 
+    public JuiceManager GetJuiceManager()
+    {
+        return jm;
+    }
 
     #endregion
 
@@ -106,6 +111,7 @@ public class GameManager : MonoBehaviour
         SetCarManager();
         SetCrewInventory();
         SetSoundEffectManager();
+        SetJuiceManager();
         CreateInstantsOfMusicManager();
     }
 
@@ -136,6 +142,11 @@ public class GameManager : MonoBehaviour
     private void SetSoundEffectManager()
     {
         sem = FindObjectOfType<SoundEffectManager>();
+    }
+
+    private void SetJuiceManager()
+    {
+        jm = FindObjectOfType<JuiceManager>();
     }
 
 
