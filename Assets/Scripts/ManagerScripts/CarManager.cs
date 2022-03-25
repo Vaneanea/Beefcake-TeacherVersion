@@ -15,7 +15,7 @@ public class CarManager : MonoBehaviour
     private CombatStatManager csm;
 
 
-    void Start()
+    void Awake()
     {
         SetGameManager();
         SetOtherManagers();

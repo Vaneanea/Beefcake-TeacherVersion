@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5798543129778550713}
   - component: {fileID: 5798543129778550715}
   - component: {fileID: 5798543129778550714}
+  - component: {fileID: 2300321800010934825}
+  - component: {fileID: 7719649915448096063}
   m_Layer: 0
   m_Name: car_rl_wheel_mesh
-  m_TagString: Untagged
+  m_TagString: Debrie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +83,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2300321800010934825
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543129778550712}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7719649915448096063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543129778550712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0022481093, y: 0.007233085, z: 0.007233081}
+  m_Center: {x: 0.011117134, y: 0.003634956, z: 0.017341752}
 --- !u!1 &5798543129946036880
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,9 +123,11 @@ GameObject:
   - component: {fileID: 5798543129946036881}
   - component: {fileID: 5798543129946036883}
   - component: {fileID: 5798543129946036882}
+  - component: {fileID: 5203758264086121330}
+  - component: {fileID: 1999281094453386959}
   m_Layer: 0
   m_Name: car_fl_wheel_mesh
-  m_TagString: Untagged
+  m_TagString: Debrie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +195,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &5203758264086121330
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543129946036880}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1999281094453386959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543129946036880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0022481089, y: 0.0072330837, z: 0.0072330786}
+  m_Center: {x: 0.011117132, y: 0.003634957, z: -0.016222946}
 --- !u!1 &5798543130114779938
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,9 +235,11 @@ GameObject:
   - component: {fileID: 5798543130114779939}
   - component: {fileID: 5798543130114779941}
   - component: {fileID: 5798543130114779940}
+  - component: {fileID: 1822018151326161546}
+  - component: {fileID: 4374591273903761836}
   m_Layer: 0
   m_Name: car_fr_wheel_mesh
-  m_TagString: Untagged
+  m_TagString: Debrie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +307,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1822018151326161546
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543130114779938}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4374591273903761836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543130114779938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0022481093, y: 0.0072330865, z: 0.007233077}
+  m_Center: {x: -0.01111713, y: 0.0036349564, z: -0.01622294}
 --- !u!1 &5798543130291246592
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +347,11 @@ GameObject:
   - component: {fileID: 5798543130291246593}
   - component: {fileID: 5798543130291246595}
   - component: {fileID: 5798543130291246594}
+  - component: {fileID: 2304576301274492624}
+  - component: {fileID: 707228588530769912}
   m_Layer: 0
   m_Name: car_rr_wheel_mesh
-  m_TagString: Untagged
+  m_TagString: Debrie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,6 +419,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &2304576301274492624
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543130291246592}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &707228588530769912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543130291246592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0022481098, y: 0.007233085, z: 0.0072330832}
+  m_Center: {x: -0.011117137, y: 0.0036349655, z: 0.017341753}
 --- !u!1 &5798543130445976130
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +560,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5798543130445976130}
-  m_Material: {fileID: 13400000, guid: 4dbfeadd125b262428b034d7c99cc2e1, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -466,9 +590,11 @@ GameObject:
   - component: {fileID: 5798543130654562909}
   - component: {fileID: 5798543130654562911}
   - component: {fileID: 5798543130654562910}
+  - component: {fileID: 8015432348146797292}
+  - component: {fileID: 2018228506807807760}
   m_Layer: 0
   m_Name: Pizza_hood_mesh
-  m_TagString: Untagged
+  m_TagString: Debrie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -481,7 +607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5798543130654562908}
   m_LocalRotation: {x: 0.08933916, y: 0.10351991, z: -0.28682837, w: 0.9481728}
-  m_LocalPosition: {x: -0.0243, y: 0.0108, z: 0.0142}
+  m_LocalPosition: {x: -0.0194, y: 0.0105, z: 0.0134}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5798543130445976135}
@@ -536,3 +662,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8015432348146797292
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543130654562908}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2018228506807807760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798543130654562908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.018351883, y: 0.012879968, z: 0.021729784}
+  m_Center: {x: -0.0000000017606085, y: 0.029781954, z: 0.0035836373}

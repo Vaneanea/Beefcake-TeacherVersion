@@ -15,8 +15,9 @@ public class CrewInventory : MonoBehaviour {
      public GameObject inventoryObject;
 
     private void Awake() {
-        crew = new List<CrewBeefCake>();
+        
         CreateSingletonInstance();
+        crew = new List<CrewBeefCake>();
         GetCrew();
     }
 
@@ -56,7 +57,7 @@ public class CrewInventory : MonoBehaviour {
 
     private void GetCrew() 
     {
-        string[] lookFor = new string[] { "Assets/Data/CrewBeefCakes" };
+        string[] lookFor = new string[] { "Assets/Resources/Data/CrewBeefCakes" };
         string[] yourBeefcakes = AssetDatabase.FindAssets("t:" + typeof(CrewBeefCake).Name, lookFor);
 
         foreach (string beefCakeName in yourBeefcakes)
@@ -88,7 +89,7 @@ public class CrewInventory : MonoBehaviour {
 
     private void SaveCrewBeefCake(CrewBeefCake beefCake) 
     {
-        string path = "Assets/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
+        string path = "Assets/Resources/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
         AssetDatabase.CreateAsset(beefCake, path);
     }
 
