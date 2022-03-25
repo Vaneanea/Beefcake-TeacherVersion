@@ -9,7 +9,6 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     private void Punch_Contact_1()
     {
         SoundEffectManager.Play("Punch1");
-
     }
 
     private void Punch_Contact_2()
