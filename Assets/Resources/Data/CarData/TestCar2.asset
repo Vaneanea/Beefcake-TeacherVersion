@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestCar2
   m_EditorClassIdentifier: 
   carStates:
-  - {fileID: 5798543130445976130, guid: 7ba7c43732dc68b4182b33bfc95dc13a, type: 3}
-  - {fileID: 6493649901716885268, guid: d3c5a8b13e3b93d459990269304eb0d8, type: 3}
-  - {fileID: 3395050987129794205, guid: 7a9b0942cfc5f0243b46420f79128606, type: 3}
+  - {fileID: 8195346897261360334, guid: 7ba7c43732dc68b4182b33bfc95dc13a, type: 3}
+  - {fileID: 7028207458818505731, guid: d3c5a8b13e3b93d459990269304eb0d8, type: 3}
+  - {fileID: 1764732019297168591, guid: 42c63f4c0173b674f9c8e0748f45b33d, type: 3}
   firstStageHitsNeeded: 3
   secondStageHitsNeeded: 2
   possibleAttackPointStage1:
