@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using System;
+using UnityEditor;
 
 // Holds a concrete instance of CarTypeData 
 public class ConcreteCarData : ScriptableObject {
@@ -31,6 +32,10 @@ public class ConcreteCarData : ScriptableObject {
     public static ConcreteCarData CreateInstance(CarTypeData carType, int starCount) {
         ConcreteCarData data = CreateInstance<ConcreteCarData>();
         data.Initialize(carType, starCount);
+
+        string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
+        AssetDatabase.CreateAsset(data, fileName);
+        AssetDatabase.SaveAssets();
 
         return data;
     }

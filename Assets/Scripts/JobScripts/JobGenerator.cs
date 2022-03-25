@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 // Generates a Job based on difficulty, which ranges from 0.0 - 1.0
@@ -19,6 +20,8 @@ public class JobGenerator : MonoBehaviour {
 
     private void Start() {
         carTypeSources = Resources.LoadAll<CarTypeData>("Data/CarData").ToList();
+
+        ClearOldJob();
     }
 
     public void GenerateJob() {
@@ -34,6 +37,16 @@ public class JobGenerator : MonoBehaviour {
 
         // TODO: Generate Rewards
     }
+
+    // Delete all assets in the JobData folder
+    private void ClearOldJob() {
+        string[] jobFolder = { "Assets/Resources/DynamicData/JobData" };
+        foreach (var asset in AssetDatabase.FindAssets("", jobFolder)) {
+            var path = AssetDatabase.GUIDToAssetPath(asset);
+            AssetDatabase.DeleteAsset(path);
+        }
+    }
+
 
     // Generates number of cars based on {difficulty}
     private int GenerateCarCount() {
@@ -58,6 +71,8 @@ public class JobGenerator : MonoBehaviour {
         int index = Random.Range(0, carTypeSources.Count);
         return carTypeSources[index];
     }
+
+    
 
     // TODO: Handle Job Display and UI in the pop-up (probably make separate class)
 }
