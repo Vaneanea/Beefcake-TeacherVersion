@@ -6,7 +6,7 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     //data source
-    public CarData car;
+    public ConcreteCarData car;
 
     //Serialized Fields
     [SerializeField] private float attackPointsFixed;

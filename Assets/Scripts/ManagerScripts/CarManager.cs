@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarManager : MonoBehaviour
 {
 
-    public CarData[] cars;
+    public ConcreteCarData[] cars;
     public GameObject aCarHolder;
     private GameObject carHolder;
 
