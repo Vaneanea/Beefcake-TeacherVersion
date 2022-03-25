@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarState : MonoBehaviour
+public class CarMainBody : MonoBehaviour
 {
     public bool hasLanded = false;
-
-
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -33,6 +31,10 @@ public class CarState : MonoBehaviour
         }
     }
 
-
+    public void Shake() 
+    {
+        
+    
+    } 
 
 }
