@@ -17,6 +17,7 @@ public class CarManager : MonoBehaviour
 
     void Awake()
     {
+        ReadJobData();
         SetGameManager();
         SetOtherManagers();
         CreateCarHolder();
@@ -73,6 +74,11 @@ public class CarManager : MonoBehaviour
     private void SetOtherManagers()
     {
         csm = gm.GetCombatStatManager();
+    }
+
+    // Populate {cars} array with data from the Resources folder
+    private void ReadJobData() {
+        cars = Resources.LoadAll<ConcreteCarData>("DynamicData/JobData");
     }
 
 }

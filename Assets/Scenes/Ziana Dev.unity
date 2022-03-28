@@ -16983,7 +16983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 840.26, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &300047520
@@ -22075,6 +22075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 786682400, guid: d7348ae7592fb1f47beb9650157cf1a6, type: 3}
+      propertyPath: slotParent
+      value: 
+      objectReference: {fileID: 1010382285}
     - target: {fileID: 797155403186333723, guid: d7348ae7592fb1f47beb9650157cf1a6,
         type: 3}
       propertyPath: m_Name
@@ -22090,12 +22094,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 509661244}
-    - target: {fileID: 797155403186333724, guid: d7348ae7592fb1f47beb9650157cf1a6,
-        type: 3}
-      propertyPath: musicManager
-      value: 
-      objectReference: {fileID: 8578590261877904801, guid: 66a25d2afb9ed9c41a41276b9fc5f226,
-        type: 3}
     - target: {fileID: 797155403186333725, guid: d7348ae7592fb1f47beb9650157cf1a6,
         type: 3}
       propertyPath: m_RootOrder
@@ -24992,72 +24990,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770274892}
   m_CullTransparentMesh: 0
---- !u!1 &786682397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 786682398}
-  - component: {fileID: 786682399}
-  - component: {fileID: 786682400}
-  m_Layer: 0
-  m_Name: JobGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &786682398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786682397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1987876225}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &786682399
+--- !u!114 &786682399 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 786682399, guid: d7348ae7592fb1f47beb9650157cf1a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 337481566}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786682397}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7267c9a6fa59d0449a9d35b0cf97e951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0.5
-  cars: []
-  baseCarCount: 3
-  baseStarCount: 2
-  slotParent: {fileID: 1010382285}
-  slotPrefab: {fileID: 1596436972616090542, guid: dd6ab8368e55bfe42b8f0bdef36bc38e,
-    type: 3}
---- !u!114 &786682400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786682397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bdb4634c69196449827a8755a49d6ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotParent: {fileID: 1010382285}
-  slotPrefab: {fileID: 1596436972616090542, guid: dd6ab8368e55bfe42b8f0bdef36bc38e,
-    type: 3}
 --- !u!1 &793387461
 GameObject:
   m_ObjectHideFlags: 0
@@ -48868,7 +48812,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 478.26, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929186682
@@ -49164,12 +49108,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978770165}
   m_CullTransparentMesh: 0
---- !u!4 &1987876225 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 797155403186333725, guid: d7348ae7592fb1f47beb9650157cf1a6,
-    type: 3}
-  m_PrefabInstance: {fileID: 337481566}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1990684313
 GameObject:
   m_ObjectHideFlags: 0
@@ -49547,7 +49485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 124.880005, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2043758810
