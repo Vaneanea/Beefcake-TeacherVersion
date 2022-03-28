@@ -16,14 +16,13 @@ public class JobGenerator : MonoBehaviour {
     [SerializeField] private int baseCarCount = 3;
     [SerializeField] private int baseStarCount = 2;
 
-    [Header("Display Fields")]
-    [SerializeField] private GameObject slotParent;
-    [SerializeField] private GameObject slotPrefab;
-
     private List<CarTypeData> carTypeSources;
+
+    private JobUIManager uiManager;
 
     private void Start() {
         carTypeSources = Resources.LoadAll<CarTypeData>("Data/CarData").ToList();
+        uiManager = GetComponent<JobUIManager>();
     }
 
     public void GenerateJob() { 
@@ -34,7 +33,7 @@ public class JobGenerator : MonoBehaviour {
             int starCount = GeneratStarCount();
             CarTypeData carType = GenerateCarType();
 
-            AddCarSlot(carType, starCount);
+            uiManager.AddCarSlot(carType, starCount);
 
             // Instantiate CarData objects and let them decide their stats based on their difficulty
             ConcreteCarData car = ConcreteCarData.CreateInstance(carType, starCount);
@@ -47,10 +46,7 @@ public class JobGenerator : MonoBehaviour {
     private void ClearOldJob() {
         cars.Clear();
 
-        // Remove CarSlot UI object
-        foreach (Transform child in slotParent.transform) {
-            Destroy(child.gameObject);
-        }
+        uiManager.ClearOldJobUI();
 
         // Remove old ConcreteCarData assets
         string[] jobFolder = { "Assets/Resources/DynamicData/JobData" };
@@ -58,16 +54,6 @@ public class JobGenerator : MonoBehaviour {
             var path = AssetDatabase.GUIDToAssetPath(asset);
             AssetDatabase.DeleteAsset(path);
         }
-    }
-
-    // Display generated CarType in pop-up UI
-    private void AddCarSlot(CarTypeData carType, int starCount) {
-        GameObject obj = Instantiate(slotPrefab);
-        obj.transform.SetParent(slotParent.transform);
-        obj.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-        CarSlot slot = obj.GetComponent<CarSlot>();
-        slot.Set(carType, starCount);
     }
 
     #region Generation Methods
