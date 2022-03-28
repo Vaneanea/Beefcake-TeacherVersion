@@ -24,11 +24,11 @@ public class JobGenerator : MonoBehaviour {
 
     private void Start() {
         carTypeSources = Resources.LoadAll<CarTypeData>("Data/CarData").ToList();
-
-        ClearOldJob();
     }
 
-    public void GenerateJob() {
+    public void GenerateJob() { 
+        ClearOldJob();
+
         int carCount = GenerateCarCount();
         for (int index = 1; index <= carCount; index++) {
             int starCount = GeneratStarCount();
@@ -44,8 +44,15 @@ public class JobGenerator : MonoBehaviour {
         // TODO: Generate Rewards
     }
 
-    // Delete all assets in the JobData folder
     private void ClearOldJob() {
+        cars.Clear();
+
+        // Remove CarSlot UI object
+        foreach (Transform child in slotParent.transform) {
+            Destroy(child.gameObject);
+        }
+
+        // Remove old ConcreteCarData assets
         string[] jobFolder = { "Assets/Resources/DynamicData/JobData" };
         foreach (var asset in AssetDatabase.FindAssets("", jobFolder)) {
             var path = AssetDatabase.GUIDToAssetPath(asset);
