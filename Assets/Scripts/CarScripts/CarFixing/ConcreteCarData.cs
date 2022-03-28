@@ -24,8 +24,6 @@ public class ConcreteCarData : ScriptableObject {
         // TODO: Initialize {HitsNeeded} variables based on {starCount}
         firstStageHitsNeeded = 2;
         secondStageHitsNeeded = 3;
-
-        Debug.Log(carType.name);
     }
 
     // Factory method for creating a {ConcreteCarData} object 
