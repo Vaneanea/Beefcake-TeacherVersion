@@ -16,6 +16,10 @@ public class JobGenerator : MonoBehaviour {
     [SerializeField] private int baseCarCount = 3;
     [SerializeField] private int baseStarCount = 2;
 
+    [Header("Display Fields")]
+    [SerializeField] private GameObject slotParent;
+    [SerializeField] private GameObject slotPrefab;
+
     private List<CarTypeData> carTypeSources;
 
     private void Start() {
@@ -29,6 +33,8 @@ public class JobGenerator : MonoBehaviour {
         for (int index = 1; index <= carCount; index++) {
             int starCount = GeneratStarCount();
             CarTypeData carType = GenerateCarType();
+
+            AddCarSlot(carType, starCount);
 
             // Instantiate CarData objects and let them decide their stats based on their difficulty
             ConcreteCarData car = ConcreteCarData.CreateInstance(carType, starCount);
@@ -47,6 +53,17 @@ public class JobGenerator : MonoBehaviour {
         }
     }
 
+    // Display generated CarType in pop-up UI
+    private void AddCarSlot(CarTypeData carType, int starCount) {
+        GameObject obj = Instantiate(slotPrefab);
+        obj.transform.SetParent(slotParent.transform);
+        obj.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        CarSlot slot = obj.GetComponent<CarSlot>();
+        slot.Set(carType, starCount);
+    }
+
+    #region Generation Methods
 
     // Generates number of cars based on {difficulty}
     private int GenerateCarCount() {
@@ -71,8 +88,7 @@ public class JobGenerator : MonoBehaviour {
         int index = Random.Range(0, carTypeSources.Count);
         return carTypeSources[index];
     }
-
-    
+    #endregion
 
     // TODO: Handle Job Display and UI in the pop-up (probably make separate class)
 }

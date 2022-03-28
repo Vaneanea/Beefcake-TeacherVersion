@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CarData 1
   m_EditorClassIdentifier: 
   carStates:
-  - {fileID: 2105162629387828904, guid: 98467806cb97eba46a92aa3f943eab17, type: 3}
-  - {fileID: 2684045641640957779, guid: 209f6666423eafa488da35cbbb9ecf99, type: 3}
-  - {fileID: 1205180057900401004, guid: 422763bed1d05c74dadda74b474ec4f9, type: 3}
+  - {fileID: 8195346897261360334, guid: 7ba7c43732dc68b4182b33bfc95dc13a, type: 3}
+  - {fileID: 7028207458818505731, guid: d3c5a8b13e3b93d459990269304eb0d8, type: 3}
+  - {fileID: 1764732019297168591, guid: 42c63f4c0173b674f9c8e0748f45b33d, type: 3}
   possibleAttackPointStage1:
   - {fileID: 6006223232903940729, guid: 976a940047713d14a98b54b76b1084c4, type: 3}
   - {fileID: 8193198319952907276, guid: 449f7eaf8cf14754b9aad69d821bc846, type: 3}
