@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44df459f94acbbf408af67a90829215b, type: 3}
+  m_Name: TestCar3Data
+  m_EditorClassIdentifier: 
+  carStates:
+  - {fileID: 6140973923392457619, guid: 9c49745a766a30449affd106d9c2d471, type: 3}
+  - {fileID: 7890555647621169893, guid: 04a5a1d37bdad0d46a0e0341798bfad2, type: 3}
+  - {fileID: 7844442713695961171, guid: d9b44111aa2db9a4db93a0fc5add9e26, type: 3}
+  possibleAttackPointStage1:
+  - {fileID: 6006223232903940729, guid: 976a940047713d14a98b54b76b1084c4, type: 3}
+  - {fileID: 8193198319952907276, guid: 449f7eaf8cf14754b9aad69d821bc846, type: 3}
+  - {fileID: 8399241665787445205, guid: 17101379d86d0634eb9209efab866f37, type: 3}
+  possibleAttackPointStage2:
+  - {fileID: 6936327821883264687, guid: ccc24ec78018e794e968a7a0764916df, type: 3}
+  - {fileID: 482399115323549019, guid: 35c1452905dcb114ba83375d2865fa2d, type: 3}
+  - {fileID: 5907451687184632616, guid: 7c05f1c220dc80045b4d22b79dc24cfd, type: 3}
+  carshot: {fileID: 21300000, guid: 95a4bb64e03164b409aed0478588737d, type: 3}
+  backgroundColor: {r: 1, g: 0.47547168, b: 1, a: 1}
