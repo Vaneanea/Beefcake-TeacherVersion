@@ -9,11 +9,10 @@ public class CarManager : MonoBehaviour
     public GameObject aCar;
     private GameObject car;
 
-    [Header("Private Managers")]
-    [SerializeField]
+  
     private GameManager gm;
-    [SerializeField]
     private CombatStatManager csm;
+    private JuiceManager jm;
 
 
     void Awake()
@@ -59,6 +58,8 @@ public class CarManager : MonoBehaviour
         Destroy(car);
 
         CreateCar();
+        jm.SetCurrentActiveSmokePillars();
+    
     }
 
 
@@ -78,6 +79,7 @@ public class CarManager : MonoBehaviour
     private void SetOtherManagers()
     {
         csm = gm.GetCombatStatManager();
+        jm = gm.GetJuiceManager();
     }
 
 }

@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
          SetManagers();
     }
 
+    
+
     void Update()
     {
        
@@ -164,15 +166,19 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private void DeActivateAttackPoints()
+    private void AddCurrentAttackPointsToList() 
     {
         foreach (GameObject attackPoint in GameObject.FindGameObjectsWithTag("FixPoint"))
         {
             csm.currentAttackPoints.Add(attackPoint);
 
-            //Debug.Log(attackPoint);
         }
-        
+    }
+
+
+    private void DeActivateAttackPoints()
+    {
+        AddCurrentAttackPointsToList();
         foreach (GameObject attackPoint in csm.currentAttackPoints)
         {
             attackPoint.gameObject.SetActive(false);

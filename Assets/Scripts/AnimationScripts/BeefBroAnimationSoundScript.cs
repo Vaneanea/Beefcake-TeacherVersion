@@ -44,7 +44,6 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     private void SetParticleEffects()
     {
         hitCarEffect = jm.hitCarEffect;
-
     }
 
     private void PlayCarAttackSFX(string attackSoundName, string attackingLimb)

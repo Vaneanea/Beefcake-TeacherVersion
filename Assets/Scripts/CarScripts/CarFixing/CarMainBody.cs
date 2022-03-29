@@ -24,22 +24,24 @@ public class CarMainBody : MonoBehaviour
 
     private void Start()
     {
-        
+
         SetCar();
         AssignStartPosition();
         StopAllCoroutines();
     }
 
-   
+
 
     private void Update()
     {
         AssignStartPosition();
     }
 
+   
 
-    #region Setting Inital Variables
-    private void SetGameManager()
+
+#region Setting Inital Variables
+private void SetGameManager()
     {
         gm = FindObjectOfType<GameManager>();
     }
@@ -59,15 +61,18 @@ public class CarMainBody : MonoBehaviour
         if (car.hasLanded == true)
         {
             startPos = transform.position;
-            
+
         }
     }
+
+  
 
     #endregion
 
     private void OnCollisionEnter(Collision collision)
     {
         IgnoreCollisonOnDebrie(collision);
+
         PlaySFX(collision);
 
 
@@ -78,10 +83,15 @@ public class CarMainBody : MonoBehaviour
         jm.cloudDropCar.Play(true);
     }
 
+    private void PlayCarSmokeEffects()
+    {
+        jm.carSmokeEffects.Play(true);
+    }
+
     private void PlaySoundEffectOnLanding() 
     {
         SoundEffectManager.Play("quick_smash_003");
-        car.hasLanded = true;
+        car.SetHasLanded(true);
     }
 
     private void PlaySFX(Collision collision)
@@ -90,6 +100,12 @@ public class CarMainBody : MonoBehaviour
         {
             PlaySoundEffectOnLanding();
             PlayCarLandingParticleEffect();
+
+            if (car.currentCarStage == car.firstCarStage) 
+            {
+                PlayCarSmokeEffects();
+            }
+            
         }
 
     }

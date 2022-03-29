@@ -26,15 +26,17 @@ public class Car : MonoBehaviour
     [SerializeField]
     private GameObject[] carStates;
 
-    [Header("Private Managers")]
-    [SerializeField]
+   //Managers
     private GameManager gm;
-    [SerializeField]
     private CombatStatManager csm;
+    private JuiceManager jm;
 
-    private GameObject firstCarStage;
+    //Car Stages
+    public GameObject firstCarStage;
     private GameObject secondCarStage;
     private GameObject thirdCarStage;
+    public GameObject currentCarStage;
+    
 
     [Header("Booleans")]
     public bool isDone;
@@ -50,6 +52,8 @@ public class Car : MonoBehaviour
 
         //Instantiate  the car model in it's proper location        
         firstCarStage = Instantiate(carStates[0], transform);
+        currentCarStage = firstCarStage;
+
 
         CreateAttackPoints(attackPointsStage1);
 
@@ -63,6 +67,8 @@ public class Car : MonoBehaviour
         {
             Destroy(firstCarStage);
             secondCarStage = Instantiate(carStates[1], transform);
+            currentCarStage = firstCarStage;
+            jm.carSmokeEffects.Stop();
             CreateAttackPoints(attackPointsStage2);
             attackPointsFixed = 0;
             stagesDone = 1;
@@ -73,6 +79,7 @@ public class Car : MonoBehaviour
         {
             Destroy(secondCarStage);
             thirdCarStage = Instantiate(carStates[2], transform);
+            currentCarStage = thirdCarStage;
             attackPointsFixed = 0;
             stagesDone = 2;
             StartCoroutine(MarkAsDone(0.5f));
@@ -88,6 +95,7 @@ public class Car : MonoBehaviour
     private void SetOtherManagers()
     {
         csm = gm.GetCombatStatManager();
+        jm = gm.GetJuiceManager();
     }
     #endregion
 
@@ -169,14 +177,29 @@ public class Car : MonoBehaviour
     public void FixAttackPoint()
     {
         attackPointsFixed++;
+
+        if (jm.currentlyActiveSmokePillars > 0)
+        {
+            //Remove Smoke partially by stopping one of the pillars
+            jm.carSmokeEffects.gameObject.transform.GetChild(jm.currentlyActiveSmokePillars - 1).GetComponentInChildren<ParticleSystem>().Stop();
+
+            //lower the active pillar number so the next pillar in line is turned off
+            jm.currentlyActiveSmokePillars --;
+
+        }
+    
     }
 
     public IEnumerator MarkAsDone(float x)
     {
         yield return new WaitForSeconds(x);
-
-        hasLanded = false;
+        SetHasLanded(false);
         isDone = true;
+    }
+
+    public void SetHasLanded(bool hasLanded)
+    {
+       this.hasLanded = hasLanded;
     }
 
     private void Test(GameObject[] attackPointCollectionForStage, GameObject[] possibleAttackPointsForStage)

@@ -18,19 +18,25 @@ public class JuiceManager : MonoBehaviour
     private GameManager gm;
     private CarManager cm;
     private CarMainBody car;
+    private JuiceManager jm;
 
     [Header("Particles")]
     public ParticleSystem cloudDropCar;
     public ParticleSystem hitCarEffect;
+    public ParticleSystem carSmokeEffects;
+
+    public int currentlyActiveSmokePillars;
+        
 
     void Start()
     {
         SetGameManager();
         SetOtherManagers();
+        SetCurrentActiveSmokePillars();
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         car = cm.GetCar().gameObject.GetComponentInChildren<CarMainBody>();
     }
@@ -44,6 +50,7 @@ public class JuiceManager : MonoBehaviour
     private void SetOtherManagers()
     {
         cm = gm.GetCarManager();
+        jm = gm.GetJuiceManager();
     }
 
 
@@ -52,7 +59,10 @@ public class JuiceManager : MonoBehaviour
         StartCoroutine(car.Shake());
     }
 
-
+    public void SetCurrentActiveSmokePillars()
+    {
+        currentlyActiveSmokePillars = jm.transform.GetChild(0).transform.GetChild(2).childCount;
+    }
  
 
 }
