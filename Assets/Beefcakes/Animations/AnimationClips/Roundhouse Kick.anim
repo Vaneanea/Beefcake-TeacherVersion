@@ -82294,7 +82294,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.9103261
-    functionName: Kick_Contact2
+    functionName: RoundHouseKick
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

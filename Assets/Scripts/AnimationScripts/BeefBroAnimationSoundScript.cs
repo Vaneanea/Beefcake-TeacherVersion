@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class BeefBroAnimationSoundScript : MonoBehaviour
 {
-    [Header("Private Managers")]
+    //Managers
     private GameManager gm;
     private JuiceManager jm;
     private CarManager cm;
+    private BeefCakeManager bcm;
+
+    private ParticleSystem hitCarEffect;
+
+
+    //Atacking Limbs
+    private string leftFoot = "root/pelvis/thigh_l/calf_l/foot_l/ball_l/ball_l_02";
+    private string rightFoot = "root/pelvis/thigh_r/calf_r/foot_r/ball_r";
+    private string leftFist = "root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l";
+    private string rightFist = "root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r";
 
     private void Start()
     {
         SetGameManager();
         SetOtherManagers();
+        SetParticleEffects();
     }
 
     #region Set Managers
@@ -25,48 +36,71 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     {
         jm = gm.GetJuiceManager();
         cm = gm.GetCarManager();
+        bcm = gm.GetBeefcakeManager();
 
     }
     #endregion
 
+    private void SetParticleEffects()
+    {
+        hitCarEffect = jm.hitCarEffect;
+
+    }
+
+    private void PlayCarAttackSFX(string attackSoundName, string attackingLimb)
+    {
+        SoundEffectManager.Play(attackSoundName);
+        if (cm.GetCar().GetComponent<Car>().hasLanded == true)
+        {
+            jm.ShakeCar();
+            hitCarEffect.transform.position = bcm.playerBeefcake.transform.GetChild(0).Find(attackingLimb).position;
+            hitCarEffect.Play();
+        }
+    }
+
+
     #region Player Attack Animation Events
 
-    private void Punch_Contact_1()
+    private void BasicKick()
     {
-        SoundEffectManager.Play("Punch1");
-
-        if (cm.GetCar() != null)
-        {
-            jm.ShakeCar();
-        }
-        
+        PlayCarAttackSFX("Kick1", leftFoot);
     }
 
-    private void Punch_Contact_2()
+    private void HurricaneKick()
     {
-        SoundEffectManager.Play("Punch2");
-        if (cm.GetCar().GetComponent<Car>().hasLanded == true)
-        {
-            jm.ShakeCar();
-        }
-    }
-    private void Kick_Contact2()
-    {
-        SoundEffectManager.Play("Kick2");
-        if (cm.GetCar().GetComponent<Car>().hasLanded == true)
-        {
-            jm.ShakeCar();
-        }
+        PlayCarAttackSFX("Kick2", leftFoot);
     }
 
-    private void Kick_Contact1()
+    private void LeftPunch()
     {
-        SoundEffectManager.Play("Kick1");
-        if (cm.GetCar().GetComponent<Car>().hasLanded == true)
-        {
-            jm.ShakeCar();
-        }
+        PlayCarAttackSFX("Punch1", leftFist);
     }
+
+    private void LowKick()
+    {
+        PlayCarAttackSFX("Kick2", rightFoot);
+    }
+
+    private void PunchCombo_l()
+    {
+        PlayCarAttackSFX("Punch2", leftFist);
+    }
+
+    private void PunchCombo_r()
+    {
+        PlayCarAttackSFX("Punch2", rightFist);
+    }
+
+    private void RoundHouseKick()
+    {
+        PlayCarAttackSFX("Kick1", rightFoot);
+    }
+
+    private void RightPunch()
+    {
+        PlayCarAttackSFX("Punch2", rightFist);
+    }
+
 
     #endregion
 

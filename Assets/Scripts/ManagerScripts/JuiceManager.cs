@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class JuiceManager : MonoBehaviour
 {
 
@@ -13,11 +14,14 @@ public class JuiceManager : MonoBehaviour
     [Range(0f, 0.1f)]
     public float delayBetweenShakes = 0f;
 
-    [Header("Private Managers")]
+   
     private GameManager gm;
     private CarManager cm;
     private CarMainBody car;
 
+    [Header("Particles")]
+    public ParticleSystem cloudDropCar;
+    public ParticleSystem hitCarEffect;
 
     void Start()
     {

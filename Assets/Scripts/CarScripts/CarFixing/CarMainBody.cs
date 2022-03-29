@@ -16,10 +16,15 @@ public class CarMainBody : MonoBehaviour
     private GameManager gm;
     private JuiceManager jm;
 
-    private void Start()
+    private void Awake()
     {
         SetGameManager();
         SetOtherManagers();
+    }
+
+    private void Start()
+    {
+        
         SetCar();
         AssignStartPosition();
         StopAllCoroutines();
@@ -62,17 +67,31 @@ public class CarMainBody : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        PlaySoundEffectOnLanding(collision);
         IgnoreCollisonOnDebrie(collision);
+        PlaySFX(collision);
+
+
     }
 
-    private void PlaySoundEffectOnLanding(Collision collision) 
+    private void PlayCarLandingParticleEffect()
+    {
+        jm.cloudDropCar.Play(true);
+    }
+
+    private void PlaySoundEffectOnLanding() 
+    {
+        SoundEffectManager.Play("quick_smash_003");
+        car.hasLanded = true;
+    }
+
+    private void PlaySFX(Collision collision)
     {
         if (collision.gameObject.tag == "Floor" && car.hasLanded == false)
         {
-            SoundEffectManager.Play("quick_smash_003");
-            car.hasLanded = true;
+            PlaySoundEffectOnLanding();
+            PlayCarLandingParticleEffect();
         }
+
     }
 
     private void IgnoreCollisonOnDebrie(Collision collision)
