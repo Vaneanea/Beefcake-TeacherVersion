@@ -5,7 +5,9 @@ using UnityEngine;
 public class CarManager : MonoBehaviour
 {
     [Header("Car Data")]
-    public CarData[] cars;
+    public CarTypeData[] carTypes;
+    public DynamicCarData[] carDynamicData;
+    public DynamicCarData currentCarDynamicData;
     public GameObject aCar;
     private GameObject car;
 
@@ -30,10 +32,12 @@ public class CarManager : MonoBehaviour
     private void CreateCar()
     {
         GameObject x = Instantiate(aCar);
+        //TODO ALSO INSTANTIATE A dynamic car thinhie!!!!!!!
+        var index = Random.Range(0, carTypes.Length);
+        x.GetComponent<Car>().carTypeData = carTypes[index];
+        x.GetComponent<Car>().dynamicCarData = carDynamicData[index];
 
-        x.GetComponent<Car>().car = cars[Random.Range(0, cars.Length)];
         car = x;
-        
     }
 
     private void CheckIfCarIsDone()

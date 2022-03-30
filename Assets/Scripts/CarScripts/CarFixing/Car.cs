@@ -6,7 +6,8 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     [Header("Car Data Source")]
-    public CarData car;
+    public CarTypeData carTypeData;
+    public DynamicCarData dynamicCarData;
 
     [Header("Private AttackPoint Variables")]
     [SerializeField] private float attackPointsFixed;
@@ -67,7 +68,7 @@ public class Car : MonoBehaviour
         {
             Destroy(firstCarStage);
             secondCarStage = Instantiate(carStates[1], transform);
-            currentCarStage = firstCarStage;
+            currentCarStage = secondCarStage;
             jm.carSmokeEffects.Stop();
             CreateAttackPoints(attackPointsStage2);
             attackPointsFixed = 0;
@@ -112,8 +113,8 @@ public class Car : MonoBehaviour
 
         SetAttackPointVisual();
 
-        SetAttackPointsPerStage(attackPointsStage1, car.possibleAttackPointStage1);
-        SetAttackPointsPerStage(attackPointsStage2, car.possibleAttackPointStage2);
+        SetAttackPointsPerStage(attackPointsStage1, carTypeData.possibleAttackPointStage1);
+        SetAttackPointsPerStage(attackPointsStage2, carTypeData.possibleAttackPointStage2);
 
         //Test(attackPointsStage1, car.possibleAttackPointStage1);
         //Test(attackPointsStage2, car.possibleAttackPointStage2);
@@ -121,14 +122,14 @@ public class Car : MonoBehaviour
 
     private void SetCarStates()
     {
-        carStates = car.carStates;
+        carStates = carTypeData.carStates;
     }
 
     private void SetAmountAttackPointsPerStage()
     {
         //Assign how many hits are needed to progress
-        firstStageAttackPointAmount = car.firstStageHitsNeeded;
-        secondStageAttackPointAmount = car.secondStageHitsNeeded;
+        firstStageAttackPointAmount = dynamicCarData.firstStageHitsNeeded;
+        secondStageAttackPointAmount = dynamicCarData.secondStageHitsNeeded;
 
         //Create an array of attackpoints that will be used during the existance of the car, give them the size required 
         attackPointsStage1 = new GameObject[firstStageAttackPointAmount];

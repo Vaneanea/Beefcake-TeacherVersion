@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Holds static information about a Car type
-[CreateAssetMenu(fileName = "CarData", menuName = "ScriptableObjects/CarData", order = 1)]
+[CreateAssetMenu(fileName = "CarTypeData", menuName = "ScriptableObjects/CarTypeData", order = 1)]
 public class CarTypeData : ScriptableObject {
     // Car stages
     public GameObject[] carStates = new GameObject[3];

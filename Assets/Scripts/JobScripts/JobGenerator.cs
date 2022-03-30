@@ -10,7 +10,7 @@ public class JobGenerator : MonoBehaviour {
     // TODO: Difficulty can be calculated based on Stage and updated each time a new job is needed
     [SerializeField] private float difficulty;
 
-    [SerializeField] private List<ConcreteCarData> cars;
+    [SerializeField] private List<DynamicCarData> cars;
 
     [Header("Generation Fields")]
     [SerializeField] private int baseCarCount = 3;
@@ -36,7 +36,7 @@ public class JobGenerator : MonoBehaviour {
             uiManager.AddCarSlot(carType, starCount);
 
             // Instantiate CarData objects and let them decide their stats based on their difficulty
-            ConcreteCarData car = ConcreteCarData.CreateInstance(carType, starCount);
+            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount);
             cars.Add(car);
         }
 

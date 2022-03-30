@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour
     private SoundEffectManager sem;
     private JuiceManager jm;
 
+    private int currentCrewReputation;
+
     private bool hasDeactivated = false;
     
     private void Awake()
     {
-         SetManagers();
+        SetInitialVariables();
     }
 
     
@@ -67,6 +69,14 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    private void SetInitialVariables()
+    {
+        SetManagers();
+        GetCrewReputation();
+    }
+
+
 
     #region Get Managers
 
@@ -165,6 +175,23 @@ public class GameManager : MonoBehaviour
         
     }
     #endregion
+
+    private void GetCrewReputation()
+    {
+        CurrentCrewData currentCrewData = Resources.Load<CurrentCrewData>("DynamicData/CrewData/CurrentCrewData");
+        currentCrewReputation = currentCrewData.currentCrewReputation;
+    }
+
+    private void SetCrewReputation(int newReputationScore)
+    {
+        var currentCrewData = Resources.Load<CurrentCrewData>("DynamicData/CrewData/CurrentCrewData");
+        currentCrewData.currentCrewReputation = newReputationScore;
+    }
+
+    public int GetCrewCurrentReputation()
+    {
+        return currentCrewReputation;
+    }
 
     private void AddCurrentAttackPointsToList() 
     {

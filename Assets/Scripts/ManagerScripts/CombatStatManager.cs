@@ -52,8 +52,8 @@ public class CombatStatManager : MonoBehaviour
 
     private void SetInitialProgressBar()
     {
-        int attackPointStage1 = cm.GetCar().GetComponent<Car>().car.firstStageHitsNeeded;
-        int attackPointStage2 = cm.GetCar().GetComponent<Car>().car.secondStageHitsNeeded;
+        int attackPointStage1 = cm.GetCar().GetComponent<Car>().dynamicCarData.firstStageHitsNeeded;
+        int attackPointStage2 = cm.GetCar().GetComponent<Car>().dynamicCarData.secondStageHitsNeeded;
 
         progressBarMaxValue = attackPointStage1 + attackPointStage2;
         progressBar.GetComponent<SliderScript>().SetMaxHealth(attackPointHitMax * (progressBarMaxValue));
