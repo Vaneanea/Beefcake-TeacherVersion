@@ -25,23 +25,26 @@ public class JobGenerator : MonoBehaviour {
         uiManager = GetComponent<JobUIManager>();
     }
 
-    public void GenerateJob() { 
+    public void GenerateRandomJob() { 
         ClearOldJob();
 
         int carCount = GenerateCarCount();
         for (int index = 1; index <= carCount; index++) {
             int starCount = GeneratStarCount();
             CarTypeData carType = GenerateCarType();
+            bool needWash = DecideIfWashIsNeeded();
+            bool needFix = DecideIfFixIsNeeded();
 
             uiManager.AddCarSlot(carType, starCount);
 
             // Instantiate CarData objects and let them decide their stats based on their difficulty
-            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount);
+            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount, needWash, needFix);
             cars.Add(car);
         }
 
         // TODO: Generate Rewards
     }
+
 
     private void ClearOldJob() {
         cars.Clear();
@@ -80,6 +83,33 @@ public class JobGenerator : MonoBehaviour {
         // TODO: !!! Make this generation better !!! For now it's random
         int index = Random.Range(0, carTypeSources.Count);
         return carTypeSources[index];
+    }
+
+
+
+    private bool DecideIfWashIsNeeded()
+    {
+        var x = Random.Range(0, 1);
+        if (x == 1)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private bool DecideIfFixIsNeeded()
+    {
+        var x = Random.Range(0, 1);
+        if (x == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     #endregion
 

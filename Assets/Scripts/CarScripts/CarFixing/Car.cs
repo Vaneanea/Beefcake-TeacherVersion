@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Car : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class Car : MonoBehaviour
     public bool isWashed;
     public bool hasLanded = false;
 
+
+    public GameObject clientCard;
+    private List<Image> clientCardImages;
+    private float fadeSpeed = 1f;
+
     void Start()
     {
         isDone = false;
@@ -55,13 +61,27 @@ public class Car : MonoBehaviour
         firstCarStage = Instantiate(carStates[0], transform);
         currentCarStage = firstCarStage;
 
-
         CreateAttackPoints(attackPointsStage1);
 
+        CreateClientCardVisual();
+        clientCard.SetActive(false);
+        SetClientCarImages();
     }
 
     void Update()
     {
+
+        if (hasLanded == true)
+        {
+            clientCard.SetActive(true);
+        }
+
+        //fadout over time
+        if(clientCard.activeSelf == true)
+        {
+            StartCoroutine(Fade());
+        }
+
 
         //check if first stage has been fixed
         if (attackPointsFixed >= firstStageAttackPointAmount && stagesDone == 0)
@@ -84,6 +104,48 @@ public class Car : MonoBehaviour
             attackPointsFixed = 0;
             stagesDone = 2;
             StartCoroutine(MarkAsDone(0.5f));
+        }
+    }
+
+    private void CreateClientCardVisual()
+    {
+        //card creation and icon 
+        var clientCard = Resources.Load<GameObject>("Clients/ClientCardPrefabs/ClientInfo");
+        var x = Instantiate(clientCard, gm.canvas.transform);
+        x.transform.GetChild(0).GetComponent<Image>().sprite = dynamicCarData.clientVisuals.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+
+        //adding stars
+        for (int i = 0; i < dynamicCarData.starCount; i++)
+        {
+            var star = Resources.Load<GameObject>("Clients/ClientCardPrefabs/StarIcon");
+           Instantiate(star, x.transform.GetChild(1).transform);
+        }
+
+        //Adding order requirements
+        if (dynamicCarData.needWash == true)
+        {
+            x.transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(true);
+        }
+        if (dynamicCarData.needFix == true)
+        {
+            x.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+        this.clientCard = x;
+    }
+
+
+
+    public IEnumerator Fade()
+    {
+        yield return new WaitForSeconds(2);
+
+        foreach (Image img in clientCardImages)
+        {
+            Color color = clientCard.GetComponent<Image>().color;
+            float fadeAmount = color.a - (fadeSpeed * Time.deltaTime);
+
+            img.color = new Color(color.r, color.g, color.b, fadeAmount);
         }
     }
 
@@ -175,7 +237,17 @@ public class Car : MonoBehaviour
         }
     }
 
-    public void FixAttackPoint()
+    private void SetClientCarImages()
+    {
+        Image[] clientCardImages = clientCard.GetComponentsInChildren<Image>();
+        var clientCardImagesList = clientCardImages.ToList();
+
+        clientCardImagesList.Add(clientCard.GetComponent<Image>());
+
+        this.clientCardImages = clientCardImagesList;
+    }
+
+   public void FixAttackPoint()
     {
         attackPointsFixed++;
 
@@ -194,6 +266,21 @@ public class Car : MonoBehaviour
     public IEnumerator MarkAsDone(float x)
     {
         yield return new WaitForSeconds(x);
+        float timeElapsed = 0;
+        Vector3 startPos = thirdCarStage.transform.position;
+        Vector3 targetPos = gm.GetCarManager().gameObject.transform.GetChild(0).transform.position;
+
+        while (timeElapsed < 1f)
+        {
+            thirdCarStage.transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / 1f);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        thirdCarStage.transform.position = targetPos;
+
+        
+
         SetHasLanded(false);
         isDone = true;
     }
@@ -203,53 +290,55 @@ public class Car : MonoBehaviour
        this.hasLanded = hasLanded;
     }
 
-    private void Test(GameObject[] attackPointCollectionForStage, GameObject[] possibleAttackPointsForStage)
-    {
+   
+
+    //private void Test(GameObject[] attackPointCollectionForStage, GameObject[] possibleAttackPointsForStage)
+    //{
        
 
-        //Fill the array of attackpoints that will be used in the stage with a random assortment of possible attackponts
-        for (int i = 0; i < attackPointCollectionForStage.Length; i++)
-        {
-            IEnumerable<GameObject> list = attackPointCollectionForStage.ToList<GameObject>();
+    //    //Fill the array of attackpoints that will be used in the stage with a random assortment of possible attackponts
+    //    for (int i = 0; i < attackPointCollectionForStage.Length; i++)
+    //    {
+    //        IEnumerable<GameObject> list = attackPointCollectionForStage.ToList<GameObject>();
 
-            if (TryGetAttackPoint(list, possibleAttackPointsForStage, out var attackPoint) == true)
-            {
-                //Debug.Log(attackPoint);
-                attackPointCollectionForStage[i] = attackPoint;
+    //        if (TryGetAttackPoint(list, possibleAttackPointsForStage, out var attackPoint) == true)
+    //        {
+    //            //Debug.Log(attackPoint);
+    //            attackPointCollectionForStage[i] = attackPoint;
 
-            }
+    //        }
 
-            //int rn = Random.Range(0, possibleAttackPointsForStage.Length);
+    //        //int rn = Random.Range(0, possibleAttackPointsForStage.Length);
 
-            //attackPointCollectionForStage[i] = possibleAttackPointsForStage[rn];
-        }
-    }
-    internal bool TryGetAttackPoint(IEnumerable<GameObject> list, GameObject[] possibleAttackPointsForStage, out GameObject attackPoint)
-    {
-        attackPoint = null;
-        List<GameObject> possibleAttackPoints = possibleAttackPointsForStage.ToList<GameObject>();
+    //        //attackPointCollectionForStage[i] = possibleAttackPointsForStage[rn];
+    //    }
+    //}
+    //internal bool TryGetAttackPoint(IEnumerable<GameObject> list, GameObject[] possibleAttackPointsForStage, out GameObject attackPoint)
+    //{
+    //    attackPoint = null;
+    //    List<GameObject> possibleAttackPoints = possibleAttackPointsForStage.ToList<GameObject>();
 
-        if (list.Count() >= possibleAttackPoints.Count)
-        {
-            return false;
-        }
+    //    if (list.Count() >= possibleAttackPoints.Count)
+    //    {
+    //        return false;
+    //    }
 
-        //bool contains = false;
-        int index = Random.Range(0, possibleAttackPoints.Count);
-        bool contains = list.Contains(possibleAttackPoints[index]);
+    //    //bool contains = false;
+    //    int index = Random.Range(0, possibleAttackPoints.Count);
+    //    bool contains = list.Contains(possibleAttackPoints[index]);
 
-        while (contains == true)
-        {
+    //    while (contains == true)
+    //    {
             
-            index = Random.Range(0, possibleAttackPoints.Count);
-            contains = list.Contains(possibleAttackPoints[index]);
+    //        index = Random.Range(0, possibleAttackPoints.Count);
+    //        contains = list.Contains(possibleAttackPoints[index]);
             
-        }
+    //    }
 
-        Debug.Log(possibleAttackPoints[index].name);
-        attackPoint = possibleAttackPoints[index];
-        return true;
-    }
+    //    Debug.Log(possibleAttackPoints[index].name);
+    //    attackPoint = possibleAttackPoints[index];
+    //    return true;
+    //}
 
 }
 

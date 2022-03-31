@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -22,7 +23,14 @@ public class GameManager : MonoBehaviour
     private int currentCrewReputation;
 
     private bool hasDeactivated = false;
-    
+
+    public int coinsEarned;
+    private bool earningsCalculated;
+
+    [Header("Rewards")]
+    public GameObject  coinReward;
+    public GameObject gemReward;
+
     private void Awake()
     {
         SetInitialVariables();
@@ -36,12 +44,16 @@ public class GameManager : MonoBehaviour
 
         if (gameObject.name == "FixLoop_GameManager") {
 
-            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true)
+            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsCalculated == false)
             {
-                canvas.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-
+                var fatigueScreen = canvas.gameObject.transform.GetChild(0);
+                cm.GetTotalCoinsEarned();
+                fatigueScreen.gameObject.SetActive(true);
+                coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
+                var specialGems = cm.carDone / 4;
+                gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
                 DeActivateAttackPoints();
-                
+                earningsCalculated = true;
             }
                        
         }

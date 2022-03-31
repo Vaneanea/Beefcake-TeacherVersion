@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &798009285873396311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1549059436032493}
+  m_Layer: 0
+  m_Name: CarDonePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1549059436032493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798009285873396311}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.14, y: 0, z: -9.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4470214550964764260}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1804933713765467910
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crew: []
+  currentReputation: 0
   slotPrefab: {fileID: 466131920425581298, guid: 648a85bd5ed06c444b596ddf7c67f4a8,
     type: 3}
   inventoryObject: {fileID: 0}
@@ -403,7 +434,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1549059436032493}
   m_Father: {fileID: 4470214550980831816}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,12 +451,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99dcfb54ec1cc248afc36a1bfe757b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cars:
-  - {fileID: 11400000, guid: 86547c6325191474781172a3ff9fc5f1, type: 2}
-  - {fileID: 11400000, guid: 03baaeb920d153248bd049b8bc26eb63, type: 2}
-  - {fileID: 11400000, guid: 31bdc98d999c29546ae8017c33b8a0c4, type: 2}
-  - {fileID: 11400000, guid: b110a9f157d78c046ba60fc5631ec05e, type: 2}
+  carTypes: []
+  carDynamicData: []
+  currentCarDynamicData: {fileID: 0}
   aCar: {fileID: 0}
+  clients: []
+  carDone: 0
+  coinsEarned: 0
 --- !u!1 &4470214550980831822
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +512,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   crewInventory: {fileID: 0}
   musicManager: {fileID: 0}
+  coinsEarned: 0
+  coinReward: {fileID: 0}
+  gemReward: {fileID: 0}
 --- !u!1 &4470214551041480129
 GameObject:
   m_ObjectHideFlags: 0
