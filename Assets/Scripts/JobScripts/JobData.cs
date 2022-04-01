@@ -12,14 +12,14 @@ public class JobData : ScriptableObject {
 
     // TODO: Add reward fields
 
-    public void Initialize() {
-        cars = Resources.LoadAll<DynamicCarData>("DynamicData/JobData").ToList();
+    public void Initialize(List<DynamicCarData> cars) {
+        this.cars = cars;
     }
 
     // Factory method for creating a {JobData} object
-    public static JobData CreateInstance() {
+    public static JobData CreateInstance(List<DynamicCarData> cars) {
         JobData data = CreateInstance<JobData>();
-        data.Initialize();
+        data.Initialize(cars);
 
         string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/JobData.asset");
         AssetDatabase.CreateAsset(data, fileName);

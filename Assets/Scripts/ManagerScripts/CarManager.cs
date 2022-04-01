@@ -31,6 +31,8 @@ public class CarManager : MonoBehaviour
         jobDone = false;
         carIndex = 0;
 
+        carTypes = Resources.LoadAll<CarTypeData>("Data/CarData/StarLevel0");
+
         SetGameManager();
         SetOtherManagers();
         CreateCar();
@@ -54,10 +56,13 @@ public class CarManager : MonoBehaviour
     }
 
     private void CreateRandomCar(ref GameObject newCar) {
-        //TODO ALSO INSTANTIATE A dynamic car thinhie!!!!!!!
+        // Generate random CarTypeData
         var index = Random.Range(0, carTypes.Length);
         newCar.GetComponent<Car>().carTypeData = carTypes[index];
-        newCar.GetComponent<Car>().dynamicCarData = carDynamicData[index];
+
+        // TODO: Generate random star count (hard-coded for now)
+        DynamicCarData car = DynamicCarData.CreateInstance(carTypes[index], 2);
+        newCar.GetComponent<Car>().dynamicCarData = car;
     }
 
     private void CreateNextCar(ref GameObject newCar) {

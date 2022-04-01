@@ -56,10 +56,6 @@ public class DynamicCarData : ScriptableObject {
         DynamicCarData data = CreateInstance<DynamicCarData>();
         data.Initialize(carType, starCount);
 
-        string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
-        AssetDatabase.CreateAsset(data, fileName);
-        AssetDatabase.SaveAssets();
-
         return data;
     }
 
