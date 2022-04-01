@@ -22075,6 +22075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 786682399, guid: d7348ae7592fb1f47beb9650157cf1a6, type: 3}
+      propertyPath: cars.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 786682400, guid: d7348ae7592fb1f47beb9650157cf1a6, type: 3}
       propertyPath: slotParent
       value: 
@@ -47968,7 +47972,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 786682399}
         m_TargetAssemblyTypeName: JobGenerator, Assembly-CSharp
-        m_MethodName: GenerateJob
+        m_MethodName: GenerateRandomJob
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

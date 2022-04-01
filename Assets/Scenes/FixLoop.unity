@@ -18329,6 +18329,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
+      propertyPath: carDonePosition
+      value: 
+      objectReference: {fileID: 2036910273}
+    - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
       propertyPath: cars.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -28983,6 +28988,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027461917}
   m_CullTransparentMesh: 0
+--- !u!4 &2036910273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1549059436032493, guid: a7d0deeaa72495840aaa892b3b5e7779,
+    type: 3}
+  m_PrefabInstance: {fileID: 1823386993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2041676862
 PrefabInstance:
   m_ObjectHideFlags: 0

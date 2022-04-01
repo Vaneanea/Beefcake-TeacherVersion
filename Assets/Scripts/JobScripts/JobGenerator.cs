@@ -29,6 +29,7 @@ public class JobGenerator : MonoBehaviour {
         ClearOldJob();
 
         int carCount = GenerateCarCount();
+        Debug.Log(carCount);
         for (int index = 1; index <= carCount; index++) {
             int starCount = GeneratStarCount();
             CarTypeData carType = GenerateCarType();
