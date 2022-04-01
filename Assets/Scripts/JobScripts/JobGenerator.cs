@@ -42,6 +42,10 @@ public class JobGenerator : MonoBehaviour {
         }
 
         // TODO: Generate Rewards
+
+        // Create the JobData object that incorporates all the previously generated information
+        // TODO: Pass the {cars} array in the constructor of the JobData object?
+        JobData.CreateInstance();
     }
 
 
