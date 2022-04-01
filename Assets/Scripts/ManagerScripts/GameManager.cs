@@ -46,20 +46,16 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-       
+        if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Job) {
+            if (cm.jobDone)
+                OnFixLoopEnd();
+        }
 
-        if (gameObject.name == "FixLoop_GameManager") {
+            if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Endless) {
 
             if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsCalculated == false)
             {
-                var fatigueScreen = canvas.gameObject.transform.GetChild(0);
-                cm.GetTotalCoinsEarned();
-                fatigueScreen.gameObject.SetActive(true);
-                coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
-                var specialGems = cm.carDone / 4;
-                gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
-                DeActivateAttackPoints();
-                earningsCalculated = true;
+                OnFixLoopEnd();
             }
                        
         }
@@ -85,6 +81,21 @@ public class GameManager : MonoBehaviour
             }
         }
 
+
+    }
+
+    private void OnFixLoopEnd() {
+        if (gameObject.name != "FixLoop_GameManager") return;
+
+        // Show rewards pop-up
+        var fatigueScreen = canvas.gameObject.transform.GetChild(0);
+        cm.GetTotalCoinsEarned();
+        fatigueScreen.gameObject.SetActive(true);
+        coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
+        var specialGems = cm.carDone / 4;
+        gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
+        DeActivateAttackPoints();
+        earningsCalculated = true;
 
     }
 

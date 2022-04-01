@@ -22,11 +22,13 @@ public class CarManager : MonoBehaviour
     private int coinsEarned = 0;
 
     #region Job Game Mode variables
-    int carIndex;
+    public bool jobDone;
+    private int carIndex;
     #endregion
 
     void Awake()
     {
+        jobDone = false;
         carIndex = 0;
 
         SetGameManager();
@@ -62,7 +64,7 @@ public class CarManager : MonoBehaviour
         List<DynamicCarData> cars = gm.job.cars;
 
         if (carIndex >= cars.Count) {
-            Debug.Log("end");
+            jobDone = true;
             return;
         }
      
