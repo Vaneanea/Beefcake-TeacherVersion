@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Job) {
-            if (cm.jobDone)
+            if (cm.jobDone && !earningsCalculated)
                 OnFixLoopEnd();
         }
 
