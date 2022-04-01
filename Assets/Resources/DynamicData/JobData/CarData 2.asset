@@ -26,8 +26,9 @@ MonoBehaviour:
   - {fileID: 5907451687184632616, guid: 7c05f1c220dc80045b4d22b79dc24cfd, type: 3}
   firstStageHitsNeeded: 2
   secondStageHitsNeeded: 3
-  starCount: 3
+  starCount: 2
   needWash: 0
   needFix: 0
-  clientVisuals: {fileID: 3302514438924515202, guid: 031106be1fe2cb848b2498aa7f2bca65,
+  clientVisuals: {fileID: 761473731933428424, guid: 1dbcf5a21b1b90946a5c6333b8c88fb7,
     type: 3}
+  carType: {fileID: 11400000, guid: 33a362bbadad6ea49bffc72ad973adc8, type: 2}

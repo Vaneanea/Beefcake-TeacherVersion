@@ -230,7 +230,6 @@ public class Car : MonoBehaviour
             GameObject x = Instantiate(attackPoint, gm.canvas.transform);
             x.name = attackPointLocation.name;
 
-            
             //put player on the right position
             x.transform.GetChild(0).transform.localPosition = attackPointLocation.transform.GetChild(0).transform.localPosition;
             x.transform.GetChild(0).transform.rotation = attackPointLocation.transform.GetChild(0).transform.rotation;

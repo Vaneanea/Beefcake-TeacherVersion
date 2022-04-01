@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum GameMode { Job, Endless }
 
 [SerializeField]
 public class GameManager : MonoBehaviour
@@ -27,9 +28,14 @@ public class GameManager : MonoBehaviour
     public int coinsEarned;
     private bool earningsCalculated;
 
+    // {gameMode} - only used in the FixLoop
+    public GameMode gameMode;
+    public JobData job;
+
     [Header("Rewards")]
     public GameObject  coinReward;
     public GameObject gemReward;
+
 
     private void Awake()
     {
@@ -86,6 +92,7 @@ public class GameManager : MonoBehaviour
     {
         SetManagers();
         GetCrewReputation();
+        SetGameMode();
     }
 
 
@@ -187,6 +194,18 @@ public class GameManager : MonoBehaviour
         
     }
     #endregion
+
+    private void SetGameMode() 
+    {
+        if (gameObject.name != "FixLoop_GameManager") return;
+
+        // If there's a JobData file then set game mode to {Job}
+        job = Resources.Load<JobData>("DynamicData/JobData/JobData");
+        if (job != null)
+            gameMode = GameMode.Job;
+        else
+            gameMode = GameMode.Endless;
+    }
 
     private void GetCrewReputation()
     {

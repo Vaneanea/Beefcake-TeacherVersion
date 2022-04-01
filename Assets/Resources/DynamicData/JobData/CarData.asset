@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CarData
   m_EditorClassIdentifier: 
   carStates:
-  - {fileID: 2105162629387828904, guid: 98467806cb97eba46a92aa3f943eab17, type: 3}
-  - {fileID: 2684045641640957779, guid: 209f6666423eafa488da35cbbb9ecf99, type: 3}
-  - {fileID: 1205180057900401004, guid: 422763bed1d05c74dadda74b474ec4f9, type: 3}
+  - {fileID: 6140973923392457619, guid: 9c49745a766a30449affd106d9c2d471, type: 3}
+  - {fileID: 7890555647621169893, guid: 04a5a1d37bdad0d46a0e0341798bfad2, type: 3}
+  - {fileID: 7844442713695961171, guid: d9b44111aa2db9a4db93a0fc5add9e26, type: 3}
   possibleAttackPointStage1:
   - {fileID: 6006223232903940729, guid: 976a940047713d14a98b54b76b1084c4, type: 3}
   - {fileID: 8193198319952907276, guid: 449f7eaf8cf14754b9aad69d821bc846, type: 3}
@@ -26,8 +26,9 @@ MonoBehaviour:
   - {fileID: 5907451687184632616, guid: 7c05f1c220dc80045b4d22b79dc24cfd, type: 3}
   firstStageHitsNeeded: 2
   secondStageHitsNeeded: 3
-  starCount: 3
+  starCount: 2
   needWash: 0
   needFix: 0
-  clientVisuals: {fileID: 3302514438924515202, guid: 031106be1fe2cb848b2498aa7f2bca65,
+  clientVisuals: {fileID: 761473731933428424, guid: 1dbcf5a21b1b90946a5c6333b8c88fb7,
     type: 3}
+  carType: {fileID: 11400000, guid: 33a362bbadad6ea49bffc72ad973adc8, type: 2}

@@ -21,8 +21,14 @@ public class CarManager : MonoBehaviour
     [SerializeField]
     private int coinsEarned = 0;
 
+    #region Job Game Mode variables
+    int carIndex;
+    #endregion
+
     void Awake()
     {
+        carIndex = 0;
+
         SetGameManager();
         SetOtherManagers();
         CreateCar();
@@ -35,13 +41,35 @@ public class CarManager : MonoBehaviour
 
     private void CreateCar()
     {
-        GameObject x = Instantiate(aCar);
+        GameObject newCar = Instantiate(aCar);
+
+        if (gm.gameMode == GameMode.Endless)
+            CreateRandomCar(ref newCar);
+        if (gm.gameMode == GameMode.Job)
+            CreateNextCar(ref newCar);
+
+        car = newCar;
+    }
+
+    private void CreateRandomCar(ref GameObject newCar) {
         //TODO ALSO INSTANTIATE A dynamic car thinhie!!!!!!!
         var index = Random.Range(0, carTypes.Length);
-        x.GetComponent<Car>().carTypeData = carTypes[index];
-        x.GetComponent<Car>().dynamicCarData = carDynamicData[index];
+        newCar.GetComponent<Car>().carTypeData = carTypes[index];
+        newCar.GetComponent<Car>().dynamicCarData = carDynamicData[index];
+    }
 
-        car = x;
+    private void CreateNextCar(ref GameObject newCar) {
+        List<DynamicCarData> cars = gm.job.cars;
+
+        if (carIndex >= cars.Count) {
+            Debug.Log("end");
+            return;
+        }
+     
+        newCar.GetComponent<Car>().carTypeData = cars[carIndex].carType;
+        newCar.GetComponent<Car>().dynamicCarData = cars[carIndex];
+
+        carIndex++;
     }
 
     private void CheckIfCarIsDone()

@@ -22,10 +22,7 @@ public class CombatStatManager : MonoBehaviour
     [SerializeField]
     private CarManager cm;
 
-    
     public List<GameObject> currentAttackPoints = new List<GameObject>();
-
-
 
     private void Start()
     {
@@ -71,7 +68,4 @@ public class CombatStatManager : MonoBehaviour
         currentProgress = 0;
         SetInitialProgressBar();
     }
-
-    
-
 }

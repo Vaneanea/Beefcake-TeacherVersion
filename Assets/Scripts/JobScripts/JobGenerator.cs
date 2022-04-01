@@ -23,6 +23,7 @@ public class JobGenerator : MonoBehaviour {
     private void Start() {
         carTypeSources = Resources.LoadAll<CarTypeData>("Data/CarData").ToList();
         uiManager = GetComponent<JobUIManager>();
+        ClearOldJob();
     }
 
     public void GenerateRandomJob() { 
@@ -49,7 +50,7 @@ public class JobGenerator : MonoBehaviour {
     }
 
 
-    private void ClearOldJob() {
+    public void ClearOldJob() {
         cars.Clear();
 
         uiManager.ClearOldJobUI();

@@ -25,7 +25,9 @@ public class DynamicCarData : ScriptableObject {
     public bool needFix;
     public GameObject clientVisuals;
 
+    public CarTypeData carType;
     public void Initialize(CarTypeData carType, int starCount) {
+        this.carType = carType;
 
         // Pass information from {CarTypeData} source
         carStates = (GameObject[]) carType.carStates.Clone();

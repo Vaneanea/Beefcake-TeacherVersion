@@ -8,7 +8,7 @@ using System.Linq;
 // Holds information needed about the Job: Cars, ?Rewards?
 public class JobData : ScriptableObject {
 
-    [SerializeField] private List<DynamicCarData> cars;
+    [SerializeField] public List<DynamicCarData> cars;
 
     // TODO: Add reward fields
 
