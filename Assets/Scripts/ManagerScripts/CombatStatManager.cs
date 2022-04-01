@@ -49,6 +49,8 @@ public class CombatStatManager : MonoBehaviour
 
     private void SetInitialProgressBar()
     {
+        if (gm.gameMode == GameMode.Job && cm.jobDone) return;
+
         int attackPointStage1 = cm.GetCar().GetComponent<Car>().dynamicCarData.firstStageHitsNeeded;
         int attackPointStage2 = cm.GetCar().GetComponent<Car>().dynamicCarData.secondStageHitsNeeded;
 

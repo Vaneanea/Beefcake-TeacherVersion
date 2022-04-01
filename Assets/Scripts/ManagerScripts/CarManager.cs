@@ -62,11 +62,6 @@ public class CarManager : MonoBehaviour
 
     private void CreateNextCar(ref GameObject newCar) {
         List<DynamicCarData> cars = gm.job.cars;
-
-        if (carIndex >= cars.Count) {
-            jobDone = true;
-            return;
-        }
      
         newCar.GetComponent<Car>().carTypeData = cars[carIndex].carType;
         newCar.GetComponent<Car>().dynamicCarData = cars[carIndex];
@@ -90,6 +85,12 @@ public class CarManager : MonoBehaviour
 
             AddCoinsEarnedForCar();
             carDone++;
+
+            if (gm.gameMode == GameMode.Job && carDone >= gm.job.cars.Count) {
+                jobDone = true;
+                return;
+            }
+
             ReplaceCar();
             csm.ResetProgressBar();
         }
