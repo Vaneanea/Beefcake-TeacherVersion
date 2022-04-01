@@ -29,5 +29,5 @@ MonoBehaviour:
   starCount: 2
   needWash: 0
   needFix: 0
-  clientVisuals: {fileID: 3302514438924515202, guid: 031106be1fe2cb848b2498aa7f2bca65,
+  clientVisuals: {fileID: 761473731933428424, guid: 1dbcf5a21b1b90946a5c6333b8c88fb7,
     type: 3}

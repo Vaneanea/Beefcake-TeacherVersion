@@ -25,7 +25,7 @@ public class DynamicCarData : ScriptableObject {
     public bool needFix;
     public GameObject clientVisuals;
 
-    public void Initialize(CarTypeData carType, int starCount, bool needWash, bool needFix) {
+    public void Initialize(CarTypeData carType, int starCount) {
 
         // Pass information from {CarTypeData} source
         carStates = (GameObject[]) carType.carStates.Clone();
@@ -37,8 +37,8 @@ public class DynamicCarData : ScriptableObject {
         secondStageHitsNeeded = 3;
 
         this.starCount = starCount;
-        this.needFix = needFix;
-        this.needWash = needWash;
+        needFix = DecideIfFixIsNeeded();
+        needWash = DecideIfWashIsNeeded();
 
         //Store all Gameobjects in an array like this
         var allClients = Resources.LoadAll<GameObject>("Clients/ClientSpritePrefabs");
@@ -50,9 +50,9 @@ public class DynamicCarData : ScriptableObject {
     }
 
     // Factory method for creating a {ConcreteCarData} object 
-    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix) {
+    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount) {
         DynamicCarData data = CreateInstance<DynamicCarData>();
-        data.Initialize(carType, starCount, needWash, needFix);
+        data.Initialize(carType, starCount);
 
         string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
         AssetDatabase.CreateAsset(data, fileName);
@@ -60,4 +60,24 @@ public class DynamicCarData : ScriptableObject {
 
         return data;
     }
+
+    #region Car Generation methods
+    private bool DecideIfWashIsNeeded() {
+        var x = Random.Range(0, 1);
+        if (x == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private bool DecideIfFixIsNeeded() {
+        var x = Random.Range(0, 1);
+        if (x == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    #endregion
 }
