@@ -7080,6 +7080,21 @@ PrefabInstance:
       propertyPath: inventoryObject
       value: 
       objectReference: {fileID: 53723008}
+    - target: {fileID: 5526400683621446467, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526400683621446467, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5526400683621446467, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6878273291364458626, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: m_Volume
@@ -7129,7 +7144,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cloudDropCar
       value: 
-      objectReference: {fileID: 346272136}
+      objectReference: {fileID: 346272134}
     - target: {fileID: 7871684957595433340, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: hitCarEffect
@@ -7145,7 +7160,7 @@ PrefabInstance:
         type: 3}
       propertyPath: carSmokeEffects
       value: 
-      objectReference: {fileID: 346272134}
+      objectReference: {fileID: 1486950624}
     - target: {fileID: 7871684957595433340, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: delayBetweenShakes
@@ -7212,19 +7227,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!198 &346272134 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7599524946953207465, guid: a7d0deeaa72495840aaa892b3b5e7779,
+  m_CorrespondingSourceObject: {fileID: 6250432424962415066, guid: a7d0deeaa72495840aaa892b3b5e7779,
     type: 3}
   m_PrefabInstance: {fileID: 346272132}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &346272135 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1376688637320454929, guid: a7d0deeaa72495840aaa892b3b5e7779,
-    type: 3}
-  m_PrefabInstance: {fileID: 346272132}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &346272136 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4788015769613837118, guid: a7d0deeaa72495840aaa892b3b5e7779,
     type: 3}
   m_PrefabInstance: {fileID: 346272132}
   m_PrefabAsset: {fileID: 0}
@@ -22192,6 +22201,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6aad3078276ab4d47916c4d88e1722cd,
     type: 3}
   m_PrefabInstance: {fileID: 1460324884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1486950624 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 864348874990583671, guid: a7d0deeaa72495840aaa892b3b5e7779,
+    type: 3}
+  m_PrefabInstance: {fileID: 346272132}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1487846611
 GameObject:
