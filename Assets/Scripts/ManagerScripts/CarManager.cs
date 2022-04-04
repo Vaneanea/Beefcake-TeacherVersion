@@ -43,7 +43,7 @@ public class CarManager : MonoBehaviour
         var index = Random.Range(0, carTypes.Length);
         x.GetComponent<Car>().carTypeData = carTypes[index];
         x.GetComponent<Car>().dynamicCarData = carDynamicData[index];
-        x.GetComponent<Car>().dynamicCarData = currentCarDynamicData;
+        currentCarDynamicData = x.GetComponent<Car>().dynamicCarData;
 
         car = x;
 

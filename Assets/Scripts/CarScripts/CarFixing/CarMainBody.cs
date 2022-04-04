@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class CarMainBody : MonoBehaviour
 {
-    public bool hasLanded = false;
+    [SerializeField]
+    private Car car;
 
-    private Vector3 startPos;
-    private Vector3 shakePos;
-    private float timer;
+    public Vector3 startPos;
+    public Vector3 shakePos;
+    public float timer;
+
 
     //Managers
     private GameManager gm;
     private JuiceManager jm;
 
+    private void Awake()
+    {
+       
+        
+    }
+
     private void Start()
     {
         SetGameManager();
         SetOtherManagers();
+        SetCar();
+        AssignStartPosition();
+        StopAllCoroutines();
     }
 
-    private void Update()
-    {
-        if (hasLanded == true) 
-        {
-            startPos = transform.position;
 
-        }
-    }
-
+    #region Setting Inital Variables
     private void SetGameManager()
     {
         gm = FindObjectOfType<GameManager>();
@@ -39,41 +43,79 @@ public class CarMainBody : MonoBehaviour
         jm = gm.GetJuiceManager();
     }
 
+    private void SetCar()
+    {
+        car = gameObject.GetComponentInParent<Car>();
+    }
+
+    public void AssignStartPosition()
+    {
+        if(car.hasLanded == true)
+        {
+            startPos = transform.position;
+
+        }
+    }
+
+
+
+    #endregion
+
     private void OnCollisionEnter(Collision collision)
     {
-        PlaySoundEffectOnLanding(collision);
         IgnoreCollisonOnDebrie(collision);
+
+        PlaySFX(collision);
 
 
     }
 
-    private void PlaySoundEffectOnLanding(Collision collision) 
+    private void PlayCarLandingParticleEffect()
     {
-        if (collision.gameObject.tag == "Floor" && hasLanded == false)
+        jm.cloudDropCar.Play(true);
+    }
+
+    private void PlayCarSmokeEffects()
+    {
+        jm.carSmokeEffects.Play(true);
+    }
+
+    private void PlaySoundEffectOnLanding()
+    {
+        SoundEffectManager.Play("quick_smash_003");
+        car.SetHasLanded(true);
+    }
+
+    private void PlaySFX(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor") && car.hasLanded == false)
         {
-            SoundEffectManager.Play("quick_smash_003");
-            hasLanded = true;
+            PlaySoundEffectOnLanding();
+            PlayCarLandingParticleEffect();
+
+            if (car.currentCarStage == car.firstCarStage)
+            {
+                PlayCarSmokeEffects();
+            }
+
         }
+
+
     }
 
     private void IgnoreCollisonOnDebrie(Collision collision)
     {
-        if (collision.gameObject.tag == "Debrie")
+        if (collision.gameObject.CompareTag("Debrie"))
         {
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
         }
     }
 
-    public void ShakeCar() 
-    {
-        StartCoroutine(Shake());
-    }
 
-
-    public IEnumerator Shake() 
+    public IEnumerator Shake()
     {
         timer = 0f;
-        while (timer < jm.time) 
+        while (timer < jm.time)
         {
             timer += Time.deltaTime;
             shakePos = startPos + (Random.insideUnitSphere * jm.distance);
@@ -88,11 +130,12 @@ public class CarMainBody : MonoBehaviour
             {
                 yield return null;
             }
-                
+
         }
 
         transform.position = startPos;
-    
-    } 
+
+    }
+
 
 }

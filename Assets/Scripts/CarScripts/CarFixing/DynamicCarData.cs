@@ -9,6 +9,8 @@ using System.Linq;
 
 // Holds a concrete instance of CarTypeData 
 public class DynamicCarData : ScriptableObject {
+
+    //Note change to just carType as attriute
     // Car stages
     public GameObject[] carStates = new GameObject[3];
     

@@ -46,6 +46,7 @@ public class Car : MonoBehaviour
     public bool isWashed;
     public bool hasLanded = false;
 
+    private bool startPosIsAssigned = false;
 
     public GameObject clientCard;
     private List<Image> clientCardImages;
@@ -76,9 +77,11 @@ public class Car : MonoBehaviour
     void Update()
     {
 
-        if (hasLanded == true)
+        if (hasLanded == true && startPosIsAssigned == false)
         {
             clientCard.SetActive(true);
+            GetComponentInChildren<CarMainBody>().AssignStartPosition();
+            startPosIsAssigned = true;
         }
 
         //fadout over time
@@ -267,9 +270,11 @@ public class Car : MonoBehaviour
         {
             //Remove Smoke partially by stopping one of the pillars
             jm.carSmokeEffects.gameObject.transform.GetChild(jm.currentlyActiveSmokePillars - 1).GetComponentInChildren<ParticleSystem>().Stop();
+            jm.carSmokeEffects.gameObject.transform.GetChild(jm.currentlyActiveSmokePillars - 2).GetComponentInChildren<ParticleSystem>().Stop();
+            
 
             //lower the active pillar number so the next pillar in line is turned off
-            jm.currentlyActiveSmokePillars--;
+            jm.currentlyActiveSmokePillars -= 2;
 
         }
 
