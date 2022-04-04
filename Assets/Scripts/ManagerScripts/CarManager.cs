@@ -9,14 +9,17 @@ public class CarManager : MonoBehaviour
     public DynamicCarData[] carDynamicData;
     public DynamicCarData currentCarDynamicData;
     public GameObject aCar;
-    private GameObject car;
+    public GameObject car;
 
+    [Header("Car Positions")]
+    public Transform carStage1Position;
+    public Transform carStage2Position;
     public Transform carDonePosition;
 
     private GameManager gm;
     private CombatStatManager csm;
     private JuiceManager jm;
-    
+
     public int carDone = 0;
     [SerializeField]
     private int coinsEarned = 0;
@@ -40,8 +43,10 @@ public class CarManager : MonoBehaviour
         var index = Random.Range(0, carTypes.Length);
         x.GetComponent<Car>().carTypeData = carTypes[index];
         x.GetComponent<Car>().dynamicCarData = carDynamicData[index];
+        x.GetComponent<Car>().dynamicCarData = currentCarDynamicData;
 
         car = x;
+
     }
 
     private void CheckIfCarIsDone()
@@ -82,13 +87,14 @@ public class CarManager : MonoBehaviour
         return coinsEarned;
     }
 
-    private void ReplaceCar() {
+    private void ReplaceCar()
+    {
         Destroy(car.GetComponent<Car>().clientCard.gameObject);
         Destroy(car);
 
         CreateCar();
         jm.SetCurrentActiveSmokePillars();
-    
+
     }
 
 

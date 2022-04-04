@@ -40,16 +40,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7226100005019500137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a70306fd347a7d944af5303d19f3776b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c25403e1de90c848a143716f2bb1f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 0}
+  carTypeData: {fileID: 0}
+  dynamicCarData: {fileID: 0}
   attackPointsFixed: 0
   firstStageAttackPointAmount: 0
   secondStageAttackPointAmount: 0
   stagesDone: 0
   carStates: []
-  gm: {fileID: 0}
-  csm: {fileID: 0}
+  firstCarStage: {fileID: 0}
+  currentCarStage: {fileID: 0}
   isDone: 0
   isWashed: 0
+  hasLanded: 0
+  clientCard: {fileID: 0}

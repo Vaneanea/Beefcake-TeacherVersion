@@ -8,11 +8,7 @@ using UnityEngine;
 public class CrewInventory : MonoBehaviour {
     public static CrewInventory instance { get; private set; }
 
-    public List<CrewBeefCake> crew;
-
-    public int currentReputation;
-
-    private GameManager gm;
+    [SerializeField] public List<CrewBeefCake> crew;
     
     [Header("Inventory Display Variables")]
      public GameObject slotPrefab;
@@ -23,14 +19,12 @@ public class CrewInventory : MonoBehaviour {
         CreateSingletonInstance();
         crew = new List<CrewBeefCake>();
         GetCrew();
-        SetGameManager();
     }
 
     private void Start()
     {
         //Create slots 
         inventoryObject.GetComponent<CharacterInfoScript>().CreateSlots();
-        currentReputation = gm.GetCrewCurrentReputation();
     }
 
     public void Add(ShopBeefCake data) {
@@ -73,11 +67,6 @@ public class CrewInventory : MonoBehaviour {
             crew.Add(beefCake);
         }
     }
-    private void SetGameManager()
-    {
-        gm = FindObjectOfType<GameManager>();
-    }
-
 
     private CrewBeefCake CreateNewCrewBeefCake(ShopBeefCake data) {
 

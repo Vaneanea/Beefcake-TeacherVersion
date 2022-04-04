@@ -9,12 +9,17 @@ public class AttackPoint : MonoBehaviour
     private int currentHits;
 
     //Managers
+    [SerializeField]
     private GameManager gm;
+
+    [SerializeField]
     private CombatStatManager csm;
+
+    [SerializeField]
     private BeefCakeManager bcm;
+
+    [SerializeField]
     private AttackAnimationManager aam;
-    private JuiceManager jm;
-    private CarManager cm;
 
 
     //Player
@@ -77,8 +82,6 @@ public class AttackPoint : MonoBehaviour
         csm = gm.GetCombatStatManager();
         bcm = gm.GetBeefcakeManager();
         aam = gm.GetAttackAnimationManager();
-        jm = gm.GetJuiceManager();
-        cm = gm.GetCarManager();
 
     }
     private void SetPlayer()
@@ -130,8 +133,7 @@ public class AttackPoint : MonoBehaviour
         if (currentHits <= 0)
         {
             //Register attackpoint as fixed
-            cm.GetCar().GetComponent<Car>().FixAttackPoint();
-
+            FindObjectOfType<Car>().FixAttackPoint();
 
             //Destory the attackpoint
             Destroy(gameObject);

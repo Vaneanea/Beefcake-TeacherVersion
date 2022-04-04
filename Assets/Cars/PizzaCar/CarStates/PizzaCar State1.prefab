@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 2813260059410626569}
   m_LocalRotation: {x: -0.18702707, y: -0.18702711, z: 0.6819244, w: 0.6819244}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 130, y: 130, z: 130}
   m_Children:
   - {fileID: 5736115249244294289}
   - {fileID: 2040991345629277461}
@@ -580,10 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47961d8089815c643b28210520933152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 0}
-  startPos: {x: 0, y: 0, z: 0}
-  shakePos: {x: 0, y: 0, z: 0}
-  timer: 0
+  hasLanded: 0
 --- !u!54 &4546978771933188432
 Rigidbody:
   m_ObjectHideFlags: 0
