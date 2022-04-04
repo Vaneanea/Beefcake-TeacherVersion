@@ -88,15 +88,16 @@ public class CarMainBody : MonoBehaviour
 
     private void PlaySFX(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Floor") && car.hasLanded == false)
+        if (collision.gameObject.CompareTag("Floor") && car.hasLanded == false && car.currentCarStage == car.firstCarStage)
         {
             PlaySoundEffectOnLanding();
             PlayCarLandingParticleEffect();
+            PlayCarSmokeEffects();
 
-            if (car.currentCarStage == car.firstCarStage)
-            {
-                PlayCarSmokeEffects();
-            }
+            //if (car.currentCarStage == car.firstCarStage)
+            //{
+               
+            //}
 
         }
 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44df459f94acbbf408af67a90829215b, type: 3}
+  m_Name: 90'sVolksWagenData
+  m_EditorClassIdentifier: 
+  carStates:
+  - {fileID: 1502974791147108599, guid: 75b58d0eced7f92459c96d42bf74d442, type: 3}
+  - {fileID: 3017152798359794971, guid: 366879e530c0a3c468069955826442ac, type: 3}
+  - {fileID: 6562732683292307025, guid: e1350245085903a4fb71d95f0756998d, type: 3}
+  possibleAttackPointStage1:
+  - {fileID: 6006223232903940729, guid: 02bc0fdb362b45a45a62b870d1905dda, type: 3}
+  - {fileID: 8193198319952907276, guid: 62f08d9cc84063049aa8d69ebf680eb7, type: 3}
+  - {fileID: 8399241665787445205, guid: 1cccda942be9dd44ea1369885f6d719a, type: 3}
+  possibleAttackPointStage2:
+  - {fileID: 6936327821883264687, guid: a7acf47bfa1fcd94dba80b9df4cb51b4, type: 3}
+  - {fileID: 482399115323549019, guid: 07a7101a322ce6e45ae906e55ccc3b26, type: 3}
+  - {fileID: 5907451687184632616, guid: 2be6b9606f6c5894d8ddc1e9bafae311, type: 3}
+  carshot: {fileID: 21300000, guid: 95a4bb64e03164b409aed0478588737d, type: 3}
+  backgroundColor: {r: 0.160317, g: 0.15419191, b: 0.7264151, a: 0}

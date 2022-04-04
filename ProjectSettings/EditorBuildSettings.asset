@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/OldAssets/Old_Scenes/OLD_FixCarScene.unity
     guid: 601b0b278c0bf8a48ad9a65ef72d99b8
   - enabled: 1
+    path: Assets/Scenes/FixLoopVisualUpdate.unity
+    guid: 8da689d8e10c8614993f5ce6ed76e360
+  - enabled: 1
     path: Assets/Scenes/FixLoop.unity
     guid: a6d71b5286928d84aad156a2b6f90196
   - enabled: 1

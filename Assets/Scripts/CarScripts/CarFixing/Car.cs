@@ -60,9 +60,9 @@ public class Car : MonoBehaviour
         SetInitialValues();
 
         //Instantiate  the car model in it's proper location        
-        firstCarStage = Instantiate(carStates[0], cm.car.transform);
-        firstCarStage.transform.position = cm.carStage1Position.position;
-        firstCarStage.transform.rotation = cm.carStage1Position.rotation;
+        firstCarStage = Instantiate(carStates[0]);
+        firstCarStage.transform.SetParent(cm.car.transform);
+       
 
         
         currentCarStage = firstCarStage;
@@ -95,12 +95,12 @@ public class Car : MonoBehaviour
         if (attackPointsFixed >= firstStageAttackPointAmount && stagesDone == 0)
         {
             Destroy(firstCarStage);
-            secondCarStage = Instantiate(carStates[1], cm.car.transform);
-            secondCarStage.transform.position = cm.carStage2Position.position;
-            secondCarStage.transform.rotation = cm.carStage2Position.rotation;
+            jm.carSmokeEffects.Stop();
+            secondCarStage = Instantiate(carStates[1]);
+            secondCarStage.transform.SetParent(cm.car.transform);
 
             currentCarStage = secondCarStage;
-            jm.carSmokeEffects.Stop();
+            
             CreateAttackPoints(attackPointsStage2);
             attackPointsFixed = 0;
             stagesDone = 1;
@@ -110,9 +110,8 @@ public class Car : MonoBehaviour
         if (attackPointsFixed >= secondStageAttackPointAmount && stagesDone == 1)
         {
             Destroy(secondCarStage);
-            thirdCarStage = Instantiate(carStates[2], cm.car.transform);
-            thirdCarStage.transform.position = cm.carStage2Position.position;
-            thirdCarStage.transform.rotation = cm.carStage2Position.rotation;
+            thirdCarStage = Instantiate(carStates[2]);
+            thirdCarStage.transform.SetParent(cm.car.transform);
 
             currentCarStage = thirdCarStage;
             attackPointsFixed = 0;
@@ -284,7 +283,8 @@ public class Car : MonoBehaviour
     {
         yield return new WaitForSeconds(x);
         float timeElapsed = 0;
-        Vector3 startPos = thirdCarStage.transform.position;
+        Vector3 startPos = currentCarStage.transform.position;
+
         Vector3 targetPos = cm.carDonePosition.transform.position;
 
         while (timeElapsed < 1f)

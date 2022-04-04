@@ -12,8 +12,6 @@ public class CarManager : MonoBehaviour
     public GameObject car;
 
     [Header("Car Positions")]
-    public Transform carStage1Position;
-    public Transform carStage2Position;
     public Transform carDonePosition;
 
     private GameManager gm;
