@@ -12,6 +12,8 @@ public class AttackAnimationManager : MonoBehaviour
     private int attack = 1;
     private Animator animator;
 
+    bool attackBool = true;
+
     private void Update()
     {
         animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<BeefCakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
@@ -54,8 +56,25 @@ public class AttackAnimationManager : MonoBehaviour
     }
 
     private void DoAnimation_Temporary() {
+        
         //play animation 
-        animator.SetTrigger("Attack " + attack);
+        //animator.SetTrigger("Attack " + attack);
+
+        //if true play attack animation or else play the next function
+        if (attackBool)
+        {
+            animator.SetBool("AttackBool " + attack, true);
+            attackBool = false;
+
+            return;
+        }
+        if(!attackBool)
+        {
+            animator.SetBool("AttackBool " + attack, false);
+            attackBool = true;
+        }
+        
+
 
         //Ressetting attack speed 
         nextAttackTime = Time.time + 1f / attackRate;

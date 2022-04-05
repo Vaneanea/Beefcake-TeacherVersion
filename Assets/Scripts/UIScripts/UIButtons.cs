@@ -7,7 +7,7 @@ public class UIButtons : MonoBehaviour
 {
     public void WorkButton()
     {
-      SceneManager.LoadScene("FixLoop");
+      SceneManager.LoadScene("FixLoopVisualUpdate");
     }
     public void MainMenuButton()
     {

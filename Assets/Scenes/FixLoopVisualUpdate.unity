@@ -6850,6 +6850,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4470214550819915172, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: attackRate
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4470214550964764261, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: aCar

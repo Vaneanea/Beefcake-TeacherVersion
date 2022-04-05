@@ -17,7 +17,7 @@ public class JuiceManager : MonoBehaviour
    
     private GameManager gm;
     private CarManager cm;
-    private CarMainBody car;
+    public CarMainBody car;
 
 
     [Header("Particles")]
@@ -42,7 +42,7 @@ public class JuiceManager : MonoBehaviour
         car = cm.GetCar().gameObject.GetComponentInChildren<CarMainBody>();
     }
 
-
+   
     private void SetGameManager()
     {
         gm = FindObjectOfType<GameManager>();
@@ -56,11 +56,7 @@ public class JuiceManager : MonoBehaviour
 
     public void ShakeCar()
     {
-        if (car != null)
-        {
-            StartCoroutine(car.Shake());
-        }
-        
+       StartCoroutine(car.Shake());
     }
 
     public void SetCurrentActiveSmokePillars()
