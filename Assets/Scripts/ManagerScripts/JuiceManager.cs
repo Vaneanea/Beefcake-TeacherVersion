@@ -24,6 +24,8 @@ public class JuiceManager : MonoBehaviour
     public ParticleSystem cloudDropCar;
     public ParticleSystem hitCarEffect;
     public ParticleSystem carSmokeEffects;
+    public ParticleSystem teleportationDust;
+    public ParticleSystem carTransitionSwirl;
 
     public int currentlyActiveSmokePillars;
         
