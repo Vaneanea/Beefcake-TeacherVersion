@@ -98,6 +98,7 @@ public class Car : MonoBehaviour
             jm.carSmokeEffects.Stop();
             secondCarStage = Instantiate(carStates[1]);
             secondCarStage.transform.SetParent(cm.car.transform);
+           
 
             currentCarStage = secondCarStage;
             
@@ -112,6 +113,7 @@ public class Car : MonoBehaviour
             Destroy(secondCarStage);
             thirdCarStage = Instantiate(carStates[2]);
             thirdCarStage.transform.SetParent(cm.car.transform);
+           
 
             currentCarStage = thirdCarStage;
             attackPointsFixed = 0;
@@ -286,13 +288,14 @@ public class Car : MonoBehaviour
         Vector3 startPos = currentCarStage.transform.position;
 
         Vector3 targetPos = cm.carDonePosition.transform.position;
-
+        SoundEffectManager.Play("CarDrivingAway");
         while (timeElapsed < 1f)
         {
             thirdCarStage.transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / 1f);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+       
 
         thirdCarStage.transform.position = targetPos;
 

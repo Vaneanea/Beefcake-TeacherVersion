@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AttackPoint : MonoBehaviour
 {
@@ -9,17 +10,11 @@ public class AttackPoint : MonoBehaviour
     private int currentHits;
 
     //Managers
-    [SerializeField]
     private GameManager gm;
-
-    [SerializeField]
     private CombatStatManager csm;
-
-    [SerializeField]
     private BeefCakeManager bcm;
-
-    [SerializeField]
     private AttackAnimationManager aam;
+    private JuiceManager jm;
 
 
     //Player
@@ -28,6 +23,7 @@ public class AttackPoint : MonoBehaviour
 
     //where the player stands when attacking this attackpoint
     public Transform playerPosition;
+    private Transform currentPlayerPosition;
 
     //reference to the healthbar script
     public SliderScript healthBar;
@@ -45,6 +41,7 @@ public class AttackPoint : MonoBehaviour
     private void Start()
     {
         SetInitialParameters();
+        currentPlayerPosition = bcm.startingPositions[0];
     }
 
     private void Update()
@@ -82,7 +79,7 @@ public class AttackPoint : MonoBehaviour
         csm = gm.GetCombatStatManager();
         bcm = gm.GetBeefcakeManager();
         aam = gm.GetAttackAnimationManager();
-
+        jm = gm.GetJuiceManager();
     }
     private void SetPlayer()
     {
@@ -126,6 +123,33 @@ public class AttackPoint : MonoBehaviour
         //Put player in correct position to attack 
         player.transform.localPosition = playerPosition.localPosition;
         player.transform.transform.localRotation = playerPosition.localRotation;
+
+        if (currentPlayerPosition.localPosition != player.transform.localPosition)
+        {
+            jm.teleportationDust.gameObject.transform.position = currentPlayerPosition.localPosition;
+
+            var rn = Random.Range(0, 1);
+            if (rn == 0)
+            {
+                SoundEffectManager.Play("Whoosh1");
+            }
+            else 
+            {
+                SoundEffectManager.Play("Whoosh2");
+            }
+
+          
+            jm.teleportationDust.Play();
+
+            currentPlayerPosition.localPosition = player.transform.localPosition;
+            currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+        }
+        else
+        {
+            currentPlayerPosition.localPosition = player.transform.localPosition;
+            currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+        }
+
     }
 
     private void CheckIfDestroyed()

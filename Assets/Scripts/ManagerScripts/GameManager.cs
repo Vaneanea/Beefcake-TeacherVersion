@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private CombatStatManager csm;
     private AttackAnimationManager aam;
     private CarManager cm;
-    private CrewInventory ci;
     private SoundEffectManager sem;
     private JuiceManager jm;
 
@@ -114,7 +113,7 @@ public class GameManager : MonoBehaviour
 
     public CrewInventory GetCrewInventory() 
     {
-        return ci;
+        return crewInventory;
     }
 
     public SoundEffectManager GetSoundEffectManager()
@@ -165,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     private void SetCrewInventory()
     {
-        ci = FindObjectOfType<CrewInventory>();
+        crewInventory = FindObjectOfType<CrewInventory>();
     }
     private void SetSoundEffectManager()
     {

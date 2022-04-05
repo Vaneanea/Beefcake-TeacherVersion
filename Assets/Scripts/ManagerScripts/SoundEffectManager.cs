@@ -10,7 +10,9 @@ public class SoundEffectManager : MonoBehaviour
     public static AudioClip punch2Sound;
     public static AudioClip kick1Sound;
     public static AudioClip kick2Sound;
-
+    public static AudioClip teleWhoosh1;
+    public static AudioClip teleWhoosh2;
+    public static AudioClip carDrivingAway;
 
     static AudioSource audioSourceCarSounds;
     static AudioSource audioSourcePlayerAttackAudio;
@@ -23,8 +25,10 @@ public class SoundEffectManager : MonoBehaviour
         punch2Sound = Resources.Load<AudioClip>("Audio/Punch/Punch2");
         kick1Sound = Resources.Load<AudioClip>("Audio/Kick/Kick1");
         kick2Sound = Resources.Load<AudioClip>("Audio/Kick/Kick2");
-
-
+        teleWhoosh1 = Resources.Load<AudioClip>("Audio/Whoosh/Whoosh1");
+        teleWhoosh2 = Resources.Load<AudioClip>("Audio/Whoosh/Whoosh2");
+        carDrivingAway = Resources.Load<AudioClip>("Audio/Car/Car Brake Screech");
+        
 
         audioSourceCarSounds = transform.GetChild(0).GetComponent<AudioSource>();
         audioSourcePlayerAttackAudio = transform.GetChild(1).GetComponent<AudioSource>();
@@ -59,6 +63,19 @@ public class SoundEffectManager : MonoBehaviour
             case "Kick2":
                 audioSourcePlayerAttackAudio.PlayOneShot(kick2Sound);
                 break;
+
+            case "Whoosh1":
+                audioSourceCarSounds.PlayOneShot(teleWhoosh1);
+                break;
+
+            case "Whoosh2":
+                audioSourceCarSounds.PlayOneShot(teleWhoosh2);
+                break;
+
+            case "CarDrivingAway":
+                audioSourceCarSounds.PlayOneShot(carDrivingAway);
+                break;
+
         }
     }
 

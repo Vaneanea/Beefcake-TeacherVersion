@@ -45,7 +45,7 @@ public class MusicManager : MonoBehaviour
     {
             switch (currentScene)
             {
-                case "FixLoop":
+                case "FixLoopVisualUpdate":
                 gameObject.GetComponent<AudioSource>().clip = fixLoopMusic;
                   break;
                 
