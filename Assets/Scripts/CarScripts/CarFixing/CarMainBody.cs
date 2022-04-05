@@ -115,11 +115,12 @@ public class CarMainBody : MonoBehaviour
 
     public IEnumerator Shake()
     {
-        timer = 0f;
+            timer = 0f;
         while (timer < jm.time)
         {
             timer += Time.deltaTime;
             shakePos = startPos + (Random.insideUnitSphere * jm.distance);
+
 
             transform.position = shakePos;
 
@@ -133,10 +134,5 @@ public class CarMainBody : MonoBehaviour
             }
 
         }
-
-        transform.position = startPos;
-
     }
-
-
 }

@@ -56,7 +56,11 @@ public class JuiceManager : MonoBehaviour
 
     public void ShakeCar()
     {
-        StartCoroutine(car.Shake());
+        if (car != null)
+        {
+            StartCoroutine(car.Shake());
+        }
+        
     }
 
     public void SetCurrentActiveSmokePillars()

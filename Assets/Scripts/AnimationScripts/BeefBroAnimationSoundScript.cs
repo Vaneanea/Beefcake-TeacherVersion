@@ -48,13 +48,17 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
 
     private void PlayCarAttackSFX(string attackSoundName, string attackingLimb)
     {
-        SoundEffectManager.Play(attackSoundName);
-        if (cm.GetCar().GetComponent<Car>().hasLanded == true)
-        {
-            jm.ShakeCar();
-            hitCarEffect.transform.position = bcm.playerBeefcake.transform.GetChild(0).Find(attackingLimb).position;
-            hitCarEffect.Play();
-        }
+       
+      
+            SoundEffectManager.Play(attackSoundName);
+            if (cm.GetCar().GetComponent<Car>().hasLanded == true)
+            {
+                jm.ShakeCar();
+                hitCarEffect.transform.position = bcm.playerBeefcake.transform.GetChild(0).Find(attackingLimb).position;
+                hitCarEffect.Play();
+            }
+      
+       
     }
 
 
