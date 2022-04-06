@@ -6542,9 +6542,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1804933713765468024, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
+      propertyPath: crew.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804933713765468024, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
       propertyPath: inventoryObject
       value: 
       objectReference: {fileID: 53723008}
+    - target: {fileID: 1804933713765468024, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: crew.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d06ef5c631d3ce4da4914b0848383b6,
+        type: 2}
     - target: {fileID: 1976693798407603101, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: m_RenderMode
