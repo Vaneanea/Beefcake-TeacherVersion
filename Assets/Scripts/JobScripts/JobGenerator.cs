@@ -25,40 +25,44 @@ public class JobGenerator : MonoBehaviour {
         uiManager = GetComponent<JobUIManager>();
     }
 
-    public void GenerateRandomJob() { 
-        ClearOldJob();
-
-        int carCount = GenerateCarCount();
-        Debug.Log(carCount);
-        for (int index = 1; index <= carCount; index++) {
-            int starCount = GeneratStarCount();
-            CarTypeData carType = GenerateCarType();
-            bool needWash = DecideIfWashIsNeeded();
-            bool needFix = DecideIfFixIsNeeded();
-
-            uiManager.AddCarSlot(carType, starCount);
-
-            // Instantiate CarData objects and let them decide their stats based on their difficulty
-            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount, needWash, needFix);
-            cars.Add(car);
-        }
-
-        // TODO: Generate Rewards
-    }
 
 
-    private void ClearOldJob() {
-        cars.Clear();
+    ///This shiuld be uncommented after the demo once you've been able to also make the cars persiatent
 
-        uiManager.ClearOldJobUI();
+    //public void GenerateRandomJob() { 
+    //    ClearOldJob();
 
-        // Remove old ConcreteCarData assets
-        string[] jobFolder = { "Assets/Resources/DynamicData/JobData" };
-        foreach (var asset in AssetDatabase.FindAssets("", jobFolder)) {
-            var path = AssetDatabase.GUIDToAssetPath(asset);
-            AssetDatabase.DeleteAsset(path);
-        }
-    }
+    //    int carCount = GenerateCarCount();
+    //    Debug.Log(carCount);
+    //    for (int index = 1; index <= carCount; index++) {
+    //        int starCount = GeneratStarCount();
+    //        CarTypeData carType = GenerateCarType();
+    //        bool needWash = DecideIfWashIsNeeded();
+    //        bool needFix = DecideIfFixIsNeeded();
+
+    //        uiManager.AddCarSlot(carType, starCount);
+
+    //        // Instantiate CarData objects and let them decide their stats based on their difficulty
+    //        DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount, needWash, needFix);
+    //        cars.Add(car);
+    //    }
+
+    //    // TODO: Generate Rewards
+    //}
+
+
+    //private void ClearOldJob() {
+    //    cars.Clear();
+
+    //    uiManager.ClearOldJobUI();
+
+    //    // Remove old ConcreteCarData assets
+    //    string[] jobFolder = { "Assets/Resources/DynamicData/JobData" };
+    //    foreach (var asset in AssetDatabase.FindAssets("", jobFolder)) {
+    //        var path = AssetDatabase.GUIDToAssetPath(asset);
+    //        AssetDatabase.DeleteAsset(path);
+    //    }
+    //}
 
     #region Generation Methods
 

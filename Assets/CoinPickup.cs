@@ -9,7 +9,6 @@ public class CoinPickup : MonoBehaviour
     public AudioClip coinDrop;
     public Camera cam;
     public RaycastHit coinHit;
-    bool audioPlay;
     private GameManager gm;
  
 
@@ -19,7 +18,7 @@ public class CoinPickup : MonoBehaviour
         SetGameManager();
         cam = gm.cam;
         myAudioSource = GetComponent<AudioSource>();
-        audioPlay = false;
+       
     }
 
     // Update is called once per frame

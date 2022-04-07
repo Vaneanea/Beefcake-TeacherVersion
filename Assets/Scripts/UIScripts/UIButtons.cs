@@ -5,9 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class UIButtons : MonoBehaviour
 {
+    private GameManager gm;
+
+    private void Start()
+    {
+        SetGameManager();
+    }
+
     public void WorkButton()
     {
-      SceneManager.LoadScene("FixLoopVisualUpdate");
+        if (gm.crewInventory.inventoryObject.transform.childCount <= 0)
+        {
+            gm.canvas.transform.GetChild(0).gameObject.SetActive(true);
+            return;
+        }
+        else
+        {
+            SceneManager.LoadScene("FixLoopVisualUpdate");
+        }
+
+      
     }
     public void MainMenuButton()
     {
@@ -21,11 +38,22 @@ public class UIButtons : MonoBehaviour
 
     public void ActivateTempPauseMenu()
     {
-        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(2).gameObject.SetActive(true);
     }
 
     public void DeactivateTempPauseMenu()
     {
-        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+    }
+
+    public void ClosePopUp(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
+
+
+    private void SetGameManager()
+    {
+        gm = FindObjectOfType<GameManager>();
     }
 }

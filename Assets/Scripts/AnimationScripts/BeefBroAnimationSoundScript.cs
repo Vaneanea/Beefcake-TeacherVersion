@@ -23,6 +23,8 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     {
         SetGameManager();
         SetOtherManagers();
+
+       
         SetParticleEffects();
     }
 
@@ -43,6 +45,11 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
 
     private void SetParticleEffects()
     {
+        if (gm.gameObject.name != "FixLoop_GameManager")
+        {
+            return;
+        }
+
         hitCarEffect = jm.hitCarEffect;
     }
 

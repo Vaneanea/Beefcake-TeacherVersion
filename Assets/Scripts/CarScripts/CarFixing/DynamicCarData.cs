@@ -52,14 +52,17 @@ public class DynamicCarData : ScriptableObject {
     }
 
     // Factory method for creating a {ConcreteCarData} object 
-    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix) {
-        DynamicCarData data = CreateInstance<DynamicCarData>();
-        data.Initialize(carType, starCount, needWash, needFix);
 
-        string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
-        AssetDatabase.CreateAsset(data, fileName);
-        AssetDatabase.SaveAssets();
+    ///This shiuld be uncommented after the demo once you've been able to also make the cars persiatent
 
-        return data;
-    }
+    //public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix) {
+    //    DynamicCarData data = CreateInstance<DynamicCarData>();
+    //    data.Initialize(carType, starCount, needWash, needFix);
+
+    //    string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
+    //    AssetDatabase.CreateAsset(data, fileName);
+    //    AssetDatabase.SaveAssets();
+
+    //    return data;
+    //}
 }
