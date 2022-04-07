@@ -13,9 +13,11 @@ public class SoundEffectManager : MonoBehaviour
     public static AudioClip teleWhoosh1;
     public static AudioClip teleWhoosh2;
     public static AudioClip carDrivingAway;
+    public static AudioClip crowdCheering;
 
     static AudioSource audioSourceCarSounds;
     static AudioSource audioSourcePlayerAttackAudio;
+    static AudioSource audioSourceMiscAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +30,11 @@ public class SoundEffectManager : MonoBehaviour
         teleWhoosh1 = Resources.Load<AudioClip>("Audio/Whoosh/Whoosh1");
         teleWhoosh2 = Resources.Load<AudioClip>("Audio/Whoosh/Whoosh2");
         carDrivingAway = Resources.Load<AudioClip>("Audio/Car/Car Brake Screech");
-        
+        crowdCheering = Resources.Load<AudioClip>("Audio/Crowds/crowd_applaud_01");
 
         audioSourceCarSounds = transform.GetChild(0).GetComponent<AudioSource>();
         audioSourcePlayerAttackAudio = transform.GetChild(1).GetComponent<AudioSource>();
+        audioSourceMiscAudio = transform.GetChild(2).GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -74,6 +77,10 @@ public class SoundEffectManager : MonoBehaviour
 
             case "CarDrivingAway":
                 audioSourceCarSounds.PlayOneShot(carDrivingAway);
+                break;
+
+            case "CrowdCheer":
+                audioSourceCarSounds.PlayOneShot(crowdCheering);
                 break;
 
         }

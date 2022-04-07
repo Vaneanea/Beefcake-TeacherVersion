@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
             if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsCalculated == false)
             {
-                var fatigueScreen = canvas.gameObject.transform.GetChild(0);
+                var fatigueScreen = canvas.gameObject.transform.GetChild(1);
                 cm.GetTotalCoinsEarned();
                 fatigueScreen.gameObject.SetActive(true);
                 coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         if (gameObject.name == "FixLoop_GameManager")
         {
-            if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true)
+            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == true)
             {
                 DeActivateAttackPoints();
                 hasDeactivated = true;
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
        
         if (gameObject.name == "FixLoop_GameManager")
         {
-            if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false && hasDeactivated == true)
+            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == false && hasDeactivated == true)
             {
                 ActivateAttackPoints();
                 hasDeactivated = false;

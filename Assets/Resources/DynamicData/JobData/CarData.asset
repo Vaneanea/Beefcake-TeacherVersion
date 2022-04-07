@@ -27,7 +27,7 @@ MonoBehaviour:
   firstStageHitsNeeded: 2
   secondStageHitsNeeded: 3
   starCount: 2
-  needWash: 1
-  needFix: 0
+  needWash: 0
+  needFix: 1
   clientVisuals: {fileID: 511907929062221897, guid: 8f496b5e254e2644eb746cb336c83854,
     type: 3}

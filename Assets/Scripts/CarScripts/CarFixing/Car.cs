@@ -52,6 +52,7 @@ public class Car : MonoBehaviour
     private List<Image> clientCardImages;
     private float fadeSpeed = 1f;
 
+  
     void Start()
     {
         isDone = false;
@@ -98,7 +99,7 @@ public class Car : MonoBehaviour
             jm.carSmokeEffects.Stop();
             secondCarStage = Instantiate(carStates[1]);
             secondCarStage.transform.SetParent(cm.car.transform);
-           
+            StartCoroutine(jm.Cheer());
 
             currentCarStage = secondCarStage;
             

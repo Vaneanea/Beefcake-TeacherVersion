@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class AttackPoint : MonoBehaviour
@@ -180,6 +181,19 @@ public class AttackPoint : MonoBehaviour
 
         //reduce stamina of player
         player.ReduceStamina(csm.staminaDecreaseValue);
+        
+        StartCoroutine(ChangeTargetImage());
+    }
 
+
+    private IEnumerator ChangeTargetImage()
+    {
+        //effect when hit
+        transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = transform.GetChild(3).GetComponent<SpriteRenderer>().sprite;
+        transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+        yield return new WaitForSeconds(0.3f);
+        transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = transform.GetChild(2).GetComponent<SpriteRenderer>().sprite;
+        transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1.3f);
     }
 }  

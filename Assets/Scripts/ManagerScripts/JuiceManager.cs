@@ -20,11 +20,13 @@ public class JuiceManager : MonoBehaviour
     public CarMainBody car;
 
 
+
     [Header("Particles")]
     public ParticleSystem cloudDropCar;
     public ParticleSystem hitCarEffect;
     public ParticleSystem carSmokeEffects;
     public ParticleSystem teleportationDust;
+    public GameObject crowdCheering;
 
     public int currentlyActiveSmokePillars;
         
@@ -51,6 +53,7 @@ public class JuiceManager : MonoBehaviour
     private void SetOtherManagers()
     {
         cm = gm.GetCarManager();
+     
     }
 
 
@@ -63,6 +66,16 @@ public class JuiceManager : MonoBehaviour
     {
         currentlyActiveSmokePillars = transform.GetChild(0).transform.GetChild(2).childCount;
     }
- 
+
+    public IEnumerator Cheer()
+    {
+        crowdCheering.SetActive(true);
+        crowdCheering.GetComponent<Animator>().Play("cheering crowd");
+        SoundEffectManager.Play("CrowdCheer");
+        yield return new WaitForSeconds(1.5f);
+        crowdCheering.SetActive(false);
+
+       
+    }
 
 }
