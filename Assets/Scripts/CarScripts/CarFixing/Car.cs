@@ -127,7 +127,7 @@ public class Car : MonoBehaviour
     {
         //card creation and icon 
         var clientCard = Resources.Load<GameObject>("Clients/ClientCardPrefabs/ClientInfo");
-        var x = Instantiate(clientCard, gm.canvas.transform);
+        var x = Instantiate(clientCard, gm.canvas.transform.GetChild(3).GetChild(0).transform);
         x.transform.GetChild(0).GetComponent<Image>().sprite = dynamicCarData.clientVisuals.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
 
         //adding stars

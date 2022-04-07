@@ -50,7 +50,7 @@ public class AttackPoint : MonoBehaviour
         CheckIfDestroyed();
     }
 
-    public void attackTarget()
+    public void AttackTarget()
     {
         MovePlayerToAttackPosition();
 
@@ -192,7 +192,7 @@ public class AttackPoint : MonoBehaviour
         transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = transform.GetChild(3).GetComponent<SpriteRenderer>().sprite;
         transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = transform.GetChild(2).GetComponent<SpriteRenderer>().sprite;
         transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1.3f);
     }

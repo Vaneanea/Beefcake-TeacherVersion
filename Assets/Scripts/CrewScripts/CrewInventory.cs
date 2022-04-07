@@ -57,19 +57,6 @@ public class CrewInventory : MonoBehaviour {
 
     private void GetCrew() 
     {
-        //string[] lookFor = new string[] { "Assets/Resources/Data/CrewBeefCakes" };
-        //string[] yourBeefcakes = AssetDatabase.FindAssets("t:" + typeof(CrewBeefCake).Name, lookFor);
-
-        //foreach (string beefCakeName in yourBeefcakes)
-        //{
-        //    var SOpath = AssetDatabase.GUIDToAssetPath(beefCakeName);
-        //    var beefCake = AssetDatabase.LoadAssetAtPath<CrewBeefCake>(SOpath);
-        //    crew.Add(beefCake);
-        //}
-
-        //string lookFor = "Data/CrewBeefCakes";
-        //CrewBeefCake[] yourBeefcakes = (CrewBeefCake[])Resources.LoadAll(lookFor);
-
         List<CrewBeefCake> yourBeefcakes = SaveManager.crew;
         foreach (CrewBeefCake beefCake in yourBeefcakes)
         {

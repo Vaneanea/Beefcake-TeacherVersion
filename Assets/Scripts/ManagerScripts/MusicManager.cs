@@ -24,6 +24,7 @@ public class MusicManager : MonoBehaviour
 
     //private void Update()
     //{
+    //    if(currentScene == "FixLoopVisualUpdate" || currentScene == "MainScene")
     //    SetCurrentScene();
     //}
 
@@ -50,7 +51,7 @@ public class MusicManager : MonoBehaviour
                   break;
                 
                 default:
-                gameObject.GetComponent<AudioSource>().clip = mainMenuMusic;
+                gameObject.GetComponent<AudioSource>().clip = fixLoopMusic;
                 break;
             }
     }
