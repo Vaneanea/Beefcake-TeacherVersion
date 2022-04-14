@@ -6846,6 +6846,16 @@ PrefabInstance:
       propertyPath: RotationBySpeedModule.separateAxes
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4223385733461685484, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 89.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223385733461685484, guid: a7d0deeaa72495840aaa892b3b5e7779,
+        type: 3}
+      propertyPath: minSpeed
+      value: 22.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4403331513853680294, guid: a7d0deeaa72495840aaa892b3b5e7779,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8712,12 +8722,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653860971}
   m_CullTransparentMesh: 0
---- !u!4 &669888121 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4470214550980831816, guid: a7d0deeaa72495840aaa892b3b5e7779,
-    type: 3}
-  m_PrefabInstance: {fileID: 346272132}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &714898791
 GameObject:
   m_ObjectHideFlags: 0
@@ -21863,51 +21867,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353613244}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1354085258
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1354085259}
-  - component: {fileID: 1354085260}
-  m_Layer: 0
-  m_Name: CoinManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1354085259
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354085258}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6, y: 0, z: -8.95}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 669888121}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1354085260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354085258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93026a3db89f72449989ccfa51c6e2f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 6606146168240898935, guid: 36feb8bae1c4f074886dcb9c760cf3cb,
-    type: 3}
 --- !u!1 &1375312494
 GameObject:
   m_ObjectHideFlags: 0
@@ -29071,49 +29030,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804689216}
   m_CullTransparentMesh: 0
---- !u!1 &1804863151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1804863152}
-  - component: {fileID: 1804863153}
-  m_Layer: 0
-  m_Name: SaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1804863152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804863151}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.3970058, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 669888121}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1804863153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804863151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f861762885c02dd458f4a3dbea6528b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1816718229
 GameObject:
   m_ObjectHideFlags: 0

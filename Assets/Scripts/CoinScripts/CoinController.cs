@@ -8,7 +8,12 @@ public class CoinController : MonoBehaviour
     private Vector3 sphereRange;
     Vector3 myVectorRange;
     public Rigidbody coinPrefab;
-    float speed;
+
+    [Range(10, 100)]
+    public float minSpeed;
+    [Range(10, 100)]
+    public float maxSpeed;
+
 
     void Update()
     {
@@ -22,7 +27,7 @@ public class CoinController : MonoBehaviour
     // Update is called once per frame
     void SpawnCoin()
     {
-        speed = Random.Range(6, 10);
+        var speed = Random.Range(minSpeed, maxSpeed);
         var myVectorRange = new Vector3(transform.position.x, transform.position.y, transform.position.z);
        
         Rigidbody coin = Instantiate(coinPrefab, myVectorRange, Quaternion.identity);

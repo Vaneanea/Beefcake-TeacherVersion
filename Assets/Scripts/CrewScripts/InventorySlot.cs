@@ -17,17 +17,17 @@ public class InventorySlot : MonoBehaviour {
     [SerializeField] private Image background;
 
     public void Set(CrewBeefCake crewItem) {
-        BeefCakeData source = crewItem.source;
+        //BeefCakeData source = crewItem.source;
 
-        headshot.sprite = source.headshot;
+        headshot.sprite = crewItem.headshot;
 
-        background.color = source.bgColor;
-        bottomGlow.color = source.bgColor;
-        backGlow.color = source.bgColor;
+        background.color = crewItem.bgColor;
+        bottomGlow.color = crewItem.bgColor;
+        backGlow.color = crewItem.bgColor;
 
-        levelText.text = source.level.ToString();
+        levelText.text = crewItem.level.ToString();
         speedText.text = crewItem.speed.ToString();
 
-        gameObject.name = source.displayName + " Slot";
+        gameObject.name = crewItem.displayName + " Slot";
     }
 }

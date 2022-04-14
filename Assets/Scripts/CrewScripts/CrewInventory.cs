@@ -15,7 +15,7 @@ public class CrewInventory : MonoBehaviour {
      public GameObject inventoryObject;
 
     private void Awake() {
-        
+
         CreateSingletonInstance();
         crew = new List<CrewBeefCake>();
         GetCrew();
@@ -23,6 +23,7 @@ public class CrewInventory : MonoBehaviour {
 
     private void Start()
     {
+
         //Create slots 
         inventoryObject.GetComponent<CharacterInfoScript>().CreateSlots();
     }
@@ -55,8 +56,9 @@ public class CrewInventory : MonoBehaviour {
         else instance = this;
     }
 
-    private void GetCrew() 
+    public void GetCrew() 
     {
+        crew.Clear();
         List<CrewBeefCake> yourBeefcakes = SaveManager.crew;
         foreach (CrewBeefCake beefCake in yourBeefcakes)
         {
@@ -69,18 +71,21 @@ public class CrewInventory : MonoBehaviour {
 
         CrewBeefCake beefCake = ScriptableObject.CreateInstance<CrewBeefCake>();
 
-        beefCake.source = data.source;
+        beefCake.level = data.level;
 
         beefCake.stamina = data.stamina;
         beefCake.strength = data.strength;
         beefCake.speed = data.speed;
-        beefCake.characterPrefab = data.source.characterPrefab;
-        beefCake.headshot = data.source.headshot;
-        beefCake.bgColor = data.source.bgColor;
-        beefCake.isFatigued = false;
-
+        beefCake.visualID = data.visualID;
         beefCake.displayName = data.source.displayName;
 
+        BeefCakeVisualData visualData = Resources.Load<BeefCakeVisualData>("Data/BeefCakeVisualData/" + beefCake.displayName);
+       
+        beefCake.characterPrefab = visualData.characterPrefab;
+        beefCake.headshot = visualData.headshot;
+        beefCake.bgColor = visualData.bgColor;
+
+        beefCake.isFatigued = false;
 
         return beefCake;
     }

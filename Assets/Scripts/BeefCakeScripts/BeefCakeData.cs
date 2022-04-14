@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
 
 [CreateAssetMenu(fileName = "BeefCakeData", menuName = "ScriptableObjects/BeefCakeData", order = 1)]
 public class BeefCakeData : ScriptableObject { 
@@ -15,9 +15,7 @@ public class BeefCakeData : ScriptableObject {
 
     public int stageAvailable;
 
-    [Header("Display fields")]
-    public Sprite headshot;
-    public GameObject characterPrefab;
-    public GameObject shopPose;
-    public Color bgColor;
+    [Header("Visual Prefab ID")]
+    public int visualID;
+  
 }

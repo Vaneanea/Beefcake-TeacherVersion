@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,20 +11,43 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField]
     private string currentScene;
+    private string previousScene;
+
+    bool musicShouldChange = false;
+    
 
     void Awake()
     {
         //makes hte music manager persists between scenes
         DontDestroyOnLoad(gameObject);
-        SetCurrentScene();
+        UpdateCurrentScene();
         CreateSingleton();
     }
 
-    //private void Update()
-    //{
-    //    if(currentScene == "FixLoopVisualUpdate" || currentScene == "MainScene")
-    //    SetCurrentScene();
-    //}
+     void Start()
+    {
+        GetMusicForScene();
+        gameObject.GetComponent<AudioSource>().Play();
+    }
+
+    private void Update()
+    {
+        if (UpdateCurrentScene() == true)
+        {
+            if (currentScene == "FixLoopVisualUpdate" && previousScene == "MainScene" || (previousScene == "FixLoopVisualUpdate" && currentScene == "MainScene"))
+            {
+                musicShouldChange = true;
+            }
+        }
+
+        if (musicShouldChange == true)
+        {
+            GetMusicForScene();
+            gameObject.GetComponent<AudioSource>().Play();
+            musicShouldChange = false;
+        }
+           
+    }
 
     private void CreateSingleton()
     {
@@ -34,12 +55,18 @@ public class MusicManager : MonoBehaviour
         else musicManagerInstance = this;
     }
 
-    private void SetCurrentScene()
+    private bool UpdateCurrentScene()
     {
-        currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene != SceneManager.GetActiveScene().name)
+        {
+            previousScene = currentScene;
+            currentScene = SceneManager.GetActiveScene().name;
+            return true;
+        }
 
-        GetMusicForScene();
-        gameObject.GetComponent<AudioSource>().Play();
+        return false;
+
+       
     }
         
     private void GetMusicForScene()
@@ -51,7 +78,7 @@ public class MusicManager : MonoBehaviour
                   break;
                 
                 default:
-                gameObject.GetComponent<AudioSource>().clip = fixLoopMusic;
+                gameObject.GetComponent<AudioSource>().clip = mainMenuMusic;
                 break;
             }
     }

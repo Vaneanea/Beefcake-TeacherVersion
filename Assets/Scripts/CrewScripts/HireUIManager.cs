@@ -67,7 +67,9 @@ public class HireUIManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        InstantiateModel(source.characterPrefab);
+        BeefCakeVisualData visualData = Resources.Load<BeefCakeVisualData>("Data/BeefCakeVisualData/" + source.displayName.ToString());
+
+        InstantiateModel(visualData.characterPrefab);
     }
 
     private void InstantiateModel(GameObject prefab) {

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aa02b0af4f7784a932f92947ebbaed, type: 3}
+  m_Name: Chick
+  m_EditorClassIdentifier: 
+  visualID: 3
+  headshot: {fileID: 21300000, guid: 65c531221c2e3d441bb87aaf115ad011, type: 3}
+  characterPrefab: {fileID: 798331707266058197, guid: d461186c90f2a324688e9a39c71ac4c5,
+    type: 3}
+  shopPose: {fileID: 0}
+  bgColor: {r: 0.17184325, g: 0.8490566, b: 0.028034903, a: 0}

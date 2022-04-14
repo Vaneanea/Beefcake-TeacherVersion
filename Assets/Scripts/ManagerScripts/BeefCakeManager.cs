@@ -78,12 +78,12 @@ public class BeefCakeManager : MonoBehaviour
 
     private void NameBeefCakeGameObject(GameObject beefcake, CrewBeefCake beefcakedata)
     {
-        beefcake.name = beefcakedata.source.displayName;
+        beefcake.name = beefcakedata.displayName;
     }
 
     private void AssignBeefCake3DModel(GameObject beefcake, CrewBeefCake beefcakedata)
     {
-        Instantiate(beefcakedata.source.characterPrefab, beefcake.transform);
+        Instantiate(beefcakedata.characterPrefab, beefcake.transform);
     }
     #endregion
 

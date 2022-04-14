@@ -18,8 +18,4 @@ MonoBehaviour:
   speedRange: {x: 300, y: 400}
   level: 5
   stageAvailable: 5
-  headshot: {fileID: 21300000, guid: 06f02212160f6f644a40abcdefdb120b, type: 3}
-  characterPrefab: {fileID: 1824730143784917383, guid: 8e732f5a0e0f678439844b80b5d3ecfc,
-    type: 3}
-  shopPose: {fileID: 0}
-  bgColor: {r: 0.9882353, g: 0.860523, b: 0.41176468, a: 0.5882353}
+  visualID: 5

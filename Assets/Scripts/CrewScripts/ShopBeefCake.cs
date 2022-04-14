@@ -14,8 +14,11 @@ public class ShopBeefCake {
     public int strength;
     public int stamina;
     public int speed;
+    public int level;
 
-    
+    [Header("Display Prefab ID")]
+    public int visualID;
+
     public int cost;
     private int costMod = 15;
 
@@ -32,7 +35,8 @@ public class ShopBeefCake {
         strength = Random.Range(source.strengthRange.x, source.strengthRange.y);
         stamina = Random.Range(source.staminaRange.x, source.staminaRange.y);
         speed = Random.Range(source.speedRange.x, source.speedRange.y);
-
+        level = source.level;
+        visualID = source.visualID;
         cost = (strength + speed + stamina) * costMod;
     }
 
