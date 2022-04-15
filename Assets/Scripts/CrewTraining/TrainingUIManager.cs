@@ -22,12 +22,29 @@ public class TrainingUIManager : MonoBehaviour {
         InstantiateModel(beefCake);
     }
 
+    public void NotifyStatTrained(CrewBeefCake beefCake) {
+        SetStatText(beefCake);
+        ShowTrainEffects();
+
+        // TODO: Animate the character model.
+    }
+
     private void SetTextUI(CrewBeefCake beefCake) {
         nameText.text = beefCake.displayName;
         levelText.text = beefCake.level.ToString();
 
-        statValue.text = beefCake.strength.ToString();
+        SetStatText(beefCake);
+
         // TODO: Implement showing the chosen stat. For now only show strength.
+    }
+
+    private void SetStatText(CrewBeefCake beefCake) {
+        statValue.text = beefCake.strength.ToString();
+    }
+
+    private void ShowTrainEffects() {
+        // TODO: To be implemented.
+        // Instantiate some particles or smth? 
     }
 
     #region Character Model methods

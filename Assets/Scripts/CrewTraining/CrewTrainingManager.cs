@@ -7,11 +7,23 @@ public class CrewTrainingManager : MonoBehaviour {
 
     private TrainingUIManager uiManager;
 
-    void Start() {
+    private void Start() {
         SetManagers();
         SetCurBeefCake();
 
         uiManager.OnStart(curBeefCake);
+    }
+
+    private void OnEnable() {
+        TrainButtonController.OnTrain += IncreaseStat;
+    }
+
+    private void OnDisable() {
+        TrainButtonController.OnTrain -= IncreaseStat;
+    }
+
+    private void IncreaseStat(int amount) {
+        Debug.Log("TrainingManager: INCREASE STAT!");
     }
 
     private void SetManagers() {
