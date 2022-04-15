@@ -5586,12 +5586,12 @@ PrefabInstance:
     - target: {fileID: 8181259736820207120, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
       propertyPath: m_Name
-      value: Increase Stats Effect (1)
+      value: Train Effect (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8181259736820207120, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8181259736820207123, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
@@ -13233,7 +13233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 478.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &695193438
@@ -15313,6 +15313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curBeefCake: {fileID: 11400000, guid: 87dee622494424843b731e81ca84594e, type: 2}
+  trainingTime: 10
 --- !u!1 &1271111352
 GameObject:
   m_ObjectHideFlags: 0
@@ -15352,7 +15353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 840.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1271111354
@@ -15916,7 +15917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 124.880005, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1317718002
@@ -24311,7 +24312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleTime: 0.5
   minScale: 0.3
-  perfectThreshold: 0.93
+  perfectThreshold: 0.9
   perfectAmount: 1
 --- !u!1 &2046870539
 GameObject:
@@ -24776,7 +24777,7 @@ PrefabInstance:
     - target: {fileID: 8181259736820207120, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8181259736820207123, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
@@ -24876,12 +24877,12 @@ PrefabInstance:
     - target: {fileID: 8181259736820207123, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 755
+      value: 789
       objectReference: {fileID: 0}
     - target: {fileID: 8181259736820207123, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -434
+      value: -421
       objectReference: {fileID: 0}
     - target: {fileID: 8181259736820207123, guid: 5ee876f7170dc8f46ab6747471dda430,
         type: 3}

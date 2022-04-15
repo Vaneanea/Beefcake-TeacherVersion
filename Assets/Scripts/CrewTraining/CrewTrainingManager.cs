@@ -5,6 +5,8 @@ using UnityEngine;
 public class CrewTrainingManager : MonoBehaviour {
     [SerializeField] private CrewBeefCake curBeefCake;
 
+    [SerializeField] private int trainingTime;
+
     private TrainingUIManager uiManager;
 
     private void Start() {
@@ -12,6 +14,7 @@ public class CrewTrainingManager : MonoBehaviour {
         SetCurBeefCake();
 
         uiManager.OnStart(curBeefCake);
+        StartCoroutine(EndTrainingAfterSeconds(trainingTime));
     }
 
     private void OnEnable() {
@@ -35,5 +38,12 @@ public class CrewTrainingManager : MonoBehaviour {
     private void SetCurBeefCake() {
         // TODO: Implement this! Pass information from other scenes.
         // Right now, {curBeefCake} is set manually through the Editor
+    }
+
+    private IEnumerator EndTrainingAfterSeconds(float seconds) {
+        yield return new WaitForSeconds(seconds);
+
+        Debug.Log("END TRAINING SESSION");
+        // TODO: To be implemented.
     }
 }
