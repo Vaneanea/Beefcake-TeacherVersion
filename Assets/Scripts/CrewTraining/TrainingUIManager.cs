@@ -16,6 +16,7 @@ public class TrainingUIManager : MonoBehaviour {
     [SerializeField] private GameObject speedDisplay;
 
     [SerializeField] private GameObject charModel;
+    [SerializeField] private List<GameObject> increaseEffects;
 
     public void OnStart(CrewBeefCake beefCake) {
         SetTextUI(beefCake);
@@ -43,8 +44,8 @@ public class TrainingUIManager : MonoBehaviour {
     }
 
     private void ShowTrainEffects() {
-        // TODO: To be implemented.
-        // Instantiate some particles or smth? 
+        foreach (GameObject effect in increaseEffects)
+            effect.SetActive(true);
     }
 
     #region Character Model methods

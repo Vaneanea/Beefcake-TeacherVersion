@@ -23,7 +23,9 @@ public class CrewTrainingManager : MonoBehaviour {
     }
 
     private void IncreaseStat(int amount) {
-        Debug.Log("TrainingManager: INCREASE STAT!");
+        curBeefCake.strength += amount;
+
+        uiManager.NotifyStatTrained(curBeefCake);
     }
 
     private void SetManagers() {
