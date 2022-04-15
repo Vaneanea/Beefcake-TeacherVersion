@@ -9,9 +9,8 @@ public class CoinController : MonoBehaviour
     Vector3 myVectorRange;
     public Rigidbody coinPrefab;
 
-    [Range(10, 100)]
+   
     public float minSpeed;
-    [Range(10, 100)]
     public float maxSpeed;
 
 
@@ -31,6 +30,6 @@ public class CoinController : MonoBehaviour
         var myVectorRange = new Vector3(transform.position.x, transform.position.y, transform.position.z);
        
         Rigidbody coin = Instantiate(coinPrefab, myVectorRange, Quaternion.identity);
-        coin.velocity = transform.up * speed;
+        coin.velocity = coin.transform.up * speed;
      }
 }
