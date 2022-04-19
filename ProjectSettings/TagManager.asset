@@ -11,6 +11,7 @@ TagManager:
   - CarHolder
   - Debrie
   - Token
+  - Sponge
   layers:
   - Default
   - TransparentFX

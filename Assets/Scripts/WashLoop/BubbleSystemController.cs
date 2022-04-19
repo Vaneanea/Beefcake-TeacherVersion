@@ -12,15 +12,30 @@ public class BubbleSystemController : MonoBehaviour {
         bubbleSystem = GetComponent<ParticleSystem>();
     }
 
-    public void OnClick() {
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Sponge")) {
+            Debug.Log("squeak");
+
+            OnClean();
+        }
+    }
+
+
+    public void OnClean() {
         startColor = new Color(startColor.r, startColor.g, startColor.b, startColor.a - alphaDecreaseRate);
         SetStartColor(startColor);
 
         if (startColor.a <= 0.0f)
-            Destroy(gameObject); // TODO: Destroy after some time passes instead.
+            StartCoroutine(DestroyAfterSeconds(bubbleSystem.main.duration));
     }
     private void SetStartColor(Color newColor) {
         ParticleSystem.MainModule main = bubbleSystem.main;
         main.startColor = newColor;
+    }
+
+    IEnumerator DestroyAfterSeconds(float seconds) {
+        yield return new WaitForSeconds(seconds);
+
+        Destroy(gameObject);
     }
 }
