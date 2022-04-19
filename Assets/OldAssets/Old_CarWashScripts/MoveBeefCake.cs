@@ -26,7 +26,7 @@ public class MoveBeefCake : MonoBehaviour
 
             if ((touch.phase == TouchPhase.Moved) && Physics.Raycast(ray, out grabpoint))
             {
-                if (grabpoint.collider.gameObject.tag == "Beefcake") 
+                if (grabpoint.collider.gameObject.CompareTag("Beefcake")) 
                 {
                     transform.position = new Vector3(transform.position.x + touch.deltaPosition.x * speedModifier,
                     transform.position.y + touch.deltaPosition.y * speedModifier, transform.position.z);

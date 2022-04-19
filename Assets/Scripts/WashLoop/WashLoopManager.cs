@@ -10,7 +10,7 @@ public class WashLoopManager : MonoBehaviour {
    private void HandleInput() {
         if (!Input.GetMouseButtonDown(0)) return;
 
-        // Cast raycast from click position forwards TODO: Convert to mobile input!
+        // Cast raycast from click position forwards. TODO: Convert to mobile input!
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;

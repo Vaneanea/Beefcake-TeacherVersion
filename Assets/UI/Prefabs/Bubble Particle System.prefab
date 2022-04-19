@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec56a2f700809146997e5cb296bd52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alphaDecreaseRate: 1
+  alphaDecreaseRate: 0.5
   startColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &3248208023161439826
 BoxCollider:

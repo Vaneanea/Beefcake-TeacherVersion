@@ -17,7 +17,7 @@ public class BubbleSystemController : MonoBehaviour {
         SetStartColor(startColor);
 
         if (startColor.a <= 0.0f)
-            Destroy(gameObject);
+            Destroy(gameObject); // TODO: Destroy after some time passes instead.
     }
     private void SetStartColor(Color newColor) {
         ParticleSystem.MainModule main = bubbleSystem.main;
