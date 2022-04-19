@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrainButtonController : MonoBehaviour {
     [Header("Mini-game variables")]
-    [SerializeField] private float scaleTime;
+    [SerializeField] private Vector2 scaleTimeBounds;
     [SerializeField] private float minScale;
     [SerializeField] private float perfectThreshold;
 
@@ -18,6 +18,8 @@ public class TrainButtonController : MonoBehaviour {
 
     private void Start() {
         perfectChain = 0;
+
+        float scaleTime = Random.Range(scaleTimeBounds.x, scaleTimeBounds.y);
         LeanTween.scale(gameObject, new Vector3(minScale, minScale, minScale), scaleTime).setLoopPingPong();
     }
 
