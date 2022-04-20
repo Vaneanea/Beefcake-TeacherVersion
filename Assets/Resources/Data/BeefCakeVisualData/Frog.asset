@@ -17,4 +17,4 @@ MonoBehaviour:
   characterPrefab: {fileID: 1824730143784917383, guid: 8e732f5a0e0f678439844b80b5d3ecfc,
     type: 3}
   shopPose: {fileID: 0}
-  bgColor: {r: 0, g: 0.8301887, b: 0.8301887, a: 0}
+  bgColor: {r: 0, g: 0.8301887, b: 0.8301887, a: 0.9019608}

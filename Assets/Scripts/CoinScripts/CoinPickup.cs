@@ -18,7 +18,6 @@ public class CoinPickup : MonoBehaviour
         SetGameManager();
         cam = gm.cam;
         myAudioSource = GetComponent<AudioSource>();
-       
     }
 
     // Update is called once per frame
