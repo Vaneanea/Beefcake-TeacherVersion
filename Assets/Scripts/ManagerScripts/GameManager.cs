@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum GameMode { Job, Endless }
 
 [SerializeField]
 public class GameManager : MonoBehaviour
@@ -16,10 +17,9 @@ public class GameManager : MonoBehaviour
     private CombatStatManager csm;
     private AttackAnimationManager aam;
     private CarManager cm;
+    private CrewInventory ci;
     private SoundEffectManager sem;
     private JuiceManager jm;
-    private CoinManager coinM;
-
 
     private int currentCrewReputation;
 
@@ -28,9 +28,14 @@ public class GameManager : MonoBehaviour
     public int coinsEarned;
     private bool earningsCalculated;
 
+    // {gameMode} - only used in the FixLoop
+    public GameMode gameMode;
+    public JobData job;
+
     [Header("Rewards")]
     public GameObject  coinReward;
     public GameObject gemReward;
+
 
     private void Awake()
     {
@@ -41,27 +46,23 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-       
+        if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Job) {
+            if (cm.jobDone && !earningsCalculated)
+                OnFixLoopEnd();
+        }
 
-        if (gameObject.name == "FixLoop_GameManager") {
+            if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Endless) {
 
             if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsCalculated == false)
             {
-                var fatigueScreen = canvas.gameObject.transform.GetChild(1);
-                coinM.GetTotalCoinsEarned();
-                fatigueScreen.gameObject.SetActive(true);
-                coinReward.GetComponent<TextMeshProUGUI>().text = coinM.GetTotalCoinsEarned().ToString();
-                var specialGems = cm.carDone / 4;
-                gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
-                DeActivateAttackPoints();
-                earningsCalculated = true;
+                OnFixLoopEnd();
             }
                        
         }
 
         if (gameObject.name == "FixLoop_GameManager")
         {
-            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == true)
+            if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true)
             {
                 DeActivateAttackPoints();
                 hasDeactivated = true;
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
        
         if (gameObject.name == "FixLoop_GameManager")
         {
-            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == false && hasDeactivated == true)
+            if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false && hasDeactivated == true)
             {
                 ActivateAttackPoints();
                 hasDeactivated = false;
@@ -83,10 +84,26 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void OnFixLoopEnd() {
+        if (gameObject.name != "FixLoop_GameManager") return;
+
+        // Show rewards pop-up
+        var fatigueScreen = canvas.gameObject.transform.GetChild(0);
+        cm.GetTotalCoinsEarned();
+        fatigueScreen.gameObject.SetActive(true);
+        coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
+        var specialGems = cm.carDone / 4;
+        gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
+        DeActivateAttackPoints();
+        earningsCalculated = true;
+
+    }
+
     private void SetInitialVariables()
     {
         SetManagers();
         GetCrewReputation();
+        SetGameMode();
     }
 
 
@@ -115,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public CrewInventory GetCrewInventory() 
     {
-        return crewInventory;
+        return ci;
     }
 
     public SoundEffectManager GetSoundEffectManager()
@@ -126,11 +143,6 @@ public class GameManager : MonoBehaviour
     public JuiceManager GetJuiceManager()
     {
         return jm;
-    }
-
-    public CoinManager GetCoinManager()
-    {
-        return coinM;
     }
 
     #endregion
@@ -146,7 +158,6 @@ public class GameManager : MonoBehaviour
         SetCrewInventory();
         SetSoundEffectManager();
         SetJuiceManager();
-        SetCoinManager();
         CreateInstantsOfMusicManager();
     }
 
@@ -172,7 +183,7 @@ public class GameManager : MonoBehaviour
 
     private void SetCrewInventory()
     {
-        crewInventory = FindObjectOfType<CrewInventory>();
+        ci = FindObjectOfType<CrewInventory>();
     }
     private void SetSoundEffectManager()
     {
@@ -184,10 +195,6 @@ public class GameManager : MonoBehaviour
         jm = FindObjectOfType<JuiceManager>();
     }
 
-    private void SetCoinManager()
-    {
-        coinM = FindObjectOfType<CoinManager>();
-    }
 
     private void CreateInstantsOfMusicManager()
     {
@@ -198,6 +205,18 @@ public class GameManager : MonoBehaviour
         
     }
     #endregion
+
+    private void SetGameMode() 
+    {
+        if (gameObject.name != "FixLoop_GameManager") return;
+
+        // If there's a JobData file then set game mode to {Job}
+        job = Resources.Load<JobData>("DynamicData/JobData/JobData");
+        if (job != null)
+            gameMode = GameMode.Job;
+        else
+            gameMode = GameMode.Endless;
+    }
 
     private void GetCrewReputation()
     {
