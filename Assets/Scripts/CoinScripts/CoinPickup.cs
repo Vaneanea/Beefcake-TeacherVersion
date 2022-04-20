@@ -10,12 +10,14 @@ public class CoinPickup : MonoBehaviour
     public Camera cam;
     public RaycastHit coinHit;
     private GameManager gm;
+    private CoinManager coinM;
  
 
     // Start is called before the first frame update
     void Start()
     {
         SetGameManager();
+        SetOtherManagers();
         cam = gm.cam;
         myAudioSource = GetComponent<AudioSource>();
     }
@@ -37,6 +39,7 @@ public class CoinPickup : MonoBehaviour
                 {
                     Debug.Log("clicky");
                     myAudioSource.PlayOneShot(coinDrop);
+                    coinM.AddToCoinsCaught();
                     Destroy(gameObject);
 
                 }
@@ -49,6 +52,9 @@ public class CoinPickup : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
     }
+    private void SetOtherManagers()
+    {
+        coinM = FindObjectOfType<CoinManager>();
+    }
 
-  
 }

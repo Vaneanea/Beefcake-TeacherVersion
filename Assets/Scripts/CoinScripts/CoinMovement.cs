@@ -19,8 +19,13 @@ public class CoinMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         var carCollider = FindObjectOfType<GameManager>().transform.GetChild(4).GetComponent<CarManager>().GetCar().gameObject.GetComponentInChildren<Collider>();
-        Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), carCollider);
+        if (carCollider != null)
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), carCollider);
+        }
+            
 
         // rotate coin
         rotSpeed = 90; // degrees per second
@@ -33,7 +38,7 @@ public class CoinMovement : MonoBehaviour
         {
             rotationLife--;
         }
-        else isGrounded = true;
+
 
         if (isGrounded == true)
         {
@@ -57,7 +62,7 @@ public class CoinMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("floor"))
+        if (collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = true;
         }

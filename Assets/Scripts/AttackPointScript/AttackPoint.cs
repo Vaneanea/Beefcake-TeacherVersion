@@ -16,7 +16,7 @@ public class AttackPoint : MonoBehaviour
     private BeefCakeManager bcm;
     private AttackAnimationManager aam;
     private JuiceManager jm;
-
+    private CoinManager coinM;
 
     //Player
     [SerializeField]
@@ -81,6 +81,7 @@ public class AttackPoint : MonoBehaviour
         bcm = gm.GetBeefcakeManager();
         aam = gm.GetAttackAnimationManager();
         jm = gm.GetJuiceManager();
+        coinM = gm.GetCoinManager();
     }
     private void SetPlayer()
     {
@@ -181,7 +182,10 @@ public class AttackPoint : MonoBehaviour
 
         //reduce stamina of player
         player.ReduceStamina(csm.staminaDecreaseValue);
-        
+
+        //determine if a coin will spawn
+        DetermineIfCoinWillSpawn();
+
         StartCoroutine(ChangeTargetImage());
     }
 
@@ -195,5 +199,16 @@ public class AttackPoint : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = transform.GetChild(2).GetComponent<SpriteRenderer>().sprite;
         transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1.3f);
+    }
+
+    private void DetermineIfCoinWillSpawn()
+    {
+        
+        int coinWillSpawn = Random.Range(0, 3);
+        //Debug.Log(coinWillSpawn);
+        if (coinWillSpawn == 1)
+        {
+            coinM.SpawnCoin();
+        }
     }
 }  

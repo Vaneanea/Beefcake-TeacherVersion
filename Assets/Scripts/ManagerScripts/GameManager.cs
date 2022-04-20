@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private CarManager cm;
     private SoundEffectManager sem;
     private JuiceManager jm;
+    private CoinManager coinM;
+
 
     private int currentCrewReputation;
 
@@ -46,9 +48,9 @@ public class GameManager : MonoBehaviour
             if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsCalculated == false)
             {
                 var fatigueScreen = canvas.gameObject.transform.GetChild(1);
-                cm.GetTotalCoinsEarned();
+                coinM.GetTotalCoinsEarned();
                 fatigueScreen.gameObject.SetActive(true);
-                coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
+                coinReward.GetComponent<TextMeshProUGUI>().text = coinM.GetTotalCoinsEarned().ToString();
                 var specialGems = cm.carDone / 4;
                 gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
                 DeActivateAttackPoints();
@@ -126,6 +128,11 @@ public class GameManager : MonoBehaviour
         return jm;
     }
 
+    public CoinManager GetCoinManager()
+    {
+        return coinM;
+    }
+
     #endregion
 
 
@@ -139,6 +146,7 @@ public class GameManager : MonoBehaviour
         SetCrewInventory();
         SetSoundEffectManager();
         SetJuiceManager();
+        SetCoinManager();
         CreateInstantsOfMusicManager();
     }
 
@@ -176,6 +184,10 @@ public class GameManager : MonoBehaviour
         jm = FindObjectOfType<JuiceManager>();
     }
 
+    private void SetCoinManager()
+    {
+        coinM = FindObjectOfType<CoinManager>();
+    }
 
     private void CreateInstantsOfMusicManager()
     {

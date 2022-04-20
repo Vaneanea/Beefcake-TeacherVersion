@@ -15,12 +15,12 @@ public class CarManager : MonoBehaviour
     public Transform carDonePosition;
 
     private GameManager gm;
+    private CoinManager coinM;
     private CombatStatManager csm;
     private JuiceManager jm;
 
     public int carDone = 0;
-    [SerializeField]
-    private int coinsEarned = 0;
+   
 
     void Awake()
     {
@@ -60,33 +60,17 @@ public class CarManager : MonoBehaviour
             //    StartCoroutine(WaitASec(1));
             //}
 
+            coinM.AddCoinsEarnedForCar(car.GetComponent<Car>().dynamicCarData.starCount);
 
-            AddCoinsEarnedForCar();
             carDone++;
             ReplaceCar();
             csm.ResetProgressBar();
         }
     }
 
-    //Is very simple right now, is open for expansion in the futore. Maybe 
-    private void AddCoinsEarnedForCar()
-    {
-        var coinsEarned = car.GetComponent<Car>().dynamicCarData.starCount * 100;
-        this.coinsEarned += coinsEarned;
-        gm.coinsEarned = this.coinsEarned;
-    }
-
-    public int GetTotalCoinsEarned()
-    {
-        var carBonus = carDone * 25;
-
-        coinsEarned += carBonus;
-
-        return coinsEarned;
-    }
-
     private void ReplaceCar()
     {
+       
         Destroy(car.GetComponent<Car>().clientCard.gameObject);
         Destroy(car);
 
@@ -113,6 +97,7 @@ public class CarManager : MonoBehaviour
     {
         csm = gm.GetCombatStatManager();
         jm = gm.GetJuiceManager();
+        coinM = gm.GetCoinManager();
     }
 
 }
