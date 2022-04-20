@@ -9,6 +9,8 @@ using System.Linq;
 
 // Holds a concrete instance of CarTypeData 
 public class DynamicCarData : ScriptableObject {
+
+    //Note change to just carType as attriute
     // Car stages
     public GameObject[] carStates = new GameObject[3];
     
@@ -25,9 +27,7 @@ public class DynamicCarData : ScriptableObject {
     public bool needFix;
     public GameObject clientVisuals;
 
-    public CarTypeData carType;
-    public void Initialize(CarTypeData carType, int starCount) {
-        this.carType = carType;
+    public void Initialize(CarTypeData carType, int starCount, bool needWash, bool needFix) {
 
         // Pass information from {CarTypeData} source
         carStates = (GameObject[]) carType.carStates.Clone();
@@ -39,8 +39,8 @@ public class DynamicCarData : ScriptableObject {
         secondStageHitsNeeded = 3;
 
         this.starCount = starCount;
-        needFix = DecideIfFixIsNeeded();
-        needWash = DecideIfWashIsNeeded();
+        this.needFix = needFix;
+        this.needWash = needWash;
 
         //Store all Gameobjects in an array like this
         var allClients = Resources.LoadAll<GameObject>("Clients/ClientSpritePrefabs");
@@ -52,30 +52,17 @@ public class DynamicCarData : ScriptableObject {
     }
 
     // Factory method for creating a {ConcreteCarData} object 
-    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount) {
-        DynamicCarData data = CreateInstance<DynamicCarData>();
-        data.Initialize(carType, starCount);
 
-        return data;
-    }
+    ///This shiuld be uncommented after the demo once you've been able to also make the cars persiatent
 
-    #region Car Generation methods
-    private bool DecideIfWashIsNeeded() {
-        var x = Random.Range(0, 1);
-        if (x == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix) {
+    //    DynamicCarData data = CreateInstance<DynamicCarData>();
+    //    data.Initialize(carType, starCount, needWash, needFix);
 
-    private bool DecideIfFixIsNeeded() {
-        var x = Random.Range(0, 1);
-        if (x == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    #endregion
+    //    string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
+    //    AssetDatabase.CreateAsset(data, fileName);
+    //    AssetDatabase.SaveAssets();
+
+    //    return data;
+    //}
 }

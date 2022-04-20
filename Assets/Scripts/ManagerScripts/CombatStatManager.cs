@@ -22,7 +22,10 @@ public class CombatStatManager : MonoBehaviour
     [SerializeField]
     private CarManager cm;
 
-    public List<GameObject> currentAttackPoints = new List<GameObject>();
+    
+    public List<GameObject> currentAttackPoints;
+
+
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class CombatStatManager : MonoBehaviour
     private void SetInitalVariables()
     {
         SetInitialProgressBar();
+        currentAttackPoints = new List<GameObject>();
     }
 
     private void SetGameManager()
@@ -49,8 +53,6 @@ public class CombatStatManager : MonoBehaviour
 
     private void SetInitialProgressBar()
     {
-        if (gm.gameMode == GameMode.Job && cm.jobDone) return;
-
         int attackPointStage1 = cm.GetCar().GetComponent<Car>().dynamicCarData.firstStageHitsNeeded;
         int attackPointStage2 = cm.GetCar().GetComponent<Car>().dynamicCarData.secondStageHitsNeeded;
 
@@ -70,4 +72,7 @@ public class CombatStatManager : MonoBehaviour
         currentProgress = 0;
         SetInitialProgressBar();
     }
+
+    
+
 }

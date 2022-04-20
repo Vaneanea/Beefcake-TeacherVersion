@@ -9,30 +9,21 @@ public class CarManager : MonoBehaviour
     public DynamicCarData[] carDynamicData;
     public DynamicCarData currentCarDynamicData;
     public GameObject aCar;
-    private GameObject car;
+    public GameObject car;
 
+    [Header("Car Positions")]
     public Transform carDonePosition;
 
     private GameManager gm;
+    private CoinManager coinM;
     private CombatStatManager csm;
     private JuiceManager jm;
-    
-    public int carDone = 0;
-    [SerializeField]
-    private int coinsEarned = 0;
 
-    #region Job Game Mode variables
-    public bool jobDone;
-    private int carIndex;
-    #endregion
+    public int carDone = 0;
+   
 
     void Awake()
     {
-        jobDone = false;
-        carIndex = 0;
-
-        carTypes = Resources.LoadAll<CarTypeData>("Data/CarData/StarLevel0");
-
         SetGameManager();
         SetOtherManagers();
         CreateCar();
@@ -45,33 +36,15 @@ public class CarManager : MonoBehaviour
 
     private void CreateCar()
     {
-        GameObject newCar = Instantiate(aCar);
-
-        if (gm.gameMode == GameMode.Endless)
-            CreateRandomCar(ref newCar);
-        if (gm.gameMode == GameMode.Job)
-            CreateNextCar(ref newCar);
-
-        car = newCar;
-    }
-
-    private void CreateRandomCar(ref GameObject newCar) {
-        // Generate random CarTypeData
+        GameObject x = Instantiate(aCar);
+        //TODO ALSO INSTANTIATE A dynamic car thinhie!!!!!!!
         var index = Random.Range(0, carTypes.Length);
-        newCar.GetComponent<Car>().carTypeData = carTypes[index];
+        x.GetComponent<Car>().carTypeData = carTypes[index];
+        x.GetComponent<Car>().dynamicCarData = carDynamicData[index];
+        currentCarDynamicData = x.GetComponent<Car>().dynamicCarData;
 
-        // TODO: Generate random star count (hard-coded for now)
-        DynamicCarData car = DynamicCarData.CreateInstance(carTypes[index], 2);
-        newCar.GetComponent<Car>().dynamicCarData = car;
-    }
+        car = x;
 
-    private void CreateNextCar(ref GameObject newCar) {
-        List<DynamicCarData> cars = gm.job.cars;
-     
-        newCar.GetComponent<Car>().carTypeData = cars[carIndex].carType;
-        newCar.GetComponent<Car>().dynamicCarData = cars[carIndex];
-
-        carIndex++;
     }
 
     private void CheckIfCarIsDone()
@@ -87,44 +60,27 @@ public class CarManager : MonoBehaviour
             //    StartCoroutine(WaitASec(1));
             //}
 
+            coinM.AddCoinsEarnedForCar( car.GetComponent<Car>().dynamicCarData.starCount);
 
-            AddCoinsEarnedForCar();
             carDone++;
-
-            if (gm.gameMode == GameMode.Job && carDone >= gm.job.cars.Count) {
-                jobDone = true;
-                return;
+            if (gm.canvas.gameObject.transform.GetChild(1).gameObject.activeSelf == false) 
+            {
+                ReplaceCar();
+                csm.ResetProgressBar();
             }
-
-            ReplaceCar();
-            csm.ResetProgressBar();
+           
         }
     }
 
-    //Is very simple right now, is open for expansion in the futore. Maybe 
-    private void AddCoinsEarnedForCar()
+    private void ReplaceCar()
     {
-        var coinsEarned = car.GetComponent<Car>().dynamicCarData.starCount * 100;
-        this.coinsEarned += coinsEarned;
-        gm.coinsEarned = this.coinsEarned;
-    }
-
-    public int GetTotalCoinsEarned()
-    {
-        var carBonus = carDone * 25;
-
-        coinsEarned += carBonus;
-
-        return coinsEarned;
-    }
-
-    private void ReplaceCar() {
+       
         Destroy(car.GetComponent<Car>().clientCard.gameObject);
         Destroy(car);
 
         CreateCar();
         jm.SetCurrentActiveSmokePillars();
-    
+
     }
 
 
@@ -145,6 +101,7 @@ public class CarManager : MonoBehaviour
     {
         csm = gm.GetCombatStatManager();
         jm = gm.GetJuiceManager();
+        coinM = gm.GetCoinManager();
     }
 
 }

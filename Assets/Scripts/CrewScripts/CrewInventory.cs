@@ -20,8 +20,11 @@ public class CrewInventory : MonoBehaviour {
         CreateSingletonInstance();
         crew = new List<CrewBeefCake>();
         GetCrew();
+       
+    }
 
-        //Create slots 
+    private void Start()
+    {
         inventoryObject.GetComponent<CharacterInfoScript>().CreateSlots();
     }
 
@@ -62,6 +65,7 @@ public class CrewInventory : MonoBehaviour {
            crew.Add(beefCake);
         }
 
+      
     }
 
     private CrewBeefCake CreateNewCrewBeefCake(ShopBeefCake data) {

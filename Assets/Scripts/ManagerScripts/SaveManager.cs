@@ -16,11 +16,7 @@ public class SaveManager : MonoBehaviour
     void Awake()
     {
         Load();
-        if (CrewInventory.instance != null)
-        {
-            CrewInventory.instance.GetCrew();
-        }
-        
+        CrewInventory.instance.GetCrew();
     }
 
     void OnApplicationQuit()
