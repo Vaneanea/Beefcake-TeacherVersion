@@ -15,7 +15,6 @@ public class BeefCakeManager : MonoBehaviour
     {
         GetCrewBeefCakes();
         CreateAllCrewBeefCakes();
-        
     }
 
     private void CreateBeefcakeGameObject(CrewBeefCake beefcakedata, int index)
