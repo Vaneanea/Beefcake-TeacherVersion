@@ -193,8 +193,8 @@ public class Car : MonoBehaviour
 
         SetAttackPointVisual();
 
-        SetAttackPointsPerStage(attackPointsStage1, carTypeData.possibleAttackPointStage1);
-        SetAttackPointsPerStage(attackPointsStage2, carTypeData.possibleAttackPointStage2);
+        attackPointsStage1 = SetAttackPointsPerStage(attackPointsStage1, carTypeData.possibleAttackPointStage1);
+        attackPointsStage2 = SetAttackPointsPerStage(attackPointsStage2, carTypeData.possibleAttackPointStage2);
 
         //Test(attackPointsStage1, car.possibleAttackPointStage1);
         //Test(attackPointsStage2, car.possibleAttackPointStage2);
@@ -222,16 +222,30 @@ public class Car : MonoBehaviour
     }
 
     //ask arjen aout duplicates
-    private void SetAttackPointsPerStage(GameObject[] attackPointCollectionForStage, GameObject[] possibleAttackPointsForStage)
+    private GameObject[] SetAttackPointsPerStage(GameObject[] attackPointCollectionForStage, GameObject[] possibleAttackPointsForStage)
     {
+        List<GameObject> list = possibleAttackPointsForStage.ToList();
+        var amount = attackPointCollectionForStage.Length;
+       
 
-        //Fill the array of attackpoints that will be used in the stage with a rondom assortment of possible attackponts
-        for (int i = 0; i < attackPointCollectionForStage.Length; i++)
+        List<GameObject> alreadyUsed = new List<GameObject>();
+        List<GameObject> randomList = new List<GameObject>();
+
+
+        for (int i = 0; i < amount;)
         {
-            int rn = Random.Range(0, possibleAttackPointsForStage.Length);
+            int rn = Random.Range(0, amount);
 
-            attackPointCollectionForStage[i] = possibleAttackPointsForStage[rn];
+            if (!alreadyUsed.Contains(list[rn]))
+            {
+                randomList.Add(list[rn]);
+                alreadyUsed.Add(list[rn]);
+                i++;
+            }
         }
+
+       return randomList.ToArray();
+
     }
     #endregion
 

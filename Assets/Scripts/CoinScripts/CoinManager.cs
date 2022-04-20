@@ -28,7 +28,7 @@ public class CoinManager : MonoBehaviour
     private int coinsCaught = 0;
 
 
-    private void Awake()
+    private void Start()
     {
         SetGameManager();
         SetOtherManagers();
@@ -88,7 +88,7 @@ public class CoinManager : MonoBehaviour
 
     public int GetTotalCoinsEarned()
     {
-        var carBonus = cm.carDone * 25;
+        int carBonus = cm.carDone * 25;
 
         coinsEarned += carBonus;
         coinsEarned += (coinsCaught * 5);

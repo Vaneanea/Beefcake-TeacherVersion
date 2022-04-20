@@ -60,7 +60,7 @@ public class CarManager : MonoBehaviour
             //    StartCoroutine(WaitASec(1));
             //}
 
-            coinM.AddCoinsEarnedForCar(car.GetComponent<Car>().dynamicCarData.starCount);
+            coinM.AddCoinsEarnedForCar( car.GetComponent<Car>().dynamicCarData.starCount);
 
             carDone++;
             ReplaceCar();
