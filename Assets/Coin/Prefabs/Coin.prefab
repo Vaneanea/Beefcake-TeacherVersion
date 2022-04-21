@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinDrop: {fileID: 8300000, guid: 526ede27a936b0f40a4907dac6a2bde9, type: 3}
-  cam: {fileID: 0}
 --- !u!82 &1296719437498330975
 AudioSource:
   m_ObjectHideFlags: 0
@@ -152,8 +151,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 526ede27a936b0f40a4907dac6a2bde9, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

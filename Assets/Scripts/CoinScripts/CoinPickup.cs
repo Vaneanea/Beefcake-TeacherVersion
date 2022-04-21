@@ -6,10 +6,10 @@ public class CoinPickup : MonoBehaviour
 {
 
     AudioSource myAudioSource;
-    public AudioClip coinDrop;
-    public Camera cam;
+    private Camera cam;
     public RaycastHit coinHit;
     private GameManager gm;
+    private SoundEffectManager sem;
     private CoinManager coinM;
  
 
@@ -19,7 +19,6 @@ public class CoinPickup : MonoBehaviour
         SetGameManager();
         SetOtherManagers();
         cam = gm.cam;
-        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,8 +36,8 @@ public class CoinPickup : MonoBehaviour
             {
                 if (coinHit.collider == gameObject.GetComponent<Collider>())
                 {
-                    Debug.Log("clicky");
-                    myAudioSource.PlayOneShot(coinDrop);
+                    //Debug.Log("clicky");
+                    SoundEffectManager.Play("Coin");
                     coinM.AddToCoinsCaught();
                     Destroy(gameObject);
 

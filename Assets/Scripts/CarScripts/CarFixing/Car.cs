@@ -212,9 +212,6 @@ public class Car : MonoBehaviour
         firstStageAttackPointAmount = dynamicCarData.firstStageHitsNeeded;
         secondStageAttackPointAmount = dynamicCarData.secondStageHitsNeeded;
 
-        //Create an array of attackpoints that will be used during the existance of the car, give them the size required 
-        //attackPointsStage1 = new GameObject[firstStageAttackPointAmount];
-        //attackPointsStage2 = new GameObject[secondStageAttackPointAmount];
     }
     private void SetAttackPointVisual()
     {

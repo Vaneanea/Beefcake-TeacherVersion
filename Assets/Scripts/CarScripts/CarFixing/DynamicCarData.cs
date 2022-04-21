@@ -55,14 +55,15 @@ public class DynamicCarData : ScriptableObject {
 
     ///This shiuld be uncommented after the demo once you've been able to also make the cars persiatent
 
-    //public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix) {
-    //    DynamicCarData data = CreateInstance<DynamicCarData>();
-    //    data.Initialize(carType, starCount, needWash, needFix);
+    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix)
+    {
+        DynamicCarData data = CreateInstance<DynamicCarData>();
+        data.Initialize(carType, starCount, needWash, needFix);
 
-    //    string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
-    //    AssetDatabase.CreateAsset(data, fileName);
-    //    AssetDatabase.SaveAssets();
+        //string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
+        //AssetDatabase.CreateAsset(data, fileName);
+        //AssetDatabase.SaveAssets();
 
-    //    return data;
-    //}
+        return data;
+    }
 }
