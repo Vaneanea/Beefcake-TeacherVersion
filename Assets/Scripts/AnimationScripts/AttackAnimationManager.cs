@@ -16,7 +16,8 @@ public class AttackAnimationManager : MonoBehaviour
 
     private void Update()
     {
-        animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<BeefCakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
+        //this is for debugging
+        animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<CrewBeefCakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
         if (Input.GetKeyDown(KeyCode.Space)) {
             Attack();
         }
@@ -56,26 +57,32 @@ public class AttackAnimationManager : MonoBehaviour
     }
 
     private void DoAnimation_Temporary() {
-        
-        //play animation 
-        //animator.SetTrigger("Attack " + attack);
 
-        //if true play attack animation or else play the next function
+        CheckIfAttackAnimationIsAlreadyPlaying();
+        
+    }
+
+
+    private void CheckIfAttackAnimationIsAlreadyPlaying()
+    {
+        //while attacking don't play another attack animation,
+        //this is something we should change a later to make the animations a bit more responsive
         if (attackBool)
         {
-            animator.SetBool("AttackBool " + attack, true);
-            attackBool = false;
+            SetAttackBoolean(true);
 
             return;
         }
-        if(!attackBool)
+        if (!attackBool)
         {
-            animator.SetBool("AttackBool " + attack, false);
-            attackBool = true;
+            SetAttackBoolean(false);
         }
-        
 
+        ResetAttackSpeed();
+    }
 
+    private void ResetAttackSpeed()
+    {
         //Ressetting attack speed 
         nextAttackTime = Time.time + 1f / attackRate;
 
@@ -87,5 +94,11 @@ public class AttackAnimationManager : MonoBehaviour
         {
             attack = 1;
         }
+    }
+
+    private void SetAttackBoolean(bool attackBoolState)
+    {
+        animator.SetBool("AttackBool " + attack, attackBoolState);
+        attackBool = !attackBoolState;
     }
  }

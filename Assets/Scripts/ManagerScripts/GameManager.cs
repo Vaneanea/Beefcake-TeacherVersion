@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum GameMode { Job, Endless }
 
 [SerializeField]
 public class GameManager : MonoBehaviour
@@ -12,86 +13,99 @@ public class GameManager : MonoBehaviour
     public CrewInventory crewInventory;
     public GameObject musicManager;
 
-    private BeefCakeManager bcm;
+    private CrewBeefCakeManager bcm;
     private CombatStatManager csm;
     private AttackAnimationManager aam;
     private CarManager cm;
     private SoundEffectManager sem;
     private JuiceManager jm;
+    private CoinManager coinM;
+
 
     private int currentCrewReputation;
 
     private bool hasDeactivated = false;
 
     public int coinsEarned;
-    private bool earningsCalculated;
+    private bool earningsHaveBeenCalculated = false;
+
+    // {gameMode} - only used in the FixLoop
+    public GameMode gameMode;
+    public JobData job;
 
     [Header("Rewards")]
     public GameObject  coinReward;
     public GameObject gemReward;
+    
 
     private void Awake()
     {
         SetInitialVariables();
     }
 
-    
 
     void Update()
     {
-       
-
-        if (gameObject.name == "FixLoop_GameManager") {
-
-            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsCalculated == false)
-            {
-                var fatigueScreen = canvas.gameObject.transform.GetChild(1);
-                cm.GetTotalCoinsEarned();
-                fatigueScreen.gameObject.SetActive(true);
-                coinReward.GetComponent<TextMeshProUGUI>().text = cm.GetTotalCoinsEarned().ToString();
-                var specialGems = cm.carDone / 4;
-                gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
-                DeActivateAttackPoints();
-                earningsCalculated = true;
-            }
-                       
-        }
-
         if (gameObject.name == "FixLoop_GameManager")
-        {
-            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == true)
-            {
-                DeActivateAttackPoints();
-                hasDeactivated = true;
-            }
-
-        }
-
-       
-        if (gameObject.name == "FixLoop_GameManager")
-        {
-            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == false && hasDeactivated == true)
-            {
-                ActivateAttackPoints();
-                hasDeactivated = false;
-
-            }
-        }
-
-
+            FixLoopUpdate();
     }
+
+    private void FixLoopUpdate() {
+        if (gameMode == GameMode.Job) {
+            if (cm.jobDone && !earningsHaveBeenCalculated)
+                OnFixLoopEnd();
+        }
+
+        if (gameMode == GameMode.Endless) {
+
+            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsHaveBeenCalculated == false) {
+                OnFixLoopEnd();
+            }
+        }
+
+        if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == true) {
+            DeActivateAttackPoints();
+            hasDeactivated = true;
+        }
+        
+        if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == false && canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false && hasDeactivated == true) {
+            ActivateAttackPoints();
+            hasDeactivated = false;
+
+        }
+    }
+
+    private void OnFixLoopEnd()
+    {
+        var fatigueScreen = canvas.gameObject.transform.GetChild(1);
+        coinM.GetTotalCoinsEarned();
+        fatigueScreen.gameObject.SetActive(true);
+        coinReward.GetComponent<TextMeshProUGUI>().text = coinM.GetTotalCoinsEarned().ToString();
+        var specialGems = cm.carDone / 4;
+        gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
+        earningsHaveBeenCalculated = true;
+
+        if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true && hasDeactivated == false)
+        {
+            DeActivateAttackPoints();
+            hasDeactivated = true;
+
+            return;
+        }
+    }
+
 
     private void SetInitialVariables()
     {
         SetManagers();
         GetCrewReputation();
+        SetGameMode();
     }
-
 
 
     #region Get Managers
 
-    public BeefCakeManager GetBeefcakeManager() 
+    public CrewBeefCakeManager GetBeefcakeManager() 
     {
         return bcm;
     }
@@ -126,6 +140,11 @@ public class GameManager : MonoBehaviour
         return jm;
     }
 
+    public CoinManager GetCoinManager()
+    {
+        return coinM;
+    }
+
     #endregion
 
 
@@ -139,12 +158,13 @@ public class GameManager : MonoBehaviour
         SetCrewInventory();
         SetSoundEffectManager();
         SetJuiceManager();
+        SetCoinManager();
         CreateInstantsOfMusicManager();
     }
 
     private void SetBeefcakeManager()
     {
-        bcm = FindObjectOfType<BeefCakeManager>();
+        bcm = FindObjectOfType<CrewBeefCakeManager>();
     }
 
     private void SetCombatStatManager()
@@ -176,6 +196,10 @@ public class GameManager : MonoBehaviour
         jm = FindObjectOfType<JuiceManager>();
     }
 
+    private void SetCoinManager()
+    {
+        coinM = FindObjectOfType<CoinManager>();
+    }
 
     private void CreateInstantsOfMusicManager()
     {
@@ -199,6 +223,20 @@ public class GameManager : MonoBehaviour
         currentCrewData.currentCrewReputation = newReputationScore;
     }
 
+
+    private void SetGameMode()
+    {
+        if (gameObject.name != "FixLoop_GameManager") return;
+
+        // If there's a JobData file then set game mode to {Job}
+        job = Resources.Load<JobData>("DynamicData/JobData/JobData");
+        if (job != null)
+            gameMode = GameMode.Job;
+        else
+            gameMode = GameMode.Endless;
+    }
+
+
     public int GetCrewCurrentReputation()
     {
         return currentCrewReputation;
@@ -209,7 +247,6 @@ public class GameManager : MonoBehaviour
         foreach (GameObject attackPoint in GameObject.FindGameObjectsWithTag("FixPoint"))
         {
             csm.currentAttackPoints.Add(attackPoint);
-
         }
     }
 
@@ -233,8 +270,6 @@ public class GameManager : MonoBehaviour
 
         csm.currentAttackPoints.Clear();
     }
-
-
 }
 
 public static class Helper
@@ -245,5 +280,4 @@ public static class Helper
         t1.rotation = Quaternion.Slerp(t1.rotation, t2.rotation, t);
         t1.localScale = Vector3.Slerp(t1.localScale, t2.localScale, t);
     }
-
 }

@@ -14,6 +14,7 @@ public class SoundEffectManager : MonoBehaviour
     public static AudioClip teleWhoosh2;
     public static AudioClip carDrivingAway;
     public static AudioClip crowdCheering;
+    public static AudioClip coin;
 
     static AudioSource audioSourceCarSounds;
     static AudioSource audioSourcePlayerAttackAudio;
@@ -31,6 +32,7 @@ public class SoundEffectManager : MonoBehaviour
         teleWhoosh2 = Resources.Load<AudioClip>("Audio/Whoosh/Whoosh2");
         carDrivingAway = Resources.Load<AudioClip>("Audio/Car/Car Brake Screech");
         crowdCheering = Resources.Load<AudioClip>("Audio/Crowds/crowd_applaud_01");
+        coin = Resources.Load<AudioClip>("Audio/Coin/coin_drop");
 
         audioSourceCarSounds = transform.GetChild(0).GetComponent<AudioSource>();
         audioSourcePlayerAttackAudio = transform.GetChild(1).GetComponent<AudioSource>();
@@ -82,16 +84,9 @@ public class SoundEffectManager : MonoBehaviour
             case "CrowdCheer":
                 audioSourceCarSounds.PlayOneShot(crowdCheering);
                 break;
-
+            case "Coin":
+                audioSourceCarSounds.PlayOneShot(coin);
+                break;
         }
     }
-
-    public void PlayCarCrashingSound()
-    {
-        Play("quick_smash_003");
-    }
-
-
-    
-
 }

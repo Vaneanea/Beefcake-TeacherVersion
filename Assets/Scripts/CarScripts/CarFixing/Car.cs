@@ -34,6 +34,7 @@ public class Car : MonoBehaviour
     private CarManager cm;
     private CombatStatManager csm;
     private JuiceManager jm;
+    private CrewBeefCakeManager bcm;
 
     //Car Stages
     public GameObject firstCarStage;
@@ -53,7 +54,9 @@ public class Car : MonoBehaviour
     private List<Image> clientCardImages;
     private float fadeSpeed = 1f;
 
-  
+  /// <summary>
+  /// TODO: ADD method so that attackpoints spawn after the car has landed
+  /// </summary>
     void Start()
     {
         isDone = false;
@@ -63,10 +66,7 @@ public class Car : MonoBehaviour
 
         //Instantiate  the car model in it's proper location        
         firstCarStage = Instantiate(carStates[0]);
-        firstCarStage.transform.SetParent(cm.car.transform);
-       
-
-        
+        firstCarStage.transform.SetParent(cm.GetCar().transform);
         currentCarStage = firstCarStage;
 
         CreateAttackPoints(attackPointsStage1);
@@ -78,20 +78,9 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-
-        if (hasLanded == true && startPosIsAssigned == false)
-        {
-            clientCard.SetActive(true);
-            GetComponentInChildren<CarMainBody>().AssignStartPosition();
-            startPosIsAssigned = true;
-        }
-
-        //fadout over time
-        if (clientCard.activeSelf == true)
-        {
-            StartCoroutine(Fade());
-        }
-
+        ActivateClientCard();
+      
+        FadeOutClientCard();
 
         //check if first stage has been fixed
         if (attackPointsFixed >= firstStageAttackPointAmount && stagesDone == 0)
@@ -99,7 +88,7 @@ public class Car : MonoBehaviour
             Destroy(firstCarStage);
             jm.carSmokeEffects.Stop();
             secondCarStage = Instantiate(carStates[1]);
-            secondCarStage.transform.SetParent(cm.car.transform);
+            secondCarStage.transform.SetParent(cm.GetCar().transform);
             StartCoroutine(jm.Cheer());
 
             currentCarStage = secondCarStage;
@@ -114,7 +103,7 @@ public class Car : MonoBehaviour
         {
             Destroy(secondCarStage);
             thirdCarStage = Instantiate(carStates[2]);
-            thirdCarStage.transform.SetParent(cm.car.transform);
+            thirdCarStage.transform.SetParent(cm.GetCar().transform);
            
 
             currentCarStage = thirdCarStage;
@@ -123,6 +112,30 @@ public class Car : MonoBehaviour
             StartCoroutine(MarkAsDone(0.5f));
         }
     }
+
+
+    private void ActivateClientCard()
+    {
+        if (hasLanded == true && startPosIsAssigned == false)
+        {
+            clientCard.SetActive(true);
+            GetComponentInChildren<CarMainBody>().AssignStartPosition();
+            startPosIsAssigned = true;
+        }
+
+    }
+
+    private void FadeOutClientCard()
+    {
+        //fadout over time
+        if (clientCard.activeSelf == true)
+        {
+            StartCoroutine(Fade());
+        }
+    }
+
+
+
 
     private void CreateClientCardVisual()
     {
@@ -177,6 +190,8 @@ public class Car : MonoBehaviour
         csm = gm.GetCombatStatManager();
         jm = gm.GetJuiceManager();
         cm = gm.GetCarManager();
+        bcm = gm.GetBeefcakeManager();
+        
     }
     #endregion
 
@@ -193,11 +208,9 @@ public class Car : MonoBehaviour
 
         SetAttackPointVisual();
 
-        SetAttackPointsPerStage(attackPointsStage1, carTypeData.possibleAttackPointStage1);
-        SetAttackPointsPerStage(attackPointsStage2, carTypeData.possibleAttackPointStage2);
+        attackPointsStage1 = SetAttackPointsPerStage(firstStageAttackPointAmount, carTypeData.possibleAttackPointStage1);
+        attackPointsStage2 = SetAttackPointsPerStage(secondStageAttackPointAmount, carTypeData.possibleAttackPointStage2);
 
-        //Test(attackPointsStage1, car.possibleAttackPointStage1);
-        //Test(attackPointsStage2, car.possibleAttackPointStage2);
     }
 
     private void SetCarStates()
@@ -211,9 +224,6 @@ public class Car : MonoBehaviour
         firstStageAttackPointAmount = dynamicCarData.firstStageHitsNeeded;
         secondStageAttackPointAmount = dynamicCarData.secondStageHitsNeeded;
 
-        //Create an array of attackpoints that will be used during the existance of the car, give them the size required 
-        attackPointsStage1 = new GameObject[firstStageAttackPointAmount];
-        attackPointsStage2 = new GameObject[secondStageAttackPointAmount];
     }
     private void SetAttackPointVisual()
     {
@@ -221,17 +231,31 @@ public class Car : MonoBehaviour
         attackPointPrefab = csm.attackTargetPrefab;
     }
 
-    //ask arjen aout duplicates
-    private void SetAttackPointsPerStage(GameObject[] attackPointCollectionForStage, GameObject[] possibleAttackPointsForStage)
+    
+    private GameObject[] SetAttackPointsPerStage(int amountOfAttackPointsNeeded, GameObject[] possibleAttackPointsForStage)
     {
+        List<GameObject> list = possibleAttackPointsForStage.ToList();
+        var amount = amountOfAttackPointsNeeded;
+       
 
-        //Fill the array of attackpoints that will be used in the stage with a rondom assortment of possible attackponts
-        for (int i = 0; i < attackPointCollectionForStage.Length; i++)
+        List<GameObject> alreadyUsed = new List<GameObject>();
+        List<GameObject> randomList = new List<GameObject>();
+
+
+        for (int i = 0; i < amount;)
         {
-            int rn = Random.Range(0, possibleAttackPointsForStage.Length);
+            int rn = Random.Range(0, amount);
 
-            attackPointCollectionForStage[i] = possibleAttackPointsForStage[rn];
+            if (!alreadyUsed.Contains(list[rn]))
+            {
+                randomList.Add(list[rn]);
+                alreadyUsed.Add(list[rn]);
+                i++;
+            }
         }
+
+       return randomList.ToArray();
+
     }
     #endregion
 
@@ -286,20 +310,25 @@ public class Car : MonoBehaviour
     public IEnumerator MarkAsDone(float x)
     {
         yield return new WaitForSeconds(x);
-        float timeElapsed = 0;
-        Vector3 startPos = currentCarStage.transform.position;
 
-        Vector3 targetPos = cm.carDonePosition.transform.position;
-        SoundEffectManager.Play("CarDrivingAway");
-        while (timeElapsed < 1f)
+        if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == false)
         {
-            thirdCarStage.transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / 1f);
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-       
+            float timeElapsed = 0;
+            Vector3 startPos = currentCarStage.transform.position;
 
-        thirdCarStage.transform.position = targetPos;
+            Vector3 targetPos = cm.carDonePosition.transform.position;
+            SoundEffectManager.Play("CarDrivingAway");
+            while (timeElapsed < 1f)
+            {
+                thirdCarStage.transform.position = Vector3.Lerp(startPos, targetPos, timeElapsed / 1f);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+
+            thirdCarStage.transform.position = targetPos;
+        }
+     
 
 
 

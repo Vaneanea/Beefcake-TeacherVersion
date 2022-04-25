@@ -23,7 +23,7 @@ public class CombatStatManager : MonoBehaviour
     private CarManager cm;
 
     
-    public List<GameObject> currentAttackPoints = new List<GameObject>();
+    public List<GameObject> currentAttackPoints;
 
 
 
@@ -38,6 +38,7 @@ public class CombatStatManager : MonoBehaviour
     private void SetInitalVariables()
     {
         SetInitialProgressBar();
+        currentAttackPoints = new List<GameObject>();
     }
 
     private void SetGameManager()
