@@ -23,8 +23,6 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     {
         SetGameManager();
         SetOtherManagers();
-
-       
         SetParticleEffects();
     }
 

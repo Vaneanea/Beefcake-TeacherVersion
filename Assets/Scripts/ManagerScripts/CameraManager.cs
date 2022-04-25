@@ -20,6 +20,10 @@ public class CameraManager : MonoBehaviour
     {
         CheckIfWashing();
 
+        ///Change once washing is implemeted.
+        ///Write method that inactivates the player temporarily
+        ///and reactivtes it in the washing position after camera has moved
+     
         //transform.SlerpTransform(cameraPosition, Time.deltaTime);
         //For when you use bro as brush
         //float dis = Vector3.Distance(cameraPosition.position, transform.position);

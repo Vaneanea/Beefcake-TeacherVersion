@@ -37,10 +37,8 @@ public class JobGenerator : MonoBehaviour {
 
             uiManager.AddCarSlot(carType, starCount);
 
-            var needWash = GenerateNeedWashing();
-            var needFix = GenerateNeedFixing();
             // Instantiate CarData objects and let them decide their stats based on their difficulty
-            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount, needWash, needFix);
+            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount);
             cars.Add(car);
         }
 
@@ -51,7 +49,6 @@ public class JobGenerator : MonoBehaviour {
     }
 
     /// This is commented out ecause the saving system still needs to e implimented here
-
     //public void ClearOldJob()
     //{
     //    cars.Clear();

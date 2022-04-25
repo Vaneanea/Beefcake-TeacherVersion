@@ -7,11 +7,18 @@ public class CoinMovement : MonoBehaviour
     float rotSpeed;
     public bool isGrounded = false;
     int rotationLife = 120;
+    private GameManager gm;
+    private CarManager cm;
 
+    private void Awake()
+    {
+        gm = FindObjectOfType<GameManager>();
+        cm = gm.GetCarManager();
+    }
 
     private void Start()
     {
-        var carCollider = FindObjectOfType<GameManager>().transform.GetChild(4).GetComponent<CarManager>().GetCar().gameObject.GetComponentInChildren<Collider>();
+        var carCollider = cm.GetCar().gameObject.GetComponentInChildren<Collider>();
         Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), carCollider);
     }
 
@@ -19,14 +26,24 @@ public class CoinMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        var carCollider = FindObjectOfType<GameManager>().transform.GetChild(4).GetComponent<CarManager>().GetCar().gameObject.GetComponentInChildren<Collider>();
+        IgnoreCarCollision();
+        RotateCoin();
+        DestroyOnGroundImpact();
+    }
+
+
+    private void IgnoreCarCollision()
+    {
+        var carCollider = cm.GetCar().gameObject.GetComponentInChildren<Collider>();
         if (carCollider != null)
         {
             Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), carCollider);
         }
-            
 
+    }
+
+    private void RotateCoin()
+    {
         // rotate coin
         rotSpeed = 90; // degrees per second
         if (!isGrounded)
@@ -39,26 +56,18 @@ public class CoinMovement : MonoBehaviour
             rotationLife--;
         }
 
+    }
 
+    private void DestroyOnGroundImpact()
+    {
+        //Destroy coin when it hit the floor
         if (isGrounded == true)
         {
             Destroy(gameObject);
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (isGrounded == false)
-    //    {
-    //        var carCollider = FindObjectOfType<GameManager>().transform.GetChild(4).GetComponent<CarManager>().GetCar().gameObject.transform.GetChild(0).GetComponent<Collider>();
 
-    //        if (collision.gameObject == carCollider)
-    //        {
-    //            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), carCollider);
-    //        }
-    //    }
-
-    //}
 
     private void OnCollisionStay(Collision collision)
     {
@@ -67,14 +76,5 @@ public class CoinMovement : MonoBehaviour
             isGrounded = true;
         }
     }
-
-    //IEnumerator TempNoCollider() 
-    //{
-    //    gameObject.GetComponent<Collider>().enabled = false;
-    //    yield return new WaitForSeconds(1);
-    //    gameObject.GetComponent<Collider>().enabled = true;
-    //}
-
-
 
 }

@@ -54,7 +54,9 @@ public class Car : MonoBehaviour
     private List<Image> clientCardImages;
     private float fadeSpeed = 1f;
 
-  
+  /// <summary>
+  /// TODO: ADD method so that attackpoints spawn after the car has landed
+  /// </summary>
     void Start()
     {
         isDone = false;
@@ -64,10 +66,7 @@ public class Car : MonoBehaviour
 
         //Instantiate  the car model in it's proper location        
         firstCarStage = Instantiate(carStates[0]);
-        firstCarStage.transform.SetParent(cm.car.transform);
-       
-
-        
+        firstCarStage.transform.SetParent(cm.GetCar().transform);
         currentCarStage = firstCarStage;
 
         CreateAttackPoints(attackPointsStage1);
@@ -79,20 +78,9 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-
-        if (hasLanded == true && startPosIsAssigned == false)
-        {
-            clientCard.SetActive(true);
-            GetComponentInChildren<CarMainBody>().AssignStartPosition();
-            startPosIsAssigned = true;
-        }
-
-        //fadout over time
-        if (clientCard.activeSelf == true)
-        {
-            StartCoroutine(Fade());
-        }
-
+        ActivateClientCard();
+      
+        FadeOutClientCard();
 
         //check if first stage has been fixed
         if (attackPointsFixed >= firstStageAttackPointAmount && stagesDone == 0)
@@ -100,7 +88,7 @@ public class Car : MonoBehaviour
             Destroy(firstCarStage);
             jm.carSmokeEffects.Stop();
             secondCarStage = Instantiate(carStates[1]);
-            secondCarStage.transform.SetParent(cm.car.transform);
+            secondCarStage.transform.SetParent(cm.GetCar().transform);
             StartCoroutine(jm.Cheer());
 
             currentCarStage = secondCarStage;
@@ -115,7 +103,7 @@ public class Car : MonoBehaviour
         {
             Destroy(secondCarStage);
             thirdCarStage = Instantiate(carStates[2]);
-            thirdCarStage.transform.SetParent(cm.car.transform);
+            thirdCarStage.transform.SetParent(cm.GetCar().transform);
            
 
             currentCarStage = thirdCarStage;
@@ -124,6 +112,30 @@ public class Car : MonoBehaviour
             StartCoroutine(MarkAsDone(0.5f));
         }
     }
+
+
+    private void ActivateClientCard()
+    {
+        if (hasLanded == true && startPosIsAssigned == false)
+        {
+            clientCard.SetActive(true);
+            GetComponentInChildren<CarMainBody>().AssignStartPosition();
+            startPosIsAssigned = true;
+        }
+
+    }
+
+    private void FadeOutClientCard()
+    {
+        //fadout over time
+        if (clientCard.activeSelf == true)
+        {
+            StartCoroutine(Fade());
+        }
+    }
+
+
+
 
     private void CreateClientCardVisual()
     {
@@ -219,7 +231,7 @@ public class Car : MonoBehaviour
         attackPointPrefab = csm.attackTargetPrefab;
     }
 
-    //ask arjen aout duplicates
+    
     private GameObject[] SetAttackPointsPerStage(int amountOfAttackPointsNeeded, GameObject[] possibleAttackPointsForStage)
     {
         List<GameObject> list = possibleAttackPointsForStage.ToList();

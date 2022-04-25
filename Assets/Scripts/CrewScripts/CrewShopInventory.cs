@@ -100,35 +100,3 @@ public class CrewShopInventory : MonoBehaviour {
 }
 
 
-//var check = FindObjectOfType<GameManager>().GetComponentInChildren<CrewInventory>().crew.Contains()
-
-//string[] lookFor = new string[] { "Assets/Vanessa/Data/CrewBeefCakes" };
-//string[] yourBeefcakes = AssetDatabase.FindAssets("t:" + typeof(CrewBeefCake).Name + lookFor);
-
-//bool isFound = false;
-//foreach (string x in yourBeefcakes)
-//{
-//    var SOpath = AssetDatabase.GUIDToAssetPath(x);
-//    var beefCake = AssetDatabase.LoadAssetAtPath<CrewBeefCake>(SOpath);
-
-//    if (shopItem.source.displayName == beefCake.displayName)
-//    {
-
-//        isFound = true;
-
-//    }
-
-//}
-
-//if (isFound == false)
-//{
-
-//    shopItems.Add(shopItem);
-
-//    if (shopItem.isAvailable)
-//        availableCount++;
-//}
-
-//Debug.Log(isFound);
-
-

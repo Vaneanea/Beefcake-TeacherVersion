@@ -21,6 +21,8 @@ public class JobData : ScriptableObject {
         JobData data = CreateInstance<JobData>();
         data.Initialize(cars);
 
+
+        ///Need to implement new saving 
         //string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/JobData.asset");
         //AssetDatabase.CreateAsset(data, fileName);
         //AssetDatabase.SaveAssets();

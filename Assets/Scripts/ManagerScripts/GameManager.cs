@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum GameMode { Job, Endless }
 
 [SerializeField]
 public class GameManager : MonoBehaviour
@@ -26,8 +27,11 @@ public class GameManager : MonoBehaviour
     private bool hasDeactivated = false;
 
     public int coinsEarned;
-    private bool earningHaveBeenCalculated = false;
+    private bool earningsHaveBeenCalculated = false;
 
+    // {gameMode} - only used in the FixLoop
+    public GameMode gameMode;
+    public JobData job;
 
     [Header("Rewards")]
     public GameObject  coinReward;
@@ -39,32 +43,20 @@ public class GameManager : MonoBehaviour
         SetInitialVariables();
     }
 
-    
 
     void Update()
     {
- 
-        if (gameObject.name == "FixLoop_GameManager") {
+        if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Job)
+        {
+            if (cm.jobDone && !earningsHaveBeenCalculated)
+                OnFixLoopEnd();
+        }
 
-            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningHaveBeenCalculated == false )
+        if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Endless) {
+
+            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsHaveBeenCalculated == false )
             {
-
-                var fatigueScreen = canvas.gameObject.transform.GetChild(1);
-                coinM.GetTotalCoinsEarned();
-                fatigueScreen.gameObject.SetActive(true);
-                coinReward.GetComponent<TextMeshProUGUI>().text = coinM.GetTotalCoinsEarned().ToString();
-                var specialGems = cm.carDone / 4;
-                gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
-                earningHaveBeenCalculated = true;
-
-                if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true && hasDeactivated == false)
-                {
-                    //AddCurrentAttackPointsToList();
-                    DeActivateAttackPoints();
-                    hasDeactivated = true;
-
-                    return;
-                }
+                OnFixLoopEnd();
             }
         }
 
@@ -89,16 +81,34 @@ public class GameManager : MonoBehaviour
 
             }
         }
-
-
     }
+
+    private void OnFixLoopEnd()
+    {
+        var fatigueScreen = canvas.gameObject.transform.GetChild(1);
+        coinM.GetTotalCoinsEarned();
+        fatigueScreen.gameObject.SetActive(true);
+        coinReward.GetComponent<TextMeshProUGUI>().text = coinM.GetTotalCoinsEarned().ToString();
+        var specialGems = cm.carDone / 4;
+        gemReward.GetComponent<TextMeshProUGUI>().text = Mathf.Round(specialGems).ToString();
+        earningsHaveBeenCalculated = true;
+
+        if (canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == true && hasDeactivated == false)
+        {
+            DeActivateAttackPoints();
+            hasDeactivated = true;
+
+            return;
+        }
+    }
+
 
     private void SetInitialVariables()
     {
         SetManagers();
         GetCrewReputation();
+        SetGameMode();
     }
-
 
 
     #region Get Managers
@@ -221,6 +231,20 @@ public class GameManager : MonoBehaviour
         currentCrewData.currentCrewReputation = newReputationScore;
     }
 
+
+    private void SetGameMode()
+    {
+        if (gameObject.name != "FixLoop_GameManager") return;
+
+        // If there's a JobData file then set game mode to {Job}
+        job = Resources.Load<JobData>("DynamicData/JobData/JobData");
+        if (job != null)
+            gameMode = GameMode.Job;
+        else
+            gameMode = GameMode.Endless;
+    }
+
+
     public int GetCrewCurrentReputation()
     {
         return currentCrewReputation;
@@ -254,8 +278,6 @@ public class GameManager : MonoBehaviour
 
         csm.currentAttackPoints.Clear();
     }
-
-
 }
 
 public static class Helper
@@ -266,5 +288,4 @@ public static class Helper
         t1.rotation = Quaternion.Slerp(t1.rotation, t2.rotation, t);
         t1.localScale = Vector3.Slerp(t1.localScale, t2.localScale, t);
     }
-
 }

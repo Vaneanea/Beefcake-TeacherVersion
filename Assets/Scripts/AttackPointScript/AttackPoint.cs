@@ -30,9 +30,6 @@ public class AttackPoint : MonoBehaviour
     public SliderScript healthBar;
 
 
-
-    //public ParticleSystem smokeParticle;
-
     private void Awake()
     {
         SetGameManager();
@@ -128,31 +125,46 @@ public class AttackPoint : MonoBehaviour
 
         if (currentPlayerPosition.localPosition != player.transform.localPosition)
         {
-            jm.teleportationDust.gameObject.transform.position = currentPlayerPosition.localPosition;
 
-            var rn = Random.Range(0, 1);
-            if (rn == 0)
-            {
-                SoundEffectManager.Play("Whoosh1");
-            }
-            else 
-            {
-                SoundEffectManager.Play("Whoosh2");
-            }
-
-          
-            jm.teleportationDust.Play();
-
-            currentPlayerPosition.localPosition = player.transform.localPosition;
-            currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+            PlayDustParticleEffect();
+            UpdateCurrentPlayerPositions();
         }
         else
         {
-            currentPlayerPosition.localPosition = player.transform.localPosition;
-            currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+            UpdateCurrentPlayerPositions();
         }
 
     }
+
+    private void PlayDustParticleEffect()
+    {
+        //Update particle effect position
+        jm.teleportationDust.gameObject.transform.position = currentPlayerPosition.localPosition;
+
+        //PlaySoundEffect
+        var rn = Random.Range(0, 1);
+        if (rn == 0)
+        {
+            SoundEffectManager.Play("Whoosh1");
+        }
+        else
+        {
+            SoundEffectManager.Play("Whoosh2");
+        }
+
+
+        //Play particle effect
+        jm.teleportationDust.Play();
+    }
+
+    private void UpdateCurrentPlayerPositions()
+    {
+        currentPlayerPosition.localPosition = player.transform.localPosition;
+        currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+    }
+
+
+
 
     private void CheckIfDestroyed()
     {
@@ -184,7 +196,7 @@ public class AttackPoint : MonoBehaviour
         player.ReduceStamina(csm.staminaDecreaseValue);
 
         //determine if a coin will spawn
-        DetermineIfCoinWillSpawn();
+        DetermineIfCoinWillSpawn(3);
 
         StartCoroutine(ChangeTargetImage());
     }
@@ -201,11 +213,10 @@ public class AttackPoint : MonoBehaviour
         transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1.3f);
     }
 
-    private void DetermineIfCoinWillSpawn()
+    private void DetermineIfCoinWillSpawn(int chance)
     {
+        int coinWillSpawn = Random.Range(0, chance);
         
-        int coinWillSpawn = Random.Range(0, 3);
-        //Debug.Log(coinWillSpawn);
         if (coinWillSpawn == 1)
         {
             coinM.SpawnCoin();

@@ -8,12 +8,11 @@ using Random = UnityEngine.Random;
 using System.Linq;
 
 // Holds a concrete instance of CarTypeData 
-public class DynamicCarData : ScriptableObject {
-
-    //Note change to just carType as attriute
+public class DynamicCarData : ScriptableObject
+{
     // Car stages
     public GameObject[] carStates = new GameObject[3];
-    
+
     public GameObject[] possibleAttackPointStage1;
     public GameObject[] possibleAttackPointStage2;
 
@@ -27,20 +26,23 @@ public class DynamicCarData : ScriptableObject {
     public bool needFix;
     public GameObject clientVisuals;
 
-    public void Initialize(CarTypeData carType, int starCount, bool needWash, bool needFix) {
+    public CarTypeData carType;
+    public void Initialize(CarTypeData carType, int starCount)
+    {
+        this.carType = carType;
 
         // Pass information from {CarTypeData} source
-        carStates = (GameObject[]) carType.carStates.Clone();
-        possibleAttackPointStage1 = (GameObject[]) carType.possibleAttackPointStage1.Clone();
-        possibleAttackPointStage2 = (GameObject[]) carType.possibleAttackPointStage2.Clone();
+        carStates = (GameObject[])carType.carStates.Clone();
+        possibleAttackPointStage1 = (GameObject[])carType.possibleAttackPointStage1.Clone();
+        possibleAttackPointStage2 = (GameObject[])carType.possibleAttackPointStage2.Clone();
 
         // TODO: Initialize {HitsNeeded} variables based on {starCount}
         firstStageHitsNeeded = 2;
         secondStageHitsNeeded = 3;
 
         this.starCount = starCount;
-        this.needFix = needFix;
-        this.needWash = needWash;
+        needFix = DecideIfFixIsNeeded();
+        needWash = DecideIfWashIsNeeded();
 
         //Store all Gameobjects in an array like this
         var allClients = Resources.LoadAll<GameObject>("Clients/ClientSpritePrefabs");
@@ -52,18 +54,39 @@ public class DynamicCarData : ScriptableObject {
     }
 
     // Factory method for creating a {ConcreteCarData} object 
-
-    ///This shiuld be uncommented after the demo once you've been able to also make the cars persiatent
-
-    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount, bool needWash, bool needFix)
+    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount)
     {
         DynamicCarData data = CreateInstance<DynamicCarData>();
-        data.Initialize(carType, starCount, needWash, needFix);
-
-        //string fileName = AssetDatabase.GenerateUniqueAssetPath("Assets/Resources/DynamicData/JobData/CarData.asset");
-        //AssetDatabase.CreateAsset(data, fileName);
-        //AssetDatabase.SaveAssets();
+        data.Initialize(carType, starCount);
 
         return data;
     }
+
+    #region Car Generation methods
+    private bool DecideIfWashIsNeeded()
+    {
+        var x = Random.Range(0, 1);
+        if (x == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool DecideIfFixIsNeeded()
+    {
+        var x = Random.Range(0, 1);
+        if (x == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    #endregion
 }
