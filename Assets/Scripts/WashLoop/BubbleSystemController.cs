@@ -13,13 +13,8 @@ public class BubbleSystemController : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Sponge")) {
-            Debug.Log("squeak");
-
-            OnClean();
-        }
+        if (other.CompareTag("Sponge")) OnClean();
     }
-
 
     public void OnClean() {
         startColor = new Color(startColor.r, startColor.g, startColor.b, startColor.a - alphaDecreaseRate);
