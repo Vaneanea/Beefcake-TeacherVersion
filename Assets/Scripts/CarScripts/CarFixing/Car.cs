@@ -34,7 +34,7 @@ public class Car : MonoBehaviour
     private CarManager cm;
     private CombatStatManager csm;
     private JuiceManager jm;
-    private BeefCakeManager bcm;
+    private CrewBeefCakeManager bcm;
 
     //Car Stages
     public GameObject firstCarStage;

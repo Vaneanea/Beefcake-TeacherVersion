@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BeefCakeManager : MonoBehaviour
+public class CrewBeefCakeManager : MonoBehaviour
 {
     [SerializeField]
     public GameObject playerBeefcake;

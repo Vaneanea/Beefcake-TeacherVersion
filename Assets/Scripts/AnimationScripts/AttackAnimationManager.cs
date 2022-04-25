@@ -17,7 +17,7 @@ public class AttackAnimationManager : MonoBehaviour
     private void Update()
     {
         //this is for debugging
-        animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<BeefCakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
+        animator = FindObjectOfType<GameManager>().transform.GetChild(2).GetComponent<CrewBeefCakeManager>().GetPlayerBeefcake().GetComponentInChildren<Animator>();
         if (Input.GetKeyDown(KeyCode.Space)) {
             Attack();
         }

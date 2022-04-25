@@ -40,10 +40,9 @@ public class CoinManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnCoin();
-        }
+        //if (input.getkeydown(keycode.space)) {
+        //    spawncoin();
+        //}
     }
 
     public void SpawnCoin()

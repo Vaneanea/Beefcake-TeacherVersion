@@ -8,7 +8,7 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     private GameManager gm;
     private JuiceManager jm;
     private CarManager cm;
-    private BeefCakeManager bcm;
+    private CrewBeefCakeManager bcm;
 
     private ParticleSystem hitCarEffect;
 

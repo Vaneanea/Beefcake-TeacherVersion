@@ -13,7 +13,7 @@ public class AttackPoint : MonoBehaviour
     //Managers
     private GameManager gm;
     private CombatStatManager csm;
-    private BeefCakeManager bcm;
+    private CrewBeefCakeManager bcm;
     private AttackAnimationManager aam;
     private JuiceManager jm;
     private CoinManager coinM;

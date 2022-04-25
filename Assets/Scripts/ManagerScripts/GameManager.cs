@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public CrewInventory crewInventory;
     public GameObject musicManager;
 
-    private BeefCakeManager bcm;
+    private CrewBeefCakeManager bcm;
     private CombatStatManager csm;
     private AttackAnimationManager aam;
     private CarManager cm;
@@ -46,40 +46,32 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Job)
-        {
+        if (gameObject.name == "FixLoop_GameManager")
+            FixLoopUpdate();
+    }
+
+    private void FixLoopUpdate() {
+        if (gameMode == GameMode.Job) {
             if (cm.jobDone && !earningsHaveBeenCalculated)
                 OnFixLoopEnd();
         }
 
-        if (gameObject.name == "FixLoop_GameManager" && gameMode == GameMode.Endless) {
+        if (gameMode == GameMode.Endless) {
 
-            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsHaveBeenCalculated == false )
-            {
+            if (bcm.playerBeefcake.GetComponent<BeefCake>().beefCake.isFatigued == true && earningsHaveBeenCalculated == false) {
                 OnFixLoopEnd();
             }
         }
 
-     
-        if (gameObject.name == "FixLoop_GameManager")
-        {
-            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == true)
-            {
-                DeActivateAttackPoints();
-                hasDeactivated = true;
-            }
-
+        if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == true) {
+            DeActivateAttackPoints();
+            hasDeactivated = true;
         }
+        
+        if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == false && canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false && hasDeactivated == true) {
+            ActivateAttackPoints();
+            hasDeactivated = false;
 
-       
-        if (gameObject.name == "FixLoop_GameManager")
-        {
-            if (canvas.gameObject.transform.GetChild(2).gameObject.activeInHierarchy == false && canvas.gameObject.transform.GetChild(1).gameObject.activeInHierarchy == false && hasDeactivated == true)
-            {
-                ActivateAttackPoints();
-                hasDeactivated = false;
-
-            }
         }
     }
 
@@ -113,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     #region Get Managers
 
-    public BeefCakeManager GetBeefcakeManager() 
+    public CrewBeefCakeManager GetBeefcakeManager() 
     {
         return bcm;
     }
@@ -172,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     private void SetBeefcakeManager()
     {
-        bcm = FindObjectOfType<BeefCakeManager>();
+        bcm = FindObjectOfType<CrewBeefCakeManager>();
     }
 
     private void SetCombatStatManager()
