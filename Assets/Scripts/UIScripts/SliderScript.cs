@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderScript : MonoBehaviour
-{
+public class SliderScript : MonoBehaviour {
     public Slider slider;
 
-    public void SetMaxHealth(int health)
-    {
-        slider.maxValue = health;
-        slider.value = health;
+    public void SetMaxValue(int value) {
+        slider.maxValue = value;
+        slider.value = value;
     }
 
-    public void SetHealth(int health)
-    {
-        slider.value = health;
+    public void SetValue(int value) {
+        slider.value = value;
     }
 }

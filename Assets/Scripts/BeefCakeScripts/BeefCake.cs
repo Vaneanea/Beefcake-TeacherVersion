@@ -47,7 +47,7 @@ public class BeefCake : MonoBehaviour
 
     private void SetStamina() 
     {
-        staminaSlider.SetHealth(beefCake.currentStamina);
+        staminaSlider.SetValue(beefCake.currentStamina);
     }
     #endregion
 

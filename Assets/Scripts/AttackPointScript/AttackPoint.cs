@@ -101,7 +101,7 @@ public class AttackPoint : MonoBehaviour
     private void SetAttackPointValuesToVisual()
     {
         //adjust the max health
-        healthBar.SetMaxHealth(maxHits);
+        healthBar.SetMaxValue(maxHits);
         //adjust the current health
         UpdateAttackPointHealthBarVisual();
     }
@@ -114,7 +114,7 @@ public class AttackPoint : MonoBehaviour
 
     private void UpdateAttackPointHealthBarVisual()
     {
-       healthBar.SetHealth(currentHits);
+       healthBar.SetValue(currentHits);
     }
 
     private void MovePlayerToAttackPosition()

@@ -90,10 +90,10 @@ public class CrewBeefCakeManager : MonoBehaviour
     {
         //connecting slot data
         GameObject slot = GameObject.Find(beefcakedata.displayName + " Slot");
-        slot.transform.GetChild(4).transform.GetChild(0).GetComponent<SliderScript>().SetMaxHealth(beefcake.GetComponent<BeefCake>().beefCake.stamina);
+        slot.transform.GetChild(4).transform.GetChild(0).GetComponent<SliderScript>().SetMaxValue(beefcake.GetComponent<BeefCake>().beefCake.stamina);
         beefcake.GetComponent<BeefCake>().beefCake.currentStamina = beefcake.GetComponent<BeefCake>().beefCake.stamina;
         beefcake.GetComponent<BeefCake>().beefCake.isFatigued = false;
-        slot.transform.GetChild(4).transform.GetChild(0).GetComponent<SliderScript>().SetHealth(beefcake.GetComponent<BeefCake>().beefCake.currentStamina);
+        slot.transform.GetChild(4).transform.GetChild(0).GetComponent<SliderScript>().SetValue(beefcake.GetComponent<BeefCake>().beefCake.currentStamina);
         slot.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>().text = beefcake.GetComponent<BeefCake>().beefCake.strength.ToString();
         slot.transform.GetChild(3).GetComponentInChildren<TextMeshProUGUI>().text = beefcake.GetComponent<BeefCake>().beefCake.speed.ToString();
     }

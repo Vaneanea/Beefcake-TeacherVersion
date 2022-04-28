@@ -21,15 +21,17 @@ public class BubbleSystemController : MonoBehaviour {
         SetStartColor(startColor);
 
         if (startColor.a <= 0.0f)
-            StartCoroutine(DestroyAfterSeconds(bubbleSystem.main.duration));
+            StartCoroutine(BubbleCleanAfterSeconds(bubbleSystem.main.duration));
     }
     private void SetStartColor(Color newColor) {
         ParticleSystem.MainModule main = bubbleSystem.main;
         main.startColor = newColor;
     }
 
-    IEnumerator DestroyAfterSeconds(float seconds) {
+    IEnumerator BubbleCleanAfterSeconds(float seconds) {
         yield return new WaitForSeconds(seconds);
+
+        // TODO: Notify something to update the progress bar. 
 
         Destroy(gameObject);
     }
