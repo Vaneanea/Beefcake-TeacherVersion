@@ -1907,7 +1907,7 @@
     },
     "m_Name": "DirtMask",
     "m_DefaultReferenceName": "Texture2D_bd219cfb99894bb596bfbbbd0c312e36",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_DirtMask",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

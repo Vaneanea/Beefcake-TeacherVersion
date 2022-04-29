@@ -1110,10 +1110,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2739179091523295664, guid: 16d1c1decb187824a931b2d64e772472,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739179091523295666, guid: 16d1c1decb187824a931b2d64e772472,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739179091523295668, guid: 16d1c1decb187824a931b2d64e772472,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739179091523295670, guid: 16d1c1decb187824a931b2d64e772472,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2739179091523295672, guid: 16d1c1decb187824a931b2d64e772472,
         type: 3}
       propertyPath: m_Name
       value: CarStatePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739179091523295672, guid: 16d1c1decb187824a931b2d64e772472,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d1c1decb187824a931b2d64e772472, type: 3}
@@ -7430,8 +7455,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 274121140}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &776950772
-BoxCollider:
+--- !u!64 &776950772
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7440,22 +7465,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.4529543, y: 1.3662627, z: 1.4083425}
-  m_Center: {x: -0.019692266, y: 0.93808544, z: -1.957636}
---- !u!65 &776950773
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776950771}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.39843, y: 2.4978297, z: 3.6965637}
-  m_Center: {x: -0.090589575, y: 1.3846558, z: 0.8135381}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fdf198beaeb6dc0478fc1a23628dd236, type: 3}
 --- !u!114 &776950774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7468,8 +7481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5e66a6e3b9d2643a9d0db367cd8422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirtMaskTextureBase: {fileID: 0}
-  material: {fileID: 0}
+  dirtMaskTextureBase: {fileID: 2800000, guid: 44920f6e1d92acc4397c3c9e79492da9, type: 3}
+  material: {fileID: 2100000, guid: 1796c8003b9a4444180197d18eabd829, type: 2}
+  dirtBrush: {fileID: 2800000, guid: 2ac4802c57adaf349a3f95b058c94366, type: 3}
 --- !u!1 &778874826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2039717212366485229, guid: e8ccdf07be684f04f969079dc01215ca,
