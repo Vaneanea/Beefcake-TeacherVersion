@@ -11,15 +11,18 @@ public class WashableCar : MonoBehaviour {
 
     [Header("Brush Fields")]
     [SerializeField] private Texture2D dirtBrush;
+    [SerializeField] private int squareSize = 32;
+    [SerializeField] private int maxPaintDistance = 7;
 
     private Texture2D dirtMaskTexture;
+    private Vector2Int lastPixelPos;
 
     private void Awake() {
         MakeDirtMask();
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
             WashCar();
         
     }
@@ -43,12 +46,12 @@ public class WashableCar : MonoBehaviour {
             int pixelY = (int) (textureCoord.y * dirtMaskTexture.height);
 
             Vector2Int paintPixelPosition = new Vector2Int(pixelX, pixelY);
+            if (!CheckPixelDistance(paintPixelPosition))
+                return;
 
             // Paint square in Dirt Mask
-            int squareSize = 32;
             int pixelXOffset = pixelX - (dirtBrush.width / 2);
             int pixelYOffset = pixelY - (dirtBrush.height / 2);
-
             for (int x = 0; x < squareSize; x++) {
                 for (int y = 0; y < squareSize; y++) {
                     dirtMaskTexture.SetPixel(
@@ -61,5 +64,14 @@ public class WashableCar : MonoBehaviour {
 
             dirtMaskTexture.Apply();
         }
+    }
+
+    private bool CheckPixelDistance(Vector2Int curPixelPos) {
+        int pixelDistance = Mathf.Abs(curPixelPos.x - lastPixelPos.x) + Mathf.Abs(curPixelPos.y - lastPixelPos.y);
+        if (pixelDistance < maxPaintDistance)
+            return false;
+
+        lastPixelPos = curPixelPos;
+        return true;
     }
 }
