@@ -10,7 +10,7 @@ public class WashableCar : MonoBehaviour {
     [SerializeField] private Material material;
 
     [Header("Brush Fields")]
-    [SerializeField] private Texture2D dirtBrush;
+    // [SerializeField] private Texture2D dirtBrush;
     [SerializeField] private int squareSize = 32;
     [SerializeField] private int maxPaintDistance = 7;
 
@@ -41,6 +41,7 @@ public class WashableCar : MonoBehaviour {
         int layerMask = LayerMask.GetMask("WashableCar");
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, layerMask)) {
             Vector2 textureCoord = hit.textureCoord;
+           
 
             int pixelX = (int) (textureCoord.x * dirtMaskTexture.width);
             int pixelY = (int) (textureCoord.y * dirtMaskTexture.height);
@@ -48,10 +49,9 @@ public class WashableCar : MonoBehaviour {
             Vector2Int paintPixelPosition = new Vector2Int(pixelX, pixelY);
             if (!CheckPixelDistance(paintPixelPosition))
                 return;
-
             // Paint square in Dirt Mask
-            int pixelXOffset = pixelX - (dirtBrush.width / 2);
-            int pixelYOffset = pixelY - (dirtBrush.height / 2);
+            int pixelXOffset = pixelX - (squareSize / 2);
+            int pixelYOffset = pixelY - (squareSize / 2);
             for (int x = 0; x < squareSize; x++) {
                 for (int y = 0; y < squareSize; y++) {
                     dirtMaskTexture.SetPixel(
