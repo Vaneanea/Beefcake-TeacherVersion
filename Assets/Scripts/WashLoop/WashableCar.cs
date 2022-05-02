@@ -13,17 +13,32 @@ public class WashableCar : MonoBehaviour {
     [SerializeField] private Texture2D dirtBrush;
     [SerializeField] private int maxPaintDistance = 7;
 
+    [Header("General")]
+    [SerializeField] private float totalDirt = 60000; // Hardcoded for now, since it depends on texture
+
     private Texture2D dirtMaskTexture;
     private Vector2Int lastPixelPos;
 
+    private float totalDirtRemoved;
+
+    private WashUIManager uiManager;
+
     private void Awake() {
+        SetVariables();
         MakeDirtMask();
+
+        totalDirtRemoved = 0;
+        uiManager.SetProgressMaxValue((int) totalDirt);
+        uiManager.SetProgressValue((int) totalDirtRemoved);
     }
 
     private void Update() {
         if (Input.GetMouseButton(0))
-            WashCar();
-        
+            WashCar();  
+    }
+
+    private void SetVariables() {
+        uiManager = GameObject.Find("WashUIManager").GetComponent<WashUIManager>();
     }
 
     private void MakeDirtMask() {
@@ -34,6 +49,8 @@ public class WashableCar : MonoBehaviour {
         material.SetTexture("_DirtMask", dirtMaskTexture);
     }
 
+    #region Wash Car methods
+
     private void WashCar() {
         RaycastHit hit;
 
@@ -41,7 +58,6 @@ public class WashableCar : MonoBehaviour {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, layerMask)) {
             Vector2 textureCoord = hit.textureCoord;
            
-
             int pixelX = (int) (textureCoord.x * dirtMaskTexture.width);
             int pixelY = (int) (textureCoord.y * dirtMaskTexture.height);
 
@@ -73,6 +89,8 @@ public class WashableCar : MonoBehaviour {
                 Color pixelDirt = dirtBrush.GetPixel(x, y);
                 Color pixelDirtMask = dirtMaskTexture.GetPixel(pixelXOffset + x, pixelYOffset + y);
 
+                totalDirtRemoved += pixelDirtMask.g - (pixelDirtMask.g * pixelDirt.g);
+
                 dirtMaskTexture.SetPixel(
                     pixelXOffset + x,
                     pixelYOffset + y,
@@ -80,5 +98,8 @@ public class WashableCar : MonoBehaviour {
                 );
             }
         }
+
+        uiManager.SetProgressValue((int) totalDirtRemoved);
     }
+    #endregion
 }

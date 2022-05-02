@@ -7,12 +7,14 @@ public class SliderScript : MonoBehaviour {
     public Slider slider;
 
     public void SetMaxValue(int value) {
-     
         slider.maxValue = value;
         slider.value = value;
     }
 
     public void SetValue(int value) {
         slider.value = value;
+
+        if (value >= slider.maxValue)
+            Debug.Log("WASHED");
     }
 }
