@@ -10,8 +10,7 @@ public class WashableCar : MonoBehaviour {
     [SerializeField] private Material material;
 
     [Header("Brush Fields")]
-    // [SerializeField] private Texture2D dirtBrush;
-    [SerializeField] private int squareSize = 32;
+    [SerializeField] private Texture2D dirtBrush;
     [SerializeField] private int maxPaintDistance = 7;
 
     private Texture2D dirtMaskTexture;
@@ -49,18 +48,8 @@ public class WashableCar : MonoBehaviour {
             Vector2Int paintPixelPosition = new Vector2Int(pixelX, pixelY);
             if (!CheckPixelDistance(paintPixelPosition))
                 return;
-            // Paint square in Dirt Mask
-            int pixelXOffset = pixelX - (squareSize / 2);
-            int pixelYOffset = pixelY - (squareSize / 2);
-            for (int x = 0; x < squareSize; x++) {
-                for (int y = 0; y < squareSize; y++) {
-                    dirtMaskTexture.SetPixel(
-                        pixelXOffset + x,
-                        pixelYOffset + y,
-                        Color.black
-                    );
-                }
-            }
+
+            PaintDirtMask(pixelX, pixelY);
 
             dirtMaskTexture.Apply();
         }
@@ -73,5 +62,23 @@ public class WashableCar : MonoBehaviour {
 
         lastPixelPos = curPixelPos;
         return true;
+    }
+
+    private void PaintDirtMask(int pixelX, int pixelY) {
+        // Paint Dirt Brush texture in Dirt Mask
+        int pixelXOffset = pixelX - (dirtBrush.width / 2);
+        int pixelYOffset = pixelY - (dirtBrush.height / 2);
+        for (int x = 0; x < dirtBrush.width; x++) {
+            for (int y = 0; y < dirtBrush.height; y++) {
+                Color pixelDirt = dirtBrush.GetPixel(x, y);
+                Color pixelDirtMask = dirtMaskTexture.GetPixel(pixelXOffset + x, pixelYOffset + y);
+
+                dirtMaskTexture.SetPixel(
+                    pixelXOffset + x,
+                    pixelYOffset + y,
+                    new Color(0, pixelDirtMask.g * pixelDirt.g, 0)
+                );
+            }
+        }
     }
 }

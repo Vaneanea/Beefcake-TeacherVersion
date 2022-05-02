@@ -7529,7 +7529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dirtMaskTextureBase: {fileID: 2800000, guid: 44920f6e1d92acc4397c3c9e79492da9, type: 3}
   material: {fileID: 2100000, guid: 1796c8003b9a4444180197d18eabd829, type: 2}
-  squareSize: 8
+  dirtBrush: {fileID: 2800000, guid: 2ac4802c57adaf349a3f95b058c94366, type: 3}
+  brushSize: 32
   maxPaintDistance: 3
 --- !u!1 &778874826 stripped
 GameObject:
@@ -8407,7 +8408,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dirtMaskTextureBase: {fileID: 2800000, guid: 44920f6e1d92acc4397c3c9e79492da9, type: 3}
   material: {fileID: 2100000, guid: 54fd4203c73b2d549986198e09469be0, type: 2}
-  squareSize: 32
+  dirtBrush: {fileID: 0}
+  brushSize: 0
   maxPaintDistance: 7
 --- !u!65 &983858738
 BoxCollider:
@@ -9386,7 +9388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 478.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277008956
@@ -9849,7 +9851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 840.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469653612
@@ -16032,7 +16034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 124.880005, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1996828844
