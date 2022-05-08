@@ -14,7 +14,7 @@ public class WashableCar : MonoBehaviour {
     [SerializeField] private int maxPaintDistance = 7;
 
     [Header("General")]
-    [SerializeField] private float totalDirt = 60000; // Hardcoded for now, since it depends on texture
+    [SerializeField] private float totalDirt; // Hardcoded for now, since it depends on texture
 
     private Texture2D dirtMaskTexture;
     private Vector2Int lastPixelPos;
@@ -30,11 +30,18 @@ public class WashableCar : MonoBehaviour {
         totalDirtRemoved = 0;
         uiManager.SetProgressMaxValue((int) totalDirt);
         uiManager.SetProgressValue((int) totalDirtRemoved);
+
+        Input.simulateMouseWithTouches = false;
     }
 
     private void Update() {
+#if UNITY_EDITOR
         if (Input.GetMouseButton(0))
-            WashCar();  
+         WashCar(Input.mousePosition);
+#endif
+
+        if (Input.touchCount > 0)
+            WashCar(Input.touches[0].position);
     }
 
     private void SetVariables() {
@@ -51,11 +58,11 @@ public class WashableCar : MonoBehaviour {
 
     #region Wash Car methods
 
-    private void WashCar() {
+    private void WashCar(Vector3 position) {
         RaycastHit hit;
 
         int layerMask = LayerMask.GetMask("WashableCar");
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, layerMask)) {
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(position), out hit, layerMask)) {
             Vector2 textureCoord = hit.textureCoord;
            
             int pixelX = (int) (textureCoord.x * dirtMaskTexture.width);
@@ -69,6 +76,9 @@ public class WashableCar : MonoBehaviour {
 
             dirtMaskTexture.Apply();
         }
+
+        if (totalDirtRemoved >= totalDirt)
+            uiManager.SetDebugText("CAR WASHED");
     }
 
     private bool CheckPixelDistance(Vector2Int curPixelPos) {
