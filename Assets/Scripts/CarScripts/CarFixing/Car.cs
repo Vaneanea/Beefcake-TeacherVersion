@@ -52,9 +52,6 @@ public class Car : MonoBehaviour
 
     public GameObject clientCard;
 
-  /// <summary>
-  /// TODO: ADD method so that attackpoints spawn after the car has landed
-  /// </summary>
     void Start()
     {
         isDone = false;
@@ -67,15 +64,13 @@ public class Car : MonoBehaviour
         firstCarStage.transform.SetParent(cm.GetCar().transform);
         currentCarStage = firstCarStage;
 
-        CreateAttackPoints(attackPointsStage1);
-
         CreateClientCardVisual();
-        clientCard.SetActive(false);
+        clientCard.SetActive(true);
     }
 
     void Update()
     {
-        ActivateClientCard();
+        CheckHasLanded();
 
         //check if first stage has been fixed
         if (attackPointsFixed >= firstStageAttackPointAmount && stagesDone == 0)
@@ -108,15 +103,15 @@ public class Car : MonoBehaviour
         }
     }
 
-    private void ActivateClientCard()
+    private void CheckHasLanded()
     {
         if (hasLanded == true && startPosIsAssigned == false)
         {
-            clientCard.SetActive(true);
+            CreateAttackPoints(attackPointsStage1);
+
             GetComponentInChildren<CarMainBody>().AssignStartPosition();
             startPosIsAssigned = true;
         }
-
     }
 
     private void CreateClientCardVisual()
@@ -268,9 +263,6 @@ public class Car : MonoBehaviour
 
             thirdCarStage.transform.position = targetPos;
         }
-     
-
-
 
         SetHasLanded(false);
         isDone = true;

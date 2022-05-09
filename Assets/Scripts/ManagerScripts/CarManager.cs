@@ -46,6 +46,7 @@ public class CarManager : MonoBehaviour
     // Called when player rejects job by interacting with the Client Info Pop-up
     public void OnCarRejected() {
         PrepareNextCar();
+        jm.carSmokeEffects.Stop();
     }
 
     private void CreateCar()
