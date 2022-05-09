@@ -43,6 +43,11 @@ public class CarManager : MonoBehaviour
         CheckIfCarIsDone();
     }
 
+    // Called when player rejects job by interacting with the Client Info Pop-up
+    public void OnCarRejected() {
+        PrepareNextCar();
+    }
+
     private void CreateCar()
     {
         GameObject newCar = Instantiate(aCar);
@@ -93,15 +98,18 @@ public class CarManager : MonoBehaviour
             AddCoinsEarnedForCar();
             carDone++;
 
-            if (gm.gameMode == GameMode.Job && carDone >= gm.job.cars.Count)
-            {
-                jobDone = true;
-                return;
-            }
-
-            ReplaceCar();
-            csm.ResetProgressBar();
+            PrepareNextCar();
         }
+    }
+
+    private void PrepareNextCar() {
+        if (gm.gameMode == GameMode.Job && carDone >= gm.job.cars.Count) {
+            jobDone = true;
+            return;
+        }
+
+        ReplaceCar();
+        csm.ResetProgressBar();
     }
 
     //Is very simple right now, is open for expansion in the futore. Maybe 

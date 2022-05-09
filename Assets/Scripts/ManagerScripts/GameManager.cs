@@ -242,6 +242,23 @@ public class GameManager : MonoBehaviour
         return currentCrewReputation;
     }
 
+    public void OnJobRejected() {
+        cm.OnCarRejected();
+        ClearAllAttackPoints();
+    }
+
+    #region Attack Points methods
+
+    private void ClearAllAttackPoints() {
+        AddCurrentAttackPointsToList();
+
+        foreach (GameObject attackPoint in csm.currentAttackPoints) {
+            Destroy(attackPoint.gameObject);
+        }
+
+        csm.currentAttackPoints.Clear();
+    }
+
     private void AddCurrentAttackPointsToList() 
     {
         foreach (GameObject attackPoint in GameObject.FindGameObjectsWithTag("FixPoint"))
@@ -259,6 +276,7 @@ public class GameManager : MonoBehaviour
             attackPoint.gameObject.SetActive(false);
         }
     }
+    
 
     private void ActivateAttackPoints()
     {
@@ -270,6 +288,7 @@ public class GameManager : MonoBehaviour
 
         csm.currentAttackPoints.Clear();
     }
+    #endregion
 }
 
 public static class Helper
