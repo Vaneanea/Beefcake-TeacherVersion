@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-// Handles interaction with the Client Info Pop-up
-public class ClientInfoUI : MonoBehaviour {
-    [SerializeField] private float fadeDelay = 2f;
-    [SerializeField] private float fadeSpeed = 1f;
-    private List<Image> clientCardImages;
-
+// Handles interaction and display for the Client Info Pop-up
+public class ClientInfoUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+    private GameManager gm;
     private DynamicCarData dynamicCarData;
 
-    private GameManager gm;
+    [SerializeField] private float fadeDelay;
+    [SerializeField] private float fadeSpeed;
+    private List<Image> clientCardImages;
+
+    #region Interaction vars
+    [SerializeField] private float dragDistance;
+    private Vector3 touchStartPos;
+    private Vector3 popUpStartPos;
+    #endregion
 
     private void Start() {
-        SetManager();
+        gm = FindObjectOfType<GameManager>();
         SetClientCardImages();
     }
 
@@ -42,14 +48,33 @@ public class ClientInfoUI : MonoBehaviour {
             transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
     }
 
-    // TODO: Call this on swipe. For now it's called on click. 
-    public void OnJobReject() {
+    // Called on swipe 
+    private void OnJobReject() {
         gm.OnJobRejected();
     }
 
-    private void SetManager() {
-        gm = FindObjectOfType<GameManager>();
+    #region Interaction methods
+    public void OnBeginDrag(PointerEventData eventData) {
+        touchStartPos = Input.mousePosition;
+        popUpStartPos = transform.localPosition;
     }
+
+    public void OnDrag(PointerEventData eventData) {
+        Vector3 distance = Input.mousePosition - touchStartPos;
+
+        float newPosX = popUpStartPos.x + distance.x;
+        transform.localPosition = new Vector3(newPosX, popUpStartPos.y, popUpStartPos.z);
+    }
+
+    public void OnEndDrag(PointerEventData eventData) {
+        Vector3 distance = Input.mousePosition - touchStartPos;
+
+        if (Mathf.Abs(distance.x) > dragDistance)
+            OnJobReject();
+        else 
+            transform.localPosition = popUpStartPos;
+    }
+    #endregion
 
     #region Display methods
     private void SetClientCardImages() {
