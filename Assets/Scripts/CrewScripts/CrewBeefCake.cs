@@ -24,6 +24,4 @@ public class CrewBeefCake : ScriptableObject
     public int currentStamina;
     public bool isFatigued = false;
     public bool isPlayer = false;
-
-
 }

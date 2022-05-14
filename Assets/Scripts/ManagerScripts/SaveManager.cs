@@ -18,7 +18,7 @@ public class SaveManager : MonoBehaviour
         Load();
         CrewInventory.instance.GetCrew();
     }
-       
+
     void OnApplicationQuit()
     {
         Save();
@@ -58,6 +58,7 @@ public class SaveManager : MonoBehaviour
         }
 
         Save();
+       
     }
 
 

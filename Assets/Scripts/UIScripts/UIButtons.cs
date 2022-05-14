@@ -21,7 +21,7 @@ public class UIButtons : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("FixLoopVisualUpdate");
+            SceneManager.LoadScene("FixLoop");
         }
 
       
@@ -33,7 +33,7 @@ public class UIButtons : MonoBehaviour
 
     public void ShopButton()
     {
-      SceneManager.LoadScene("CrewHire (Ziana)");
+      SceneManager.LoadScene("CrewHire");
     }
 
     public void ActivateTempPauseMenu()

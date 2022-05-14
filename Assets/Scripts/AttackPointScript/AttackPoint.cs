@@ -13,10 +13,10 @@ public class AttackPoint : MonoBehaviour
     //Managers
     private GameManager gm;
     private CombatStatManager csm;
-    private BeefCakeManager bcm;
+    private CrewBeefCakeManager bcm;
     private AttackAnimationManager aam;
     private JuiceManager jm;
-
+    private CoinManager coinM;
 
     //Player
     [SerializeField]
@@ -29,9 +29,6 @@ public class AttackPoint : MonoBehaviour
     //reference to the healthbar script
     public SliderScript healthBar;
 
-
-
-    //public ParticleSystem smokeParticle;
 
     private void Awake()
     {
@@ -81,6 +78,7 @@ public class AttackPoint : MonoBehaviour
         bcm = gm.GetBeefcakeManager();
         aam = gm.GetAttackAnimationManager();
         jm = gm.GetJuiceManager();
+        coinM = gm.GetCoinManager();
     }
     private void SetPlayer()
     {
@@ -127,31 +125,46 @@ public class AttackPoint : MonoBehaviour
 
         if (currentPlayerPosition.localPosition != player.transform.localPosition)
         {
-            jm.teleportationDust.gameObject.transform.position = currentPlayerPosition.localPosition;
 
-            var rn = Random.Range(0, 1);
-            if (rn == 0)
-            {
-                SoundEffectManager.Play("Whoosh1");
-            }
-            else 
-            {
-                SoundEffectManager.Play("Whoosh2");
-            }
-
-          
-            jm.teleportationDust.Play();
-
-            currentPlayerPosition.localPosition = player.transform.localPosition;
-            currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+            PlayDustParticleEffect();
+            UpdateCurrentPlayerPositions();
         }
         else
         {
-            currentPlayerPosition.localPosition = player.transform.localPosition;
-            currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+            UpdateCurrentPlayerPositions();
         }
 
     }
+
+    private void PlayDustParticleEffect()
+    {
+        //Update particle effect position
+        jm.teleportationDust.gameObject.transform.position = currentPlayerPosition.localPosition;
+
+        //PlaySoundEffect
+        var rn = Random.Range(0, 1);
+        if (rn == 0)
+        {
+            SoundEffectManager.Play("Whoosh1");
+        }
+        else
+        {
+            SoundEffectManager.Play("Whoosh2");
+        }
+
+
+        //Play particle effect
+        jm.teleportationDust.Play();
+    }
+
+    private void UpdateCurrentPlayerPositions()
+    {
+        currentPlayerPosition.localPosition = player.transform.localPosition;
+        currentPlayerPosition.localRotation = player.transform.transform.localRotation;
+    }
+
+
+
 
     private void CheckIfDestroyed()
     {
@@ -181,7 +194,10 @@ public class AttackPoint : MonoBehaviour
 
         //reduce stamina of player
         player.ReduceStamina(csm.staminaDecreaseValue);
-        
+
+        //determine if a coin will spawn
+        DetermineIfCoinWillSpawn(3);
+
         StartCoroutine(ChangeTargetImage());
     }
 
@@ -195,5 +211,15 @@ public class AttackPoint : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         transform.GetChild(1).GetChild(1).GetComponent<Image>().sprite = transform.GetChild(2).GetComponent<SpriteRenderer>().sprite;
         transform.GetChild(1).GetChild(1).GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1.3f);
+    }
+
+    private void DetermineIfCoinWillSpawn(int chance)
+    {
+        int coinWillSpawn = Random.Range(0, chance);
+        
+        if (coinWillSpawn == 1)
+        {
+            coinM.SpawnCoin();
+        }
     }
 }  

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Holds the crew members that are available to the player
 // Singleton
@@ -19,12 +20,11 @@ public class CrewInventory : MonoBehaviour {
         CreateSingletonInstance();
         crew = new List<CrewBeefCake>();
         GetCrew();
+       
     }
 
     private void Start()
     {
-
-        //Create slots 
         inventoryObject.GetComponent<CharacterInfoScript>().CreateSlots();
     }
 
@@ -65,6 +65,7 @@ public class CrewInventory : MonoBehaviour {
            crew.Add(beefCake);
         }
 
+      
     }
 
     private CrewBeefCake CreateNewCrewBeefCake(ShopBeefCake data) {

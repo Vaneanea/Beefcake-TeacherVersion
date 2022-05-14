@@ -74,8 +74,6 @@ public class JuiceManager : MonoBehaviour
         SoundEffectManager.Play("CrowdCheer");
         yield return new WaitForSeconds(1.5f);
         crowdCheering.SetActive(false);
-
-       
     }
 
 }
