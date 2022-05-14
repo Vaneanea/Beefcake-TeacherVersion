@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: a45c8d34ac252f24d8cfae12518a3126
   - enabled: 1
-    path: Assets/Scenes/FixLoop.unity
-    guid: 8da689d8e10c8614993f5ce6ed76e360
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/Scenes/CrewHire.unity
     guid: 98348fc6a45a1e7498a0ce1e04a29892
+  - enabled: 1
+    path: Assets/Scenes/ZianaDev.unity
+    guid: 68266f56537681d4695ecf612cb36513
+  - enabled: 1
+    path: Assets/Scenes/FixLoop.unity
+    guid: 04c96c116bbb01e43b11983eb0f23dc0
   m_configObjects: {}
