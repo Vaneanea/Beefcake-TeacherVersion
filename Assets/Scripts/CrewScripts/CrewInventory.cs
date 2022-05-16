@@ -42,7 +42,7 @@ public class CrewInventory : MonoBehaviour {
         obj.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         InventorySlot slot = obj.GetComponent<InventorySlot>();
-        slot.Set(crewItem);
+        slot.Set(ref crewItem);
     }
 
     public List<CrewBeefCake> GetCrewList()

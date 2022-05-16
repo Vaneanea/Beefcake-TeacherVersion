@@ -8,7 +8,6 @@ public class SaveManager : MonoBehaviour
 {
     [Serializable] public class CrewBeefCakeList : List<CrewBeefCake> { }
 
-
     public static CrewBeefCakeList crew = new CrewBeefCakeList();
     const string CREW_KEY = "/crew";
     //const string CAR_KEY = "/cars";
