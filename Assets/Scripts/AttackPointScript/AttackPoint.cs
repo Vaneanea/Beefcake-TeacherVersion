@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+// TODO for button timing:
+// * modify currentHits in ExecuteAttack based on button scale
 public class AttackPoint : MonoBehaviour
 {
     private int maxHits;
@@ -29,17 +31,26 @@ public class AttackPoint : MonoBehaviour
     //reference to the healthbar script
     public SliderScript healthBar;
 
+    #region Pulsate Button variables
+    [Header("Pulsate Button variables")]
+    [SerializeField] private Vector2 scaleTimeBounds;
+    [SerializeField] private float minScale;
+    private static float scaleTime;
+    #endregion
 
     private void Awake()
     {
         SetGameManager();
         SetOtherManagers();
+        InitializeScaleTime();
     }
 
     private void Start()
     {
         SetInitialParameters();
         currentPlayerPosition = bcm.startingPositions[0];
+
+        StartPulsating();
     }
 
     private void Update()
@@ -112,6 +123,7 @@ public class AttackPoint : MonoBehaviour
     }
     #endregion
 
+    #region Attack Methods
     private void UpdateAttackPointHealthBarVisual()
     {
        healthBar.SetHealth(currentHits);
@@ -163,9 +175,6 @@ public class AttackPoint : MonoBehaviour
         currentPlayerPosition.localRotation = player.transform.transform.localRotation;
     }
 
-
-
-
     private void CheckIfDestroyed()
     {
         if (currentHits <= 0)
@@ -188,6 +197,7 @@ public class AttackPoint : MonoBehaviour
     {
         //reduce current hits
         currentHits -= player.GetAttackDamage();
+        // TODO: Here modify currentHits depending on timing of hit
 
         //show progress in progressbar
         csm.IncreaseProgress(player.GetAttackDamage());
@@ -200,7 +210,6 @@ public class AttackPoint : MonoBehaviour
 
         StartCoroutine(ChangeTargetImage());
     }
-
 
     private IEnumerator ChangeTargetImage()
     {
@@ -222,4 +231,15 @@ public class AttackPoint : MonoBehaviour
             coinM.SpawnCoin();
         }
     }
-}  
+    #endregion
+
+    #region Pulsate Button Methods
+    private void InitializeScaleTime() {
+        scaleTime = Random.Range(scaleTimeBounds.x, scaleTimeBounds.y);
+    }
+
+    private void StartPulsating() {
+        LeanTween.scale(gameObject, new Vector3(minScale, minScale, minScale), scaleTime).setLoopPingPong();
+    }
+    #endregion
+}

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 3
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -458,7 +458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95, y: -106}
+  m_AnchoredPosition: {x: -199, y: -187}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4936426250139341986
@@ -476,6 +476,8 @@ MonoBehaviour:
   player: {fileID: 0}
   playerPosition: {fileID: 0}
   healthBar: {fileID: 8300286608398855066}
+  scaleTimeBounds: {x: 0.3, y: 0.5}
+  minScale: 6
 --- !u!1 &6130737824947687608
 GameObject:
   m_ObjectHideFlags: 0
