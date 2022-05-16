@@ -19,7 +19,6 @@ public class CrewTrainingManager : MonoBehaviour {
         SetManagers();
 
         uiManager.OnStart(curBeefCake);
-        StartCoroutine(EndTrainingAfterSeconds(trainingTime));
     }
 
     private void OnEnable() {
@@ -28,6 +27,12 @@ public class CrewTrainingManager : MonoBehaviour {
 
     private void OnDisable() {
         TrainButtonController.OnTrain -= IncreaseStat;
+    }
+
+    public void OnTimerEnd() {
+        // TODO: Show pop-up with progress or something before switching scenes 
+        SaveBeefCakeChanges();
+        SceneManager.LoadScene("CrewManagement");
     }
 
     private void IncreaseStat(int amount) {
@@ -49,14 +54,6 @@ public class CrewTrainingManager : MonoBehaviour {
     private void SetManagers() {
         uiManager = GetComponentInChildren<TrainingUIManager>();
         saveManager = GetComponentInChildren<SaveManager>();
-    }
-
-    private IEnumerator EndTrainingAfterSeconds(float seconds) {
-        yield return new WaitForSeconds(seconds);
-
-        // TODO: Show pop-up with progress or something before switching scenes 
-        SaveBeefCakeChanges();
-        SceneManager.LoadScene("CrewManagement");
     }
 
     private void SaveBeefCakeChanges() {
