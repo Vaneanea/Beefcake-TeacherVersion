@@ -33,10 +33,4 @@ public class InventorySlot : MonoBehaviour {
 
         gameObject.name = crewItem.displayName + " Slot";
     }
-
-    // TODO: temporary, will need to create another scene for this 
-    public void OnClick() {
-        SceneManager.LoadScene("CrewTraining");
-        CrewTrainingManager.curBeefCake = source;
-    }
 }

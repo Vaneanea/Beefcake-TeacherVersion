@@ -57,7 +57,7 @@ public class TrainingUIManager : MonoBehaviour {
         // Set its local transform to display it properly 
         model.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         model.transform.localRotation = Quaternion.identity;
-        model.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        model.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
         // Change {model} layer to UI (including its children)
         model.layer = LayerMask.NameToLayer("UI");

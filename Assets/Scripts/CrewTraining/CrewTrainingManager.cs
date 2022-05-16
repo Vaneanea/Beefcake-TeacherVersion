@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CrewTrainingManager : MonoBehaviour {
     [SerializeField] public static CrewBeefCake curBeefCake;
+    [SerializeField] public static string trainStat;
 
     [SerializeField] private int trainingTime;
 
@@ -47,7 +48,7 @@ public class CrewTrainingManager : MonoBehaviour {
 
         SaveBeefCakeChanges();
         // TODO: Show pop-up with progress or something before switching scenes 
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("CrewManagement");
     }
 
     private void SaveBeefCakeChanges() {

@@ -23,10 +23,6 @@ public class CrewUIManager : MonoBehaviour {
         SetCharacterModel(curItem);
     }
 
-    public void OnClickTrain() {
-        // TODO: implement this
-    }
-
     public void DisableArrows() {
         rightArrow.SetActive(false);
         leftArrow.SetActive(false);

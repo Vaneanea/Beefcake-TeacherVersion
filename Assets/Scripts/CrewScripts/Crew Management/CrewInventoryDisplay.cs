@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrewInventoryDisplay : MonoBehaviour {
     private List<CrewBeefCake> crew;
@@ -32,7 +33,10 @@ public class CrewInventoryDisplay : MonoBehaviour {
         NotifyCurItemChange();
     }
 
-    // TODO: might need to implement OnClick for Train button here
+    public void OnClickTrain() {
+        CrewTrainingManager.curBeefCake = crew[curItem];
+        SceneManager.LoadScene("CrewTraining");
+    }
     #endregion
 
     private void NotifyCurItemChange() {

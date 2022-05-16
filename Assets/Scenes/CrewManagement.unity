@@ -17101,9 +17101,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CrewShopInventory, Assembly-CSharp
-        m_MethodName: OnClickHire
+      - m_Target: {fileID: 1431958355}
+        m_TargetAssemblyTypeName: CrewInventoryDisplay, Assembly-CSharp
+        m_MethodName: OnClickTrain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17509,9 +17509,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CrewShopInventory, Assembly-CSharp
-        m_MethodName: OnClickHire
+      - m_Target: {fileID: 1431958355}
+        m_TargetAssemblyTypeName: CrewInventoryDisplay, Assembly-CSharp
+        m_MethodName: OnClickTrain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27096,9 +27096,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CrewShopInventory, Assembly-CSharp
-        m_MethodName: OnClickHire
+      - m_Target: {fileID: 1431958355}
+        m_TargetAssemblyTypeName: CrewInventoryDisplay, Assembly-CSharp
+        m_MethodName: OnClickTrain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
