@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CrewInventoryDisplay : MonoBehaviour {
     private List<CrewBeefCake> crew;
@@ -34,7 +36,10 @@ public class CrewInventoryDisplay : MonoBehaviour {
     }
 
     public void OnClickTrain() {
+        string buttonName = EventSystem.current.currentSelectedGameObject.name;
         CrewTrainingManager.curBeefCake = crew[curItem];
+        CrewTrainingManager.trainStat = buttonName.Split(new char[] { ' ' })[0]; ;
+
         SceneManager.LoadScene("CrewTraining");
     }
     #endregion

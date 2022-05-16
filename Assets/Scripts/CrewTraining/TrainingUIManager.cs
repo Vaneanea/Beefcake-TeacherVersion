@@ -24,7 +24,7 @@ public class TrainingUIManager : MonoBehaviour {
     }
 
     public void NotifyStatTrained(CrewBeefCake beefCake) {
-        SetStatText(beefCake);
+        SetStatUI(beefCake);
         ShowTrainEffects();
 
         // TODO: Animate the character model.
@@ -34,13 +34,29 @@ public class TrainingUIManager : MonoBehaviour {
         nameText.text = beefCake.displayName;
         levelText.text = beefCake.level.ToString();
 
-        SetStatText(beefCake);
-
-        // TODO: Implement showing the chosen stat. For now only show strength.
+        SetStatUI(beefCake);
     }
 
-    private void SetStatText(CrewBeefCake beefCake) {
-        statValue.text = beefCake.strength.ToString();
+    private void SetStatUI(CrewBeefCake beefCake) {
+        int value = -1;
+        GameObject statDisplay = null;
+        switch (CrewTrainingManager.trainStat) {
+            case "Strength":
+                value = beefCake.strength;
+                statDisplay = strengthDisplay;
+                break;
+            case "Speed":
+                value = beefCake.speed;
+                statDisplay = speedDisplay;
+                break;
+            case "Stamina":
+                value = beefCake.stamina;
+                statDisplay = staminaDisplay;
+                break;
+        }
+
+        statValue.text = value.ToString();
+        statDisplay.SetActive(true);
     }
 
     private void ShowTrainEffects() {

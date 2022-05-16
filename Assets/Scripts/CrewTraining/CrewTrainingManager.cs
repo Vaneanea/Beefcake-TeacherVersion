@@ -31,7 +31,17 @@ public class CrewTrainingManager : MonoBehaviour {
     }
 
     private void IncreaseStat(int amount) {
-        curBeefCake.strength += amount;
+        switch (trainStat) {
+            case "Strength":
+                curBeefCake.strength += amount;
+                break;
+            case "Speed":
+                curBeefCake.speed += amount;
+                break;
+            case "Stamina":
+                curBeefCake.stamina += amount;
+                break;
+        }
 
         uiManager.NotifyStatTrained(curBeefCake);
     }
@@ -44,18 +54,20 @@ public class CrewTrainingManager : MonoBehaviour {
     private IEnumerator EndTrainingAfterSeconds(float seconds) {
         yield return new WaitForSeconds(seconds);
 
-        Debug.Log("END TRAINING SESSION");
-
-        SaveBeefCakeChanges();
         // TODO: Show pop-up with progress or something before switching scenes 
+        SaveBeefCakeChanges();
         SceneManager.LoadScene("CrewManagement");
     }
 
     private void SaveBeefCakeChanges() {
         List<CrewBeefCake> crew = SaveManager.crew;
         foreach (CrewBeefCake beef in crew) {
-            if (beef.displayName == curBeefCake.displayName)
+            if (beef.displayName == curBeefCake.displayName) {
                 beef.strength = curBeefCake.strength;
+                beef.stamina = curBeefCake.stamina;
+                beef.speed = curBeefCake.speed;
+            }
+                
         }
 
         saveManager.Save();
