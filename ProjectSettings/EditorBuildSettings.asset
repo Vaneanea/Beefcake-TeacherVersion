@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FixLoop.unity
     guid: 04c96c116bbb01e43b11983eb0f23dc0
+  - enabled: 1
+    path: Assets/Scenes/CrewTraining.unity
+    guid: 348642eed663d984d82cb5e1cf0e5bfa
   m_configObjects: {}

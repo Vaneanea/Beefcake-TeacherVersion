@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 // Handles Inventory Slot display
 public class InventorySlot : MonoBehaviour {
     // TODO: add XP display
+
+    [SerializeField] CrewBeefCake source;
 
     [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text speedText;
@@ -16,8 +19,8 @@ public class InventorySlot : MonoBehaviour {
     [SerializeField] private Image backGlow;
     [SerializeField] private Image background;
 
-    public void Set(CrewBeefCake crewItem) {
-        //BeefCakeData source = crewItem.source;
+    public void Set(ref CrewBeefCake crewItem) {
+        source = crewItem;
 
         headshot.sprite = crewItem.headshot;
 
@@ -29,5 +32,11 @@ public class InventorySlot : MonoBehaviour {
         speedText.text = crewItem.speed.ToString();
 
         gameObject.name = crewItem.displayName + " Slot";
+    }
+
+    // TODO: temporary, will need to create another scene for this 
+    public void OnClick() {
+        SceneManager.LoadScene("CrewTraining");
+        CrewTrainingManager.curBeefCake = source;
     }
 }

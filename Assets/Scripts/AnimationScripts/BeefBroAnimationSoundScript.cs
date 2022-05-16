@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BeefBroAnimationSoundScript : MonoBehaviour
 {
@@ -29,11 +30,17 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
     #region Set Managers
     private void SetGameManager()
     {
+        if (SceneManager.GetActiveScene().name != "FixLoop")
+            return;
+
         gm = FindObjectOfType<GameManager>();
     }
 
     private void SetOtherManagers()
     {
+        if (SceneManager.GetActiveScene().name != "FixLoop")
+            return;
+
         jm = gm.GetJuiceManager();
         cm = gm.GetCarManager();
         bcm = gm.GetBeefcakeManager();
@@ -43,10 +50,8 @@ public class BeefBroAnimationSoundScript : MonoBehaviour
 
     private void SetParticleEffects()
     {
-        if (gm.gameObject.name != "FixLoop_GameManager")
-        {
+        if (SceneManager.GetActiveScene().name != "FixLoop")
             return;
-        }
 
         hitCarEffect = jm.hitCarEffect;
     }

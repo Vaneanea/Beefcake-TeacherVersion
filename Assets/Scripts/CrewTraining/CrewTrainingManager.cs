@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrewTrainingManager : MonoBehaviour {
-    [SerializeField] private CrewBeefCake curBeefCake;
+    [SerializeField] public static CrewBeefCake curBeefCake;
 
     [SerializeField] private int trainingTime;
 
     private TrainingUIManager uiManager;
 
     private void Start() {
+        if (SceneManager.GetActiveScene().name != "CrewTraining")
+            return;
+
         SetManagers();
-        SetCurBeefCake();
 
         uiManager.OnStart(curBeefCake);
         StartCoroutine(EndTrainingAfterSeconds(trainingTime));
