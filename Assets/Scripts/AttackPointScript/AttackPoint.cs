@@ -35,7 +35,10 @@ public class AttackPoint : MonoBehaviour
     [Header("Pulsate Button variables")]
     [SerializeField] private Vector2 scaleTimeBounds;
     [SerializeField] private float minScale;
+    [SerializeField] private float minModifier;
     private static float scaleTime;
+
+    private float maxScale;
     #endregion
 
     private void Awake()
@@ -195,12 +198,12 @@ public class AttackPoint : MonoBehaviour
 
     private void ExecuteAttack()
     {
-        //reduce current hits
-        currentHits -= player.GetAttackDamage();
-        // TODO: Here modify currentHits depending on timing of hit
+        int hits = DetermineHits();
+
+        currentHits -= hits;
 
         //show progress in progressbar
-        csm.IncreaseProgress(player.GetAttackDamage());
+        csm.IncreaseProgress(hits);
 
         //reduce stamina of player
         player.ReduceStamina(csm.staminaDecreaseValue);
@@ -239,7 +242,23 @@ public class AttackPoint : MonoBehaviour
     }
 
     private void StartPulsating() {
+        maxScale = transform.localScale.x;
         LeanTween.scale(gameObject, new Vector3(minScale, minScale, minScale), scaleTime).setLoopPingPong();
+    }
+
+    private int DetermineHits() {
+        float score = gameObject.transform.localScale.x;
+
+        float modifier = Remap(score, minScale, maxScale, minModifier, 1);
+        float damage = player.GetAttackDamage();
+
+        return (int) (damage * modifier);
+    }
+    #endregion
+
+    #region Helpers
+    public static float Remap(float value, float from1, float to1, float from2, float to2) {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
     #endregion
 }

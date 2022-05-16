@@ -478,6 +478,7 @@ MonoBehaviour:
   healthBar: {fileID: 8300286608398855066}
   scaleTimeBounds: {x: 0.3, y: 0.5}
   minScale: 6
+  minModifier: 0.3
 --- !u!1 &6130737824947687608
 GameObject:
   m_ObjectHideFlags: 0
