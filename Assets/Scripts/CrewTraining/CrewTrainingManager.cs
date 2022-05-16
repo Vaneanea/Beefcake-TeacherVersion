@@ -67,7 +67,6 @@ public class CrewTrainingManager : MonoBehaviour {
                 beef.stamina = curBeefCake.stamina;
                 beef.speed = curBeefCake.speed;
             }
-                
         }
 
         saveManager.Save();

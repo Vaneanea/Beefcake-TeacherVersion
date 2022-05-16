@@ -16,6 +16,7 @@ public class TrainingUIManager : MonoBehaviour {
     [SerializeField] private GameObject speedDisplay;
 
     [SerializeField] private GameObject charModel;
+    [SerializeField] private Animator beefAnim; 
     [SerializeField] private List<GameObject> increaseEffects;
 
     public void OnStart(CrewBeefCake beefCake) {
@@ -27,7 +28,7 @@ public class TrainingUIManager : MonoBehaviour {
         SetStatUI(beefCake);
         ShowTrainEffects();
 
-        // TODO: Animate the character model.
+        beefAnim.SetTrigger("TrainTrigger 1"); // TODO: Handle animation somewhere else?
     }
 
     private void SetTextUI(CrewBeefCake beefCake) {
@@ -68,6 +69,7 @@ public class TrainingUIManager : MonoBehaviour {
     private void InstantiateModel(CrewBeefCake beefCake) {
         // Instantiate new character model as a child of {charModel}
         GameObject model = Instantiate(beefCake.characterPrefab);
+        beefAnim = model.GetComponent<Animator>();
         model.transform.parent = charModel.transform;
 
         // Set its local transform to display it properly 
