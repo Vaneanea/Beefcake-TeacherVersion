@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CrewTraining.unity
     guid: 348642eed663d984d82cb5e1cf0e5bfa
+  - enabled: 1
+    path: Assets/Scenes/CrewManagement.unity
+    guid: caf1ffbaf79a0994686c9c115cebb0b3
   m_configObjects: {}

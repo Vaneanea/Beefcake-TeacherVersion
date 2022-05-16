@@ -36,6 +36,10 @@ public class UIButtons : MonoBehaviour
       SceneManager.LoadScene("CrewHire");
     }
 
+    public void CrewButton() {
+        SceneManager.LoadScene("CrewManagement");
+    }
+
     public void ActivateTempPauseMenu()
     {
         transform.GetChild(2).gameObject.SetActive(true);
