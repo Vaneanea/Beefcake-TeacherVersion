@@ -8,6 +8,7 @@ public class CrewTrainingManager : MonoBehaviour {
 
     [SerializeField] private int trainingTime;
 
+    private SaveManager saveManager;
     private TrainingUIManager uiManager;
 
     private void Start() {
@@ -36,17 +37,26 @@ public class CrewTrainingManager : MonoBehaviour {
 
     private void SetManagers() {
         uiManager = GetComponentInChildren<TrainingUIManager>();
-    }
-
-    private void SetCurBeefCake() {
-        // TODO: Implement this! Pass information from other scenes.
-        // Right now, {curBeefCake} is set manually through the Editor
+        saveManager = GetComponentInChildren<SaveManager>();
     }
 
     private IEnumerator EndTrainingAfterSeconds(float seconds) {
         yield return new WaitForSeconds(seconds);
 
         Debug.Log("END TRAINING SESSION");
-        // TODO: To be implemented.
+
+        SaveBeefCakeChanges();
+        // TODO: Show pop-up with progress or something before switching scenes 
+        SceneManager.LoadScene("MainScene");
+    }
+
+    private void SaveBeefCakeChanges() {
+        List<CrewBeefCake> crew = SaveManager.crew;
+        foreach (CrewBeefCake beef in crew) {
+            if (beef.displayName == curBeefCake.displayName)
+                beef.strength = curBeefCake.strength;
+        }
+
+        saveManager.Save();
     }
 }

@@ -8,6 +8,7 @@ public class CrewBeefCake : ScriptableObject
 {
     public int level;
 
+    // Assumed that the {displayName} differs for all BeefCakes (used as ID)
     public string displayName;
 
     public int speed;
