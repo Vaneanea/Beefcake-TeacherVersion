@@ -243,7 +243,8 @@ public class AttackPoint : MonoBehaviour
 
     private void StartPulsating() {
         maxScale = transform.localScale.x;
-        LeanTween.scale(gameObject, new Vector3(minScale, minScale, minScale), scaleTime).setLoopPingPong();
+        LeanTween.scale(gameObject, new Vector3(minScale, minScale, minScale), scaleTime)
+                    .setEaseInBack().setLoopPingPong();
     }
 
     private int DetermineHits() {
