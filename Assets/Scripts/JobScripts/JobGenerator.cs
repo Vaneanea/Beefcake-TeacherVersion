@@ -14,7 +14,6 @@ public class JobGenerator : MonoBehaviour {
 
     [Header("Generation Fields")]
     [SerializeField] private int baseCarCount = 3;
-    [SerializeField] private int baseStarCount = 2;
 
     private List<CarTypeData> carTypeSources;
 
@@ -32,14 +31,14 @@ public class JobGenerator : MonoBehaviour {
         int carCount = GenerateCarCount();
 
         for (int index = 1; index <= carCount; index++) {
-            int starCount = GeneratStarCount();
             CarTypeData carType = GenerateCarType();
 
-            uiManager.AddCarSlot(carType, starCount);
 
             // Instantiate CarData objects and let them decide their stats based on their difficulty
-            DynamicCarData car = DynamicCarData.CreateInstance(carType, starCount);
+            DynamicCarData car = DynamicCarData.CreateInstance(carType);
             cars.Add(car);
+
+            uiManager.AddCarSlot(carType, car.starCount);
         }
 
         // TODO: Generate Rewards
@@ -91,15 +90,6 @@ public class JobGenerator : MonoBehaviour {
         if (rand < difficulty)
             return baseCarCount + 1;
         return baseCarCount;
-    }
-
-    // Generate number difficulty of a car (which ranges from 1 to 5 stars)
-    private int GeneratStarCount() {
-        // TODO: !!! Make this generation better !!!
-        float rand = Random.value;
-        if (rand < difficulty)
-            return baseStarCount + 1;
-        return baseStarCount;
     }
 
     // Generate CarType to be used
