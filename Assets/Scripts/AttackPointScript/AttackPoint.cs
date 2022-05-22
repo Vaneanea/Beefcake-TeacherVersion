@@ -31,6 +31,9 @@ public class AttackPoint : MonoBehaviour
     //reference to the healthbar script
     public SliderScript healthBar;
 
+    [Header("Damage Pop-up Dependencies")]
+    [SerializeField] private Transform popupPrefab;
+
     #region Pulsate Button variables
     [Header("Pulsate Button variables")]
     [SerializeField] private Vector2 scaleTimeBounds;
@@ -199,6 +202,7 @@ public class AttackPoint : MonoBehaviour
     private void ExecuteAttack()
     {
         int hits = DetermineHits();
+        CreateDamagePopup(hits);
 
         currentHits -= hits;
 
@@ -235,6 +239,13 @@ public class AttackPoint : MonoBehaviour
         }
     }
     #endregion
+
+    private void CreateDamagePopup(int damageAmount) {
+        Transform popupTransform = Instantiate(popupPrefab, transform.position, Quaternion.identity, transform);
+        DamagePopup damagePopup = popupTransform.GetComponent<DamagePopup>();
+
+        damagePopup.Setup(damageAmount);
+    }
 
     #region Pulsate Button Methods
     private void InitializeScaleTime() {
