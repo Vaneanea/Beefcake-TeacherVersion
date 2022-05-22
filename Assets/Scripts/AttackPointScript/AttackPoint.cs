@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+// TODO for button timing:
+// * modify currentHits in ExecuteAttack based on button scale
 public class AttackPoint : MonoBehaviour
 {
     private int maxHits;
@@ -29,17 +31,32 @@ public class AttackPoint : MonoBehaviour
     //reference to the healthbar script
     public SliderScript healthBar;
 
+    [Header("Damage Pop-up Dependencies")]
+    [SerializeField] private Transform popupPrefab;
+
+    #region Pulsate Button variables
+    [Header("Pulsate Button variables")]
+    [SerializeField] private Vector2 scaleTimeBounds;
+    [SerializeField] private float minScale;
+    [SerializeField] private float minModifier;
+    private static float scaleTime;
+
+    private float maxScale;
+    #endregion
 
     private void Awake()
     {
         SetGameManager();
         SetOtherManagers();
+        InitializeScaleTime();
     }
 
     private void Start()
     {
         SetInitialParameters();
         currentPlayerPosition = bcm.startingPositions[0];
+
+        StartPulsating();
     }
 
     private void Update()
@@ -112,6 +129,7 @@ public class AttackPoint : MonoBehaviour
     }
     #endregion
 
+    #region Attack Methods
     private void UpdateAttackPointHealthBarVisual()
     {
        healthBar.SetHealth(currentHits);
@@ -163,9 +181,6 @@ public class AttackPoint : MonoBehaviour
         currentPlayerPosition.localRotation = player.transform.transform.localRotation;
     }
 
-
-
-
     private void CheckIfDestroyed()
     {
         if (currentHits <= 0)
@@ -186,11 +201,13 @@ public class AttackPoint : MonoBehaviour
 
     private void ExecuteAttack()
     {
-        //reduce current hits
-        currentHits -= player.GetAttackDamage();
+        int hits = DetermineHits();
+        CreateDamagePopup(hits);
+
+        currentHits -= hits;
 
         //show progress in progressbar
-        csm.IncreaseProgress(player.GetAttackDamage());
+        csm.IncreaseProgress(hits);
 
         //reduce stamina of player
         player.ReduceStamina(csm.staminaDecreaseValue);
@@ -200,7 +217,6 @@ public class AttackPoint : MonoBehaviour
 
         StartCoroutine(ChangeTargetImage());
     }
-
 
     private IEnumerator ChangeTargetImage()
     {
@@ -222,4 +238,39 @@ public class AttackPoint : MonoBehaviour
             coinM.SpawnCoin();
         }
     }
-}  
+    #endregion
+
+    private void CreateDamagePopup(int damageAmount) {
+        Transform popupTransform = Instantiate(popupPrefab, transform.position, Quaternion.identity, transform);
+        DamagePopup damagePopup = popupTransform.GetComponent<DamagePopup>();
+
+        damagePopup.Setup(damageAmount);
+    }
+
+    #region Pulsate Button Methods
+    private void InitializeScaleTime() {
+        scaleTime = Random.Range(scaleTimeBounds.x, scaleTimeBounds.y);
+    }
+
+    private void StartPulsating() {
+        maxScale = transform.localScale.x;
+        LeanTween.scale(gameObject, new Vector3(minScale, minScale, minScale), scaleTime)
+                    .setEaseInBack().setLoopPingPong();
+    }
+
+    private int DetermineHits() {
+        float score = gameObject.transform.localScale.x;
+
+        float modifier = Remap(score, minScale, maxScale, minModifier, 1);
+        float damage = player.GetAttackDamage();
+
+        return (int) (damage * modifier);
+    }
+    #endregion
+
+    #region Helpers
+    public static float Remap(float value, float from1, float to1, float from2, float to2) {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+    #endregion
+}

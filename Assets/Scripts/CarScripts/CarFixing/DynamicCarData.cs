@@ -10,6 +10,10 @@ using System.Linq;
 // Holds a concrete instance of CarTypeData 
 public class DynamicCarData : ScriptableObject
 {
+    private const int maxFirstStageHits = 2;
+    private const int maxSecondStageHits = 3;
+    private const int maxStarCount = 3;
+
     // Car stages
     public GameObject[] carStates = new GameObject[3];
 
@@ -27,7 +31,7 @@ public class DynamicCarData : ScriptableObject
     public GameObject clientVisuals;
 
     public CarTypeData carType;
-    public void Initialize(CarTypeData carType, int starCount)
+    public void Initialize(CarTypeData carType)
     {
         this.carType = carType;
 
@@ -36,11 +40,10 @@ public class DynamicCarData : ScriptableObject
         possibleAttackPointStage1 = (GameObject[])carType.possibleAttackPointStage1.Clone();
         possibleAttackPointStage2 = (GameObject[])carType.possibleAttackPointStage2.Clone();
 
-        // TODO: Initialize {HitsNeeded} variables based on {starCount}
-        firstStageHitsNeeded = 2;
-        secondStageHitsNeeded = 3;
+        starCount = GenerateStarCount();
 
-        this.starCount = starCount;
+        GenerateHitsNeeded();
+       
         needFix = DecideIfFixIsNeeded();
         needWash = DecideIfWashIsNeeded();
 
@@ -54,15 +57,42 @@ public class DynamicCarData : ScriptableObject
     }
 
     // Factory method for creating a {ConcreteCarData} object 
-    public static DynamicCarData CreateInstance(CarTypeData carType, int starCount)
+    public static DynamicCarData CreateInstance(CarTypeData carType)
     {
         DynamicCarData data = CreateInstance<DynamicCarData>();
-        data.Initialize(carType, starCount);
+        data.Initialize(carType);
 
         return data;
     }
 
     #region Car Generation methods
+    private int GenerateStarCount() {
+        return Random.Range(1, 4);
+    }
+
+    // Set {firstStageHitsNeeded} and {secondStageHitsNeeded} based on {starCount}
+    // -- This method could use some work in the future
+    private void GenerateHitsNeeded() {
+        
+        switch (starCount) {
+            case 1:
+                firstStageHitsNeeded = secondStageHitsNeeded = 1;
+                break;
+            case 2:
+                firstStageHitsNeeded = Random.Range(1, maxFirstStageHits + 1) + Random.Range(0, starCount);
+                secondStageHitsNeeded = Random.Range(1, maxSecondStageHits + 1) + Random.Range(0, starCount);
+
+                firstStageHitsNeeded = Math.Min(firstStageHitsNeeded, maxFirstStageHits);
+                secondStageHitsNeeded = Math.Min(secondStageHitsNeeded, maxSecondStageHits);
+
+                break;
+            case 3:
+                firstStageHitsNeeded = maxFirstStageHits;
+                secondStageHitsNeeded = maxSecondStageHits;
+                break;
+        }
+    }
+    
     private bool DecideIfWashIsNeeded()
     {
         var x = Random.Range(0, 1);

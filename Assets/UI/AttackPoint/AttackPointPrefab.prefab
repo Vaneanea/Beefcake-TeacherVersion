@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 3
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -476,6 +476,11 @@ MonoBehaviour:
   player: {fileID: 0}
   playerPosition: {fileID: 0}
   healthBar: {fileID: 8300286608398855066}
+  popupPrefab: {fileID: 2591882892209882464, guid: dc12f1a6393d9bb40a5e683ac46196dc,
+    type: 3}
+  scaleTimeBounds: {x: 0.3, y: 0.5}
+  minScale: 6
+  minModifier: 0.3
 --- !u!1 &6130737824947687608
 GameObject:
   m_ObjectHideFlags: 0

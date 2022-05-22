@@ -68,7 +68,7 @@ public class CarManager : MonoBehaviour
         newCar.GetComponent<Car>().carTypeData = carTypes[index];
 
         // TODO: Generate random star count (hard-coded for now)
-        DynamicCarData car = DynamicCarData.CreateInstance(carTypes[index], 2);
+        DynamicCarData car = DynamicCarData.CreateInstance(carTypes[index]);
         newCar.GetComponent<Car>().dynamicCarData = car;
     }
 
