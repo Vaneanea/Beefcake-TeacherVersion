@@ -40,6 +40,10 @@ public class UIButtons : MonoBehaviour
         SceneManager.LoadScene("CrewManagement");
     }
 
+    public void StuffButton() {
+        SceneManager.LoadScene("ShopScene");
+    }
+
     public void ActivateTempPauseMenu()
     {
         transform.GetChild(2).gameObject.SetActive(true);

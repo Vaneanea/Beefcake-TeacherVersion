@@ -91,13 +91,7 @@ public class CrewInventory : MonoBehaviour {
         return beefCake;
     }
 
-    private void SaveCrewBeefCake(CrewBeefCake beefCake) 
-    {
-        //string path = "Assets/Resources/Data/CrewBeefCakes/" + beefCake.displayName + ".asset";
-        //AssetDatabase.CreateAsset(beefCake, path);
-
+    private void SaveCrewBeefCake(CrewBeefCake beefCake) {
         SaveManager.crew.Add(beefCake);
     }
-
-    // TODO: add Remove and Get methods
 }

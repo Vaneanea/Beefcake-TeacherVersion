@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CrewManagement.unity
     guid: caf1ffbaf79a0994686c9c115cebb0b3
+  - enabled: 1
+    path: Assets/Scenes/ShopScene.unity
+    guid: 63169921bc82b25428c5842dc2da8689
   m_configObjects: {}
