@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2d96356fcb26545b54928670b100df, type: 3}
   m_Name: Headband
   m_EditorClassIdentifier: 
-  displayName: Headband
+  displayName: Boxing Gloves
   type: 2
-  strength: 0
-  stamina: 50
+  strength: 10
+  stamina: 0
   speed: 0
   cost: 10
-  icon: {fileID: 21300000, guid: cb37917483ee24fea8fab306393441e5, type: 3}
+  icon: {fileID: 21300000, guid: 7f5077902f34e4dcda6e69df4ced83a7, type: 3}
